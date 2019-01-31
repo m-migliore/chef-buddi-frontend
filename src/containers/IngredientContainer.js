@@ -5,7 +5,6 @@ import Ingredient from '../components/Ingredient'
 
 class IngredientContainer extends Component {
   state = {
-    ingredients: [],
     filter: ""
   }
 
@@ -14,10 +13,7 @@ class IngredientContainer extends Component {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      //this.props.loadIngredients(data)
-      this.setState({
-        ingredients: data
-      })
+      this.props.loadIngredients(data)
     })
   }
 
@@ -29,7 +25,7 @@ class IngredientContainer extends Component {
 
   render() {
     // const SelectableIngredient = withSelect(Ingredient)
-    const filteredIngredients = this.state.ingredients.filter(ingred => ingred.name.includes(this.state.filter))
+    const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.includes(this.state.filter))
 
     return (
       <div>
