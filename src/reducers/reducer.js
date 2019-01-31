@@ -10,6 +10,8 @@ export default function reducer(state=defaultState, action) {
   switch(action.type) {
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}
+    case "LOAD_RECIPES":
+      return {...state, recipes: action.payload}
     case "VIEW_RECIPE":
       return console.log("view recipe");
     default:

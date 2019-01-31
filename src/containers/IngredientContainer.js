@@ -19,13 +19,13 @@ class IngredientContainer extends Component {
 
   handleChange = e => {
     this.setState({
-      filter: e.target.value
+      filter: e.target.value.toLowerCase()
     })
   }
 
   render() {
     // const SelectableIngredient = withSelect(Ingredient)
-    const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.includes(this.state.filter))
+    const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.toLowerCase().includes(this.state.filter))
 
     return (
       <div>
