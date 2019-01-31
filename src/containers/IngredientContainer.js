@@ -14,13 +14,14 @@ class IngredientContainer extends Component {
   }
 
   render() {
-    const SelectableIngredient = withSelect(Ingredient)
+    // const SelectableIngredient = withSelect(Ingredient)
 
     return (
       <div>
         <h2>IngredientContainer</h2>
         {this.props.ingredients.map(ingred => {
-          return <SelectableIngredient key={ingred.id} ingred={ingred} selectable={true}/>
+          // return <SelectableIngredient key={ingred.id} ingred={ingred} selectable={true}/>
+          return <Ingredient key={ingred.id} ingred={ingred}/>
         })}
       </div>
     )

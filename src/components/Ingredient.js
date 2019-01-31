@@ -21,7 +21,7 @@ class Ingredient extends Component {
     return (
       <div className="ingredient">
         <h3>{this.createTitleName(ingred.name)}</h3>
-        {this.props.selectable ? "sup" : "nope"}
+        {/* {this.props.selectable ? "sup" : "nope"} */}
       </div>
     );
   }
