@@ -38,3 +38,16 @@
   margin: 1%;
   text-align: center;
 }
+
+/********** RECIPE PREVIEW **********/
+.recipe-preview {
+  display: inline-block;
+  width: 22%;
+  margin: 1%;
+  text-align: center;
+}
+.recipe-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

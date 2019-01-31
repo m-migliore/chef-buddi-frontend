@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Ingredient from '../components/Ingredient'
-import withSelect from '../hocs/withSelect'
+// import withSelect from '../hocs/withSelect'
 
 class IngredientContainer extends Component {
   state = {
