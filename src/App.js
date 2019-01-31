@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 // import { connect } from 'react-redux'
+import Navbar from './containers/Navbar'
 import Home from './containers/Home'
 import Profile from './containers/Profile'
 import IngredientContainer from './containers/IngredientContainer'
@@ -14,7 +15,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1>Chef Buddi</h1>
+          <Navbar />
           <Route path="/" exact component={Home} />
           <Route path="/ingredients" component={IngredientContainer} />
           <Route path="/recipes" component={RecipeContainer} />

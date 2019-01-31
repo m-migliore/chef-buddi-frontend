@@ -64,7 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", ingredients: loadedIngredients})
+    loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients})
   }
 }
 
