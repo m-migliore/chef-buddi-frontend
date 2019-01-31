@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Ingredient extends Component {
 
-
   createTitleName = (name) => {
     let titledName = name.split(" ").map(word => {
       let letters = word.split("")
@@ -12,11 +11,18 @@ class Ingredient extends Component {
     return titledName
   }
 
+  // handleClick = () => {
+  //   console.log("clicked")
+  // }
+
   render() {
     const ingred = this.props.ingred
 
     return (
-      <div className="ingredient">{this.createTitleName(ingred.name)}</div>
+      <div className="ingredient">
+        <h3>{this.createTitleName(ingred.name)}</h3>
+        {this.props.selectable ? "sup" : "nope"}
+      </div>
     );
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Ingredient from '../components/Ingredient'
+import withSelect from '../hocs/withSelect'
 
 class IngredientContainer extends Component {
   componentDidMount() {
@@ -13,11 +14,13 @@ class IngredientContainer extends Component {
   }
 
   render() {
+    const SelectableIngredient = withSelect(Ingredient)
+
     return (
       <div>
         <h2>IngredientContainer</h2>
         {this.props.ingredients.map(ingred => {
-          return <Ingredient key={ingred.id} ingred={ingred}/>
+          return <SelectableIngredient key={ingred.id} ingred={ingred} selectable={true}/>
         })}
       </div>
     )
@@ -27,7 +30,6 @@ class IngredientContainer extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
-    testfalse: false
   }
 }
 
