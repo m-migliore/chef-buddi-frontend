@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // import { connect } from 'react-redux'
+import Home from './containers/Home'
 import IngredientContainer from './containers/IngredientContainer'
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>App Home</h1>
-        <IngredientContainer />
-      </div>
+      <Router>
+        <div className="App">
+          <h1>App Home</h1>
+          <Route path="/" exact component={Home} />
+          <Route path="/ingredients" component={IngredientContainer} />
+        </div>
+
+      </Router>
     );
   }
 }
