@@ -3,27 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import reducer from './reducers/reducer'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-
-const defaultState = {
-  currentUserId: 3,
-  userIngredients: [],
-  ingredients: [],
-  userRecipes: [],
-  recipes: []
-}
-
-const reducer = (state=defaultState, action) => {
-  switch(action.type) {
-    case "LOAD_INGREDIENTS":
-      return {...state, ingredients: action.ingredients}
-    case "VIEW_RECIPE":
-      return console.log("view recipe");
-    default:
-      return defaultState
-  }
-}
 
 const store = createStore(reducer)
 
