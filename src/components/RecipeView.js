@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class RecipeView extends Component {
-  state = {
-    recipe: {}
-  }
-
   componentDidMount() {
-    fetch("http://localhost:4000/api/v1/recipes/638")
+    fetch(`http://localhost:4000/api/v1/recipes/${this.props.viewedRecipeId}`)
     .then(res => res.json())
     .then(data => {
-      this.setState({
-        recipe: data
-      })
+      this.props.setViewRecipe(data)
     })
   }
 
   render() {
-    const recipe = this.state.recipe
+    const recipe = this.props.viewedRecipe
     return (
       <div className="recipe-view">
         <div className="recipeInfo">
@@ -35,6 +30,19 @@ class RecipeView extends Component {
     );
   }
 
+}
+
+const mapStateToProps = state => {
+  return {
+    viewedRecipeId: state.viewedRecipeId,
+    viewedRecipe: state.viewedRecipe
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe})
+  }
 }
 
 export default RecipeView;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 class RecipePreview extends Component {
   handleClick = () => {
-    this.props.viewRecipe(this.props.recipe.id)
+    this.props.setViewRecipeId(this.props.recipe.id)
   }
 
   render() {
@@ -20,7 +20,7 @@ class RecipePreview extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    viewRecipe: (recipeId) => dispatch({type: "VIEW_RECIPE", payload: recipeId})
+    setViewRecipeId: (recipeId) => dispatch({type: "SET_VIEW_RECIPE_ID", payload: recipeId})
   }
 }
 

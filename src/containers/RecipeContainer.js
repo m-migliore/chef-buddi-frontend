@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RecipePreview from '../components/RecipePreview'
+import RecipeView from '../components/RecipeView'
 
 class RecipeContainer extends Component {
   state = {
@@ -35,7 +36,7 @@ class RecipeContainer extends Component {
             placeholder="Filter by recipe name"
           />
         </div>
-        {this.props.viewedRecipe ? "view this recipe" : recipeList()}
+        {this.props.viewedRecipeId ? <RecipeView /> : recipeList()}
       </div>
     );
   }
@@ -44,7 +45,7 @@ class RecipeContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    viewedRecipe: state.viewedRecipe
+    viewedRecipeId: state.viewedRecipeId
   }
 }
 

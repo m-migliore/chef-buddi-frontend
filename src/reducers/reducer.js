@@ -5,7 +5,8 @@ const defaultState = {
   ingredients: [],
   userRecipes: [],
   recipes: [],
-  viewedRecipe: null,
+  viewedRecipeId: null,
+  viewedRecipe: null
 }
 
 export default function reducer(state = defaultState, action) {
@@ -16,8 +17,9 @@ export default function reducer(state = defaultState, action) {
       return {...state, ingredients: action.payload}
     case "LOAD_RECIPES":
       return {...state, recipes: action.payload}
-    case "VIEW_RECIPE":
-      console.log(action.payload);
+    case "SET_VIEW_RECIPE_ID":
+      return {...state, viewedRecipeId: action.payload}
+    case "SET_VIEW_RECIPE":
       return {...state, viewedRecipe: action.payload}
     default:
       return defaultState
