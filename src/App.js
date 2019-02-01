@@ -1,4 +1,4 @@
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -24,6 +24,14 @@ class App extends Component {
     .then(res => res.json())
     .then(data => {
       this.props.loadRecipes(data)
+    })
+
+    // move to login once auth is setup
+    fetch(`http://localhost:4000/api/v1/users/3`)
+    .then(res => res.json())
+    .then(data => {
+      //return {...state, userIngredients: data.ingredients}
+      this.props.loadUserIngredients(data.ingredients)
     })
   }
 
@@ -57,8 +65,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients}),
-    loadRecipes: (loadedRecipes) => dispatch({type: "LOAD_RECIPES", payload: loadedRecipes})
+    loadIngredients: (ingredients) => dispatch({type: "LOAD_INGREDIENTS", payload: ingredients}),
+    loadRecipes: (recipes) => dispatch({type: "LOAD_RECIPES", payload: recipes}),
+    loadUserIngredients: (ingredients) => dispatch({type: "LOAD_USER_INGREDIENTS", payload: ingredients})
   }
 }
 

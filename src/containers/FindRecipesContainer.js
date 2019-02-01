@@ -24,8 +24,7 @@ class FindRecipesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUserId: state.currentUserId,
-    userIngredients: state.userIngredients,
+    queryIngredients: state.queryIngredients,
     selectedIngredients: state.selectedIngredients
   }
 }

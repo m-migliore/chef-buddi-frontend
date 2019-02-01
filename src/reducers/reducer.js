@@ -2,6 +2,7 @@ const defaultState = {
   currentUserId: 3,
   currentUser: {},
   ingredients: [],
+  userIngredients: [],
   userRecipes: [],
   recipes: [],
   viewedRecipeId: null,
@@ -16,14 +17,14 @@ export default function reducer(state = defaultState, action) {
       return {...state, currentUser: action.payload}
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}
+    case "LOAD_USER_INGREDIENTS":
+      return {...state,  userIngredients: action.payload}
     case "LOAD_QUERY_INGREDIENTS":
-      console.log(action)
-      // fetch(`http://localhost:4000/api/v1/users/3`)
-      // .then(res => res.json())
-      // .then(data => {
-      //   console.log(data.ingredients)
-      // })
-      return {...state}
+      if (action.payload === "user") {
+        return {...state, queryIngredients: state.userIngredients}
+      } else {
+        return {...state, queryIngredients: state.ingredients}
+      }
     case "LOAD_RECIPES":
       return {...state, recipes: action.payload}
     case "SET_VIEW_RECIPE_ID":
