@@ -4,12 +4,16 @@ import IngredientContainer from '../containers/IngredientContainer'
 import ingredListSelector from '../hocs/ingredListSelector'
 
 class FindStepTwo extends Component {
+  handleClick = () => {
+    this.props.completeStepTwo(this.props.selectedIngredients)
+  }
 
   render() {
     const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
 
     return (
       <div className="step-two">
+        <button onClick={this.handleClick}>Find Recipes</button>
         <QueryIngredientContainer />
       </div>
     );
@@ -19,8 +23,15 @@ class FindStepTwo extends Component {
 
 const mapStateToProps = state => {
   return {
-    ingredients: state.queryIngredients
+    ingredients: state.queryIngredients,
+    selectedIngredients: state.selectedIngredients
   }
 }
 
-export default connect(mapStateToProps)(FindStepTwo)
+const mapDispatchToProps = dispatch => {
+  return {
+    completeStepTwo: ingredients => dispatch({type: "COMPLETE_STEP_TWO", payload: ingredients})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindStepTwo)

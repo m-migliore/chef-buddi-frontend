@@ -9,7 +9,8 @@ const defaultState = {
   viewedRecipe: null,
   selectedIngredients: [],
   queryIngredients: [],
-  stepsCompleted: 0
+  stepsCompleted: 0,
+  stepThreeIngredients: []
 }
 
 export default function reducer(state = defaultState, action) {
@@ -22,9 +23,9 @@ export default function reducer(state = defaultState, action) {
       return {...state,  userIngredients: action.payload}
     case "LOAD_QUERY_INGREDIENTS":
       if (action.payload === "user") {
-        return {...state, queryIngredients: state.userIngredients, stepsCompleted: state.stepsCompleted = 1}
+        return {...state, queryIngredients: state.userIngredients, stepsCompleted: 1}
       } else {
-        return {...state, queryIngredients: state.ingredients, stepsCompleted: state.stepsCompleted = 1}
+        return {...state, queryIngredients: state.ingredients, stepsCompleted: 1}
       }
     case "LOAD_RECIPES":
       return {...state, recipes: action.payload}
@@ -42,6 +43,9 @@ export default function reducer(state = defaultState, action) {
       } else {
         return {...state, selectedIngredients: [...state.selectedIngredients, action.payload]}
       }
+    case "COMPLETE_STEP_TWO":
+      const ingredients = state.ingredients.filter(ingred => action.payload.includes(ingred.id))
+      return {...state, stepsCompleted: 2, stepThreeIngredients: ingredients}
     default:
       return defaultState
   }

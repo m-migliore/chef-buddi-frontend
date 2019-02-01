@@ -4,6 +4,7 @@ import RecipeContainer from './RecipeContainer'
 import recipeListSelector from '../hocs/recipeListSelector'
 import FindStepOne from '../components/FindStepOne'
 import FindStepTwo from '../components/FindStepTwo'
+import FindStepThree from '../components/FindStepThree'
 
 class FindRecipesContainer extends Component {
   render() {
@@ -13,6 +14,8 @@ class FindRecipesContainer extends Component {
           return <FindStepOne />
         case 1:
           return <FindStepTwo />
+        case 2:
+          return <FindStepThree />
         default:
           return "redner step one"
       }
