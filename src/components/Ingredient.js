@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectIngredient: (ingredientId) => dispatch({type: "ADD_SELECTED_INGREDIENT", payload: ingredientId})
+    selectIngredient: (ingredientId) => dispatch({type: "SELECT_INGREDIENT", payload: ingredientId})
   }
 }
 

@@ -24,7 +24,7 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedRecipe: action.payload}
     case "CLEAR_VIEW_RECIPE_ID":
       return {...state, viewedRecipeId: null}
-    case "ADD_SELECTED_INGREDIENT":
+    case "SELECT_INGREDIENT":
       console.log(`selected ingrd id: ${action.payload}`)
       console.log("prev selected ingredients:", state.selectedIngredients);
       if (state.selectedIngredients.includes(action.payload)) {
