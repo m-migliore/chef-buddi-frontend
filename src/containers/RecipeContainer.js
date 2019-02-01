@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import RecipePreview from '../components/RecipePreview'
 
 class RecipeContainer extends Component {
@@ -7,13 +7,13 @@ class RecipeContainer extends Component {
     filter: ""
   }
 
-  componentDidMount() {
-    fetch("http://localhost:4000/api/v1/recipes")
-    .then(res => res.json())
-    .then(data => {
-      this.props.loadRecipes(data)
-    })
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:4000/api/v1/recipes")
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     this.props.loadRecipes(data)
+  //   })
+  // }
 
   handleChange = e => {
     this.setState({
@@ -25,8 +25,7 @@ class RecipeContainer extends Component {
     const filteredRecipes = this.props.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.filter))
 
     return (
-      <div>
-        <h2>RecipeContainer</h2>
+      <div className="recipe-container">
         <div className="filter-form">
           <input
             type="text"
@@ -42,16 +41,17 @@ class RecipeContainer extends Component {
 
 }
 
-const mapStateToProps = state => {
-  return {
-    recipes: state.recipes,
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     recipes: state.recipes,
+//   }
+// }
+//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     loadRecipes: (loadedRecipes) => dispatch({type: "LOAD_RECIPES", payload: loadedRecipes})
+//   }
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadRecipes: (loadedRecipes) => dispatch({type: "LOAD_RECIPES", payload: loadedRecipes})
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeContainer)
+// export default connect(mapStateToProps, mapDispatchToProps)(RecipeContainer)
+export default RecipeContainer

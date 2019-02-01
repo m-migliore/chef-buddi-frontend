@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import Ingredient from '../components/Ingredient'
 // import withSelect from '../hocs/withSelect'
 
@@ -28,7 +28,7 @@ class IngredientContainer extends Component {
     const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.toLowerCase().includes(this.state.filter))
 
     return (
-      <div className="ingredientContainer">
+      <div className="ingredient-container">
         <div className="filter-form">
           <input
             type="text"

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-function ingredSelector(WrappedComponent, ingredients) {
+function ingredListSelector(WrappedComponent, ingredients) {
   return class ingredWrap extends Component {
     render() {
       return (
@@ -13,4 +13,4 @@ function ingredSelector(WrappedComponent, ingredients) {
   }
 }
 
-export default ingredSelector
+export default ingredListSelector

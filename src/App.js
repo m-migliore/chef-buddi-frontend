@@ -8,7 +8,8 @@ import Profile from './containers/Profile'
 import IngredientContainer from './containers/IngredientContainer'
 import RecipeContainer from './containers/RecipeContainer'
 import RecipeView from './components/RecipeView'
-import ingredSelector from './hocs/ingredSelector'
+import ingredListSelector from './hocs/ingredListSelector'
+import recipeListSelector from './hocs/recipeListSelector'
 
 
 class App extends Component {
@@ -19,11 +20,18 @@ class App extends Component {
       console.log(data)
       this.props.loadIngredients(data)
     })
+
+    fetch("http://localhost:4000/api/v1/recipes")
+    .then(res => res.json())
+    .then(data => {
+      this.props.loadRecipes(data)
+    })
   }
 
 
   render() {
-    const AllIngredientContainer = ingredSelector(IngredientContainer, this.props.ingredients)
+    const AllIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
+    const AllRecipeContainer = recipeListSelector(RecipeContainer, this.props.recipes)
 
     return (
       <Router>
@@ -32,7 +40,8 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           {/* <Route path="/ingredients" component={IngredientContainer} /> */}
           <Route path="/ingredients" render={props => <AllIngredientContainer />} />
-          <Route path="/recipes" component={RecipeContainer} />
+          {/* <Route path="/recipes" component={RecipeContainer} /> */}
+          <Route path="/recipes" render={props => <AllRecipeContainer />} />
           <Route path="/profile" component={Profile} />
           <Route path="/test-recipe" component={RecipeView} />
         </div>
@@ -45,12 +54,14 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
+    recipes: state.recipes
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients})
+    loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients}),
+    loadRecipes: (loadedRecipes) => dispatch({type: "LOAD_RECIPES", payload: loadedRecipes})
   }
 }
 
