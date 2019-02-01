@@ -8,14 +8,14 @@ class IngredientContainer extends Component {
     filter: ""
   }
 
-  componentDidMount() {
-    fetch("http://localhost:4000/api/v1/ingredients")
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      this.props.loadIngredients(data)
-    })
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:4000/api/v1/ingredients")
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     this.props.loadIngredients(data)
+  //   })
+  // }
 
   handleChange = e => {
     this.setState({
@@ -28,8 +28,7 @@ class IngredientContainer extends Component {
     const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.toLowerCase().includes(this.state.filter))
 
     return (
-      <div>
-        <h2>IngredientContainer</h2>
+      <div className="ingredientContainer">
         <div className="filter-form">
           <input
             type="text"
@@ -52,16 +51,17 @@ class IngredientContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    ingredients: state.ingredients,
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     ingredients: state.ingredients,
+//   }
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients})
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients})
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IngredientContainer)
+// export default connect(mapStateToProps, mapDispatchToProps)(IngredientContainer)
+export default IngredientContainer
