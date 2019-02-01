@@ -20,13 +20,18 @@ class Ingredient extends Component {
     const ingred = this.props.ingred
 
     return (
-      <div className="ingredient" onClick={this.handleClick}>
+      <div className={this.props.selectedIngredients.includes(ingred.id) ? "ingredient selected" : "ingredient"} onClick={this.handleClick}>
         <h3>{this.createTitleName(ingred.name)}</h3>
         {/* {this.props.selectable ? "sup" : "nope"} */}
       </div>
     );
   }
+}
 
+const mapStateToProps = state => {
+  return {
+    selectedIngredients: state.selectedIngredients
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -35,4 +40,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Ingredient)
+export default connect(mapStateToProps, mapDispatchToProps)(Ingredient)

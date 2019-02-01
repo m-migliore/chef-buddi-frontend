@@ -15,6 +15,10 @@ nav a {
   text-align: center;
 }
 
+.ingredient.selected {
+  color: green;
+}
+
 /********** RECIPE PREVIEW **********/
 .recipe-preview {
   display: inline-block;
