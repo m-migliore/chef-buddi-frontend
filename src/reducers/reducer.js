@@ -8,7 +8,8 @@ const defaultState = {
   viewedRecipeId: null,
   viewedRecipe: null,
   selectedIngredients: [],
-  queryIngredients: []
+  queryIngredients: [],
+  stepOneComplete: false
 }
 
 export default function reducer(state = defaultState, action) {

@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import IngredientContainer from './containers/IngredientContainer'
+import ingredListSelector from './hocs/ingredListSelector'
+import RecipeContainer from './containers/RecipeContainer'
+import recipeListSelector from './hocs/recipeListSelector'
+import FindStepOne from '../components/FindStepOne'
 
 class FindRecipesContainer extends Component {
-  handleClick = e => {
-    if (e.target.name === "user") {
-      this.props.loadQueryIngredients("user")
-    } else {
-      this.props.loadQueryIngredients("all")
-    }
-  }
-
   render() {
     return (
-      <div>
-        <h2>Step 1. Select Ingredients</h2>
-        <button name="user" onClick={this.handleClick}>Your Ingredients</button>
-        <button name="all" onClick={this.handleClick}>All Ingredients Ingredients</button>
+      <div class="find-recipe-container">
+        <FindStepOne />
       </div>
     );
   }
@@ -25,14 +20,8 @@ class FindRecipesContainer extends Component {
 const mapStateToProps = state => {
   return {
     queryIngredients: state.queryIngredients,
-    selectedIngredients: state.selectedIngredients
+    // selectedIngredients: state.selectedIngredients
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadQueryIngredients: ingredientList => dispatch({type: "LOAD_QUERY_INGREDIENTS", payload: ingredientList})
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FindRecipesContainer)
+export default connect(mapStateToProps)(FindRecipesContainer)
