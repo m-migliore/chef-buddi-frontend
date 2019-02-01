@@ -11,6 +11,7 @@ class Navbar extends Component {
         <Link to="/ingredients">Ingredients</Link>
         <Link to="/recipes">Recipes</Link>
         <Link to="/profile">Profle</Link>
+        <Link to="/find-recipes">Find Recipes</Link>
       </nav>
     );
   }

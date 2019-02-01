@@ -9,6 +9,7 @@ import IngredientContainer from './containers/IngredientContainer'
 import RecipeContainer from './containers/RecipeContainer'
 import ingredListSelector from './hocs/ingredListSelector'
 import recipeListSelector from './hocs/recipeListSelector'
+import FindRecipesContainer from './containers/FindRecipesContainer'
 
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
           <Route path="/ingredients" render={props => <AllIngredientContainer />} />
           <Route path="/recipes" render={props => <AllRecipeContainer />} />
           <Route path="/profile" component={Profile} />
+          <Route path="/find-recipes" component={FindRecipesContainer} />
         </div>
 
       </Router>
