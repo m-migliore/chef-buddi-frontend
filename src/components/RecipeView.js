@@ -11,7 +11,10 @@ class RecipeView extends Component {
   }
 
   render() {
-    const recipe = this.props.viewedRecipe
+    // const recipe = this.props.viewedRecipe
+    let recipe
+    this.props.viewedRecipe ? recipe = this.props.viewedRecipe : recipe = {}
+
     return (
       <div className="recipe-view">
         <div className="recipeInfo">
@@ -45,4 +48,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default RecipeView;
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeView)
