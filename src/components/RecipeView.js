@@ -10,13 +10,19 @@ class RecipeView extends Component {
     })
   }
 
+  backButtonClick = () => {
+    this.props.clearViewRecipeId()
+  }
+
   render() {
     // const recipe = this.props.viewedRecipe
     let recipe
+
     this.props.viewedRecipe ? recipe = this.props.viewedRecipe : recipe = {}
 
     return (
       <div className="recipe-view">
+        <button onClick={this.backButtonClick}>Back To Recipe List</button>
         <div className="recipeInfo">
           <h2>{recipe.name}</h2>
           <h4>Category: <span>{recipe.category}</span></h4>
@@ -24,7 +30,7 @@ class RecipeView extends Component {
           {/* <ul>
             {recipe.tags.split(",").map(tag => <li>{tag}</li>)}
           </ul> */}
-          <h4>Tags: {recipe.tags}</h4>
+          {recipe.tags ? <h4>Tags: {recipe.tags}</h4> : null}
           <h4><a href={recipe.youtube} target="_blank">View on YouTube</a></h4>
           <h4><a href={recipe.source} target="_blank">Source</a></h4>
         </div>
@@ -44,7 +50,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe})
+    setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe}),
+    clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"})
   }
 }
 

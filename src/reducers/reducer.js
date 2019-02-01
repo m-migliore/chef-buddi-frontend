@@ -21,6 +21,8 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedRecipeId: action.payload}
     case "SET_VIEW_RECIPE":
       return {...state, viewedRecipe: action.payload}
+    case "CLEAR_VIEW_RECIPE_ID":
+      return {...state, viewedRecipeId: null}
     default:
       return defaultState
   }

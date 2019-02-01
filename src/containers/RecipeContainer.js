@@ -28,14 +28,16 @@ class RecipeContainer extends Component {
 
     return (
       <div className="recipe-container">
-        <div className="filter-form">
-          <input
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.filter}
-            placeholder="Filter by recipe name"
-          />
-        </div>
+        {this.props.viewedRecipeId ? null :
+          <div className="filter-form">
+            <input
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.filter}
+              placeholder="Filter by recipe name"
+            />
+          </div>
+        }
         {this.props.viewedRecipeId ? <RecipeView /> : recipeList()}
       </div>
     );
