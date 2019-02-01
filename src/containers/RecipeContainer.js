@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import RecipePreview from '../components/RecipePreview'
 
 class RecipeContainer extends Component {
@@ -23,6 +23,7 @@ class RecipeContainer extends Component {
 
   render() {
     const filteredRecipes = this.props.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.filter))
+    const recipeList = () => filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)
 
     return (
       <div className="recipe-container">
@@ -34,24 +35,17 @@ class RecipeContainer extends Component {
             placeholder="Filter by recipe name"
           />
         </div>
-        {filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)}
+        {this.props.viewedRecipe ? "view this recipe" : recipeList()}
       </div>
     );
   }
 
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     recipes: state.recipes,
-//   }
-// }
-//
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadRecipes: (loadedRecipes) => dispatch({type: "LOAD_RECIPES", payload: loadedRecipes})
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    viewedRecipe: state.viewedRecipe
+  }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(RecipeContainer)
-export default RecipeContainer
+export default connect(mapStateToProps)(RecipeContainer)

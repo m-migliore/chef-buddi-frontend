@@ -24,7 +24,7 @@ class Profile extends Component {
         <h2>Profile Page of User#: {this.props.currentUser.id}</h2>
         {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
         {this.props.currentUser.ingredients ? <UserIngredientContainer /> : null}
-        {this.props.currentUser.recipes? <h3>User Recipes</h3> : <h3>No Recipes Found</h3>}
+        {this.props.currentUser.recipes ? <h3>User Recipes</h3> : <h3>No Recipes Found</h3>}
         {this.props.currentUser.recipes ? <UserRecipeContainer /> : null}
       </div>
     );
