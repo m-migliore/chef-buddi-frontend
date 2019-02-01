@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import IngredientContainer from './IngredientContainer'
-import ingredListSelector from '../hocs/ingredListSelector'
 import RecipeContainer from './RecipeContainer'
 import recipeListSelector from '../hocs/recipeListSelector'
 import FindStepOne from '../components/FindStepOne'
+import FindStepTwo from '../components/FindStepTwo'
 
 class FindRecipesContainer extends Component {
   render() {
+    const renderStep = () => {
+      switch(this.props.stepsCompleted) {
+        case 0:
+          return <FindStepOne />
+        case 1:
+          return <FindStepTwo />
+        default:
+          return "redner step one"
+      }
+    }
     return (
-      <div class="find-recipe-container">
-        <FindStepOne />
+      <div className="find-recipe-container">
+        {renderStep()}
       </div>
     );
   }
@@ -19,6 +28,7 @@ class FindRecipesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    stepsCompleted: state.stepsCompleted,
     queryIngredients: state.queryIngredients,
     // selectedIngredients: state.selectedIngredients
   }

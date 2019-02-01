@@ -13,7 +13,7 @@ class FindStepOne extends Component {
 
   render() {
     return (
-      <div>
+      <div className="step-one">
         <h2>Step 1. Select Ingredients</h2>
         <button name="user" onClick={this.handleClick}>Your Ingredients</button>
         <button name="all" onClick={this.handleClick}>All Ingredients Ingredients</button>
