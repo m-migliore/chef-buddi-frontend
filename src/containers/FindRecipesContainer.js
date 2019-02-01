@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class FindRecipesContainer extends Component {
   handleClick = e => {
     if (e.target.name === "user") {
-      console.log("user ingredents")
+      this.props.loadQueryIngredients("user")
     } else {
-      console.log("all ingredients")
+      this.props.loadQueryIngredients("all")
     }
   }
 
@@ -21,4 +22,18 @@ class FindRecipesContainer extends Component {
 
 }
 
-export default FindRecipesContainer
+const mapStateToProps = state => {
+  return {
+    currentUserId: state.currentUserId,
+    userIngredients: state.userIngredients,
+    selectedIngredients: state.selectedIngredients
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadQueryIngredients: ingredientList => dispatch({type: "LOAD_QUERY_INGREDIENTS", payload: ingredientList})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindRecipesContainer)
