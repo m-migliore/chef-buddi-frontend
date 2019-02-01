@@ -16,7 +16,6 @@ class App extends Component {
     fetch("http://localhost:4000/api/v1/ingredients")
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       this.props.loadIngredients(data)
     })
 
@@ -37,9 +36,7 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Route path="/" exact component={Home} />
-          {/* <Route path="/ingredients" component={IngredientContainer} /> */}
           <Route path="/ingredients" render={props => <AllIngredientContainer />} />
-          {/* <Route path="/recipes" component={RecipeContainer} /> */}
           <Route path="/recipes" render={props => <AllRecipeContainer />} />
           <Route path="/profile" component={Profile} />
         </div>

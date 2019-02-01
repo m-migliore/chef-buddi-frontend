@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class Ingredient extends Component {
 
@@ -11,15 +12,15 @@ class Ingredient extends Component {
     return titledName
   }
 
-  // handleClick = () => {
-  //   console.log("clicked")
-  // }
+  handleClick = () => {
+    this.props.selectIngredient(this.props.ingred.id)
+  }
 
   render() {
     const ingred = this.props.ingred
 
     return (
-      <div className="ingredient">
+      <div className="ingredient" onClick={this.handleClick}>
         <h3>{this.createTitleName(ingred.name)}</h3>
         {/* {this.props.selectable ? "sup" : "nope"} */}
       </div>
@@ -28,4 +29,10 @@ class Ingredient extends Component {
 
 }
 
-export default Ingredient;
+const mapDispatchToProps = dispatch => {
+  return {
+    selectIngredient: (ingredientId) => dispatch({type: "ADD_SELECTED_INGREDIENT", payload: ingredientId})
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Ingredient)
