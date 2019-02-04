@@ -44,7 +44,7 @@ class FindStepThree extends Component {
 
   render() {
     const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.stepThreeIngredients)
-    const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
+    // const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
 
 
     return (

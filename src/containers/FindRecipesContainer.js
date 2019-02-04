@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import RecipeContainer from './RecipeContainer'
-import recipeListSelector from '../hocs/recipeListSelector'
+// import RecipeContainer from './RecipeContainer'
+// import recipeListSelector from '../hocs/recipeListSelector'
 import FindStepOne from '../components/FindStepOne'
 import FindStepTwo from '../components/FindStepTwo'
 import FindStepThree from '../components/FindStepThree'
