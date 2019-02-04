@@ -29,6 +29,14 @@ class IngredientContainer extends Component {
 
     return (
       <div className="ingredient-container">
+        {/* {window.location.pathname === "/find-recipes" ? null : <div className="filter-form">
+          <input
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.filter}
+            placeholder="Filter by ingredient"
+          />
+        </div>} */}
         <div className="filter-form">
           <input
             type="text"
@@ -37,6 +45,8 @@ class IngredientContainer extends Component {
             placeholder="Filter by ingredient"
           />
         </div>
+
+
         {/* {this.state.ingredients.map(ingred => {
           // return <SelectableIngredient key={ingred.id} ingred={ingred} selectable={true}/>
           return <Ingredient key={ingred.id} ingred={ingred}/>

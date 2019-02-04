@@ -12,7 +12,8 @@ const defaultState = {
   stepsCompleted: 0,
   stepThreeIngredients: [],
   recipeSearchCompleted: false,
-  foundRecipes: []
+  foundRecipes: [],
+  successfulSave: false
 }
 
 export default function reducer(state = defaultState, action) {

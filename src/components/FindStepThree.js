@@ -25,13 +25,19 @@ class FindStepThree extends Component {
     })
   }
 
+  handleClick = () => {
+    this.props.resetFindParams()
+  }
+
   renderResults = () => {
-    console.log("hit");
     if (this.props.foundRecipes.length > 0 ) {
       const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
       return <FoundRecipeContainer/>
     } else {
-      return <h2>No Results Found</h2>
+      return <div>
+              <h2>No Results Found</h2>
+              <button onClick={this.handleClick}>New Search</button>
+             </div>
     }
   }
 
@@ -43,7 +49,7 @@ class FindStepThree extends Component {
 
     return (
       <div className="step-two">
-        <h2>selected these</h2>
+        <h3>Ingredients Selected:</h3>
         <QueryIngredientContainer />
         {this.props.recipeSearchCompleted ? this.renderResults() : <Loader title="Recipes"/>}
         {/* <RecipeContainer ingredients={this.props.foundRecipes} /> */}
@@ -64,8 +70,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadFoundRecipes: recipes => dispatch({type:"LOAD_FOUND_RECIPES", payload: recipes})
+    loadFoundRecipes: recipes => dispatch({type:"LOAD_FOUND_RECIPES", payload: recipes}),
+    resetFindParams: () => dispatch({type: "RESET_FIND_PARAMS"}),
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(FindStepThree)

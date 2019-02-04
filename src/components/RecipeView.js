@@ -16,8 +16,23 @@ class RecipeView extends Component {
     this.props.clearViewRecipeId()
   }
 
+  handleSave = () => {
+    fetch("http://localhost:4000/api/v1/user_recipes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUserId,
+        recipe_id: this.props.viewedRecipe.id
+      })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+
   render() {
-    // const recipe = this.props.viewedRecipe
     let recipe
 
     this.props.viewedRecipe ? recipe = this.props.viewedRecipe : recipe = {}
@@ -27,7 +42,7 @@ class RecipeView extends Component {
 
       if (this.props.viewedRecipe) {
         ingredients = recipe['recipe_ingredients'].map(ingred => {
-          return <li>{ingred.measurement} {ingred.ingredient.name}</li>
+          return <li key={ingred.id}>{ingred.measurement} {ingred.ingredient.name}</li>
         })
       } else {
         ingredients = <li>No ingredients found</li>
@@ -40,13 +55,11 @@ class RecipeView extends Component {
     return (
       <div className="recipe-view">
         <button onClick={this.backButtonClick}>Back To Recipe List</button>
+        <button onClick={this.handleSave}>Save Recipe</button>
         <div className="recipeInfo">
           <h2>{recipe.name}</h2>
           <h4>Category: <span>{recipe.category}</span></h4>
           <h4>Area: <span>{recipe.area}</span></h4>
-          {/* <ul>
-            {recipe.tags.split(",").map(tag => <li>{tag}</li>)}
-          </ul> */}
           {recipe.tags ? <h4>Tags: {recipe.tags}</h4> : null}
           <h4><a href={recipe.youtube} target="_blank" rel="noopener noreferrer">View on YouTube</a></h4>
           <h4><a href={recipe.source} target="_blank" rel="noopener noreferrer">Source</a></h4>
@@ -64,6 +77,7 @@ class RecipeView extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
     viewedRecipeId: state.viewedRecipeId,
     viewedRecipe: state.viewedRecipe
   }
@@ -72,7 +86,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe}),
-    clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"})
+    clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"}),
   }
 }
 
