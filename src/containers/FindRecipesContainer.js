@@ -7,6 +7,10 @@ import FindStepTwo from '../components/FindStepTwo'
 import FindStepThree from '../components/FindStepThree'
 
 class FindRecipesContainer extends Component {
+  componentDidMount() {
+    this.props.resetFindParams()
+  }
+
   render() {
     const renderStep = () => {
       switch(this.props.stepsCompleted) {
@@ -37,4 +41,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(FindRecipesContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    resetFindParams: () => dispatch({type: "RESET_FIND_PARAMS"})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindRecipesContainer)
