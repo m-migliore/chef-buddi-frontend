@@ -4,6 +4,7 @@ import IngredientContainer from '../containers/IngredientContainer'
 import ingredListSelector from '../hocs/ingredListSelector'
 import RecipeContainer from '../containers/RecipeContainer'
 import recipeListSelector from '../hocs/recipeListSelector'
+import Loader from './Loader'
 
 class FindStepThree extends Component {
 
@@ -24,15 +25,28 @@ class FindStepThree extends Component {
     })
   }
 
+  renderResults = () => {
+    console.log("hit");
+    if (this.props.foundRecipes.length > 0 ) {
+      const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
+      return <FoundRecipeContainer/>
+    } else {
+      return <h2>No Results Found</h2>
+    }
+  }
+
+
   render() {
     const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.stepThreeIngredients)
     const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
+
 
     return (
       <div className="step-two">
         <h2>selected these</h2>
         <QueryIngredientContainer />
-        {this.props.foundRecipes.length > 0 ? <FoundRecipeContainer /> : null}
+        {this.props.recipeSearchCompleted ? this.renderResults() : <Loader title="Recipes"/>}
+        {/* <RecipeContainer ingredients={this.props.foundRecipes} /> */}
       </div>
     );
   }
@@ -43,7 +57,8 @@ const mapStateToProps = state => {
   return {
     selectedIngredients: state.selectedIngredients,
     stepThreeIngredients: state.stepThreeIngredients,
-    foundRecipes: state.foundRecipes
+    foundRecipes: state.foundRecipes,
+    recipeSearchCompleted: state.recipeSearchCompleted
   }
 }
 
