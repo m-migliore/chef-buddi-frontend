@@ -7,7 +7,7 @@ class RecipeSaveSuccess extends Component {
     if (e.target.name === "new") {
       this.props.resetFindParams()
     } else {
-      <Redirect to="/profile"/>
+      return <Redirect to="/profile"/>
     }
   }
 
@@ -23,9 +23,9 @@ class RecipeSaveSuccess extends Component {
 
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = dispatch => {
   return {
-    resetFindParams: () => dispatch({type: "RESET_FIND_PARAMS"})
+    resetFindParams: () => dispatch({type: "RESET_FIND_PARAMS"}),
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import IngredientContainer from '../containers/IngredientContainer'
 import ingredListSelector from '../hocs/ingredListSelector'
+import RecipeSaveSuccess from './RecipeSaveSuccess'
 
 class RecipeView extends Component {
   componentDidMount() {
@@ -29,7 +30,9 @@ class RecipeView extends Component {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      this.props.setRecipeSaveStatus()
+    })
   }
 
   render() {
@@ -55,7 +58,7 @@ class RecipeView extends Component {
     return (
       <div className="recipe-view">
         <button onClick={this.backButtonClick}>Back To Recipe List</button>
-        <button onClick={this.handleSave}>Save Recipe</button>
+        {this.props.successfulRecipeSave ? <RecipeSaveSuccess /> : <button onClick={this.handleSave}>Save Recipe</button>}
         <div className="recipeInfo">
           <h2>{recipe.name}</h2>
           <h4>Category: <span>{recipe.category}</span></h4>
@@ -79,7 +82,8 @@ const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
     viewedRecipeId: state.viewedRecipeId,
-    viewedRecipe: state.viewedRecipe
+    viewedRecipe: state.viewedRecipe,
+    successfulRecipeSave: state.successfulRecipeSave
   }
 }
 
@@ -87,6 +91,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe}),
     clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"}),
+    setRecipeSaveStatus: () => dispatch({type: "SET_RECIPE_SAVE_STATUS"})
   }
 }
 

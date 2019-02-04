@@ -13,7 +13,7 @@ const defaultState = {
   stepThreeIngredients: [],
   recipeSearchCompleted: false,
   foundRecipes: [],
-  successfulSave: false
+  successfulRecipeSave: false
 }
 
 export default function reducer(state = defaultState, action) {
@@ -52,7 +52,9 @@ export default function reducer(state = defaultState, action) {
     case "LOAD_FOUND_RECIPES":
       return {...state, foundRecipes: action.payload, recipeSearchCompleted: true}
     case "RESET_FIND_PARAMS":
-      return {...state, stepsCompleted: 0}
+      return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null}
+    case "SET_RECIPE_SAVE_STATUS":
+      return {...state, successfulRecipeSave: true}
     default:
       return defaultState
   }
