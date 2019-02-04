@@ -10,7 +10,8 @@ const defaultState = {
   selectedIngredients: [],
   queryIngredients: [],
   stepsCompleted: 0,
-  stepThreeIngredients: []
+  stepThreeIngredients: [],
+  foundRecipes: []
 }
 
 export default function reducer(state = defaultState, action) {
@@ -45,7 +46,9 @@ export default function reducer(state = defaultState, action) {
       }
     case "COMPLETE_STEP_TWO":
       const ingredients = state.ingredients.filter(ingred => action.payload.includes(ingred.id))
-      return {...state, stepsCompleted: 2, stepThreeIngredients: ingredients}
+      return {...state, stepsCompleted: 2, stepThreeIngredients: ingredients, selectedIngredients: []}
+    case "LOAD_FOUND_RECIPES":
+      return {...state, foundRecipes: action.payload}
     default:
       return defaultState
   }
