@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import IngredientContainer from '../containers/IngredientContainer'
+import ingredListSelector from '../hocs/ingredListSelector'
 
 class RecipeView extends Component {
   componentDidMount() {
@@ -20,6 +22,21 @@ class RecipeView extends Component {
 
     this.props.viewedRecipe ? recipe = this.props.viewedRecipe : recipe = {}
 
+    const renderIngredients = () => {
+      let ingredients
+
+      if (this.props.viewedRecipe) {
+        ingredients = recipe['recipe_ingredients'].map(ingred => {
+          return <li>{ingred.measurement} {ingred.ingredient.name}</li>
+        })
+      } else {
+        ingredients = <li>No ingredients found</li>
+      }
+
+      return <ul>{ingredients}</ul>
+    }
+
+
     return (
       <div className="recipe-view">
         <button onClick={this.backButtonClick}>Back To Recipe List</button>
@@ -35,6 +52,10 @@ class RecipeView extends Component {
           <h4><a href={recipe.source} target="_blank" rel="noopener noreferrer">Source</a></h4>
         </div>
         <img src={recipe.image} alt={recipe.name}/>
+        <h3>Ingredients</h3>
+        {recipe['recipe_ingredients'] ? renderIngredients() : null}
+        <h3>Instructions</h3>
+        <p>{recipe.instructions}</p>
       </div>
     );
   }
