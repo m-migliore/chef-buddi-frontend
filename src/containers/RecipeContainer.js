@@ -8,14 +8,6 @@ class RecipeContainer extends Component {
     filter: ""
   }
 
-  // componentDidMount() {
-  //   fetch("http://localhost:4000/api/v1/recipes")
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.props.loadRecipes(data)
-  //   })
-  // }
-
   handleChange = e => {
     this.setState({
       filter: e.target.value.toLowerCase()
@@ -24,7 +16,7 @@ class RecipeContainer extends Component {
 
   render() {
     const filteredRecipes = this.props.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.filter))
-    const recipeList = () => filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)
+    // const recipeList = () => filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)
 
     return (
       <div className="recipe-container container">
@@ -41,7 +33,10 @@ class RecipeContainer extends Component {
             </div>
           </div>
         }
-        {this.props.viewedRecipeId ? <RecipeView /> : <div className="row">{ recipeList() }</div>}
+        {filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)}
+
+        {/* {this.props.viewedRecipeId ? <RecipeView /> : <div className="row">{ recipeList() }</div>} */}
+        {this.props.viewedRecipeId ? <RecipeView /> : null}
       </div>
     );
   }

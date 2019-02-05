@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import IngredientContainer from '../containers/IngredientContainer'
-import ingredListSelector from '../hocs/ingredListSelector'
+// import ingredListSelector from '../hocs/ingredListSelector'
 
 class FindStepTwo extends Component {
   handleClick = () => {
@@ -9,19 +9,19 @@ class FindStepTwo extends Component {
   }
 
   render() {
-    const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
+    // const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
 
     return (
       <div className="step-two">
         <div className="container">
           <div className="row">
             <div className="col">
-              <button onClick={this.handleClick}>Find Recipes</button>
+              <button className="btn btn-primary" onClick={this.handleClick}>Find Recipes</button>
             </div>
           </div>
         </div>
-        
-        <QueryIngredientContainer />
+
+        <IngredientContainer ingredients={this.props.ingredients}/>
       </div>
     );
   }

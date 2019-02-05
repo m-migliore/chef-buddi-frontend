@@ -16,7 +16,11 @@ class Ingredient extends Component {
     //this.props.selectIngredient(this.props.ingred.id)
 
     if (window.location.pathname === "/find-recipes") {
-      this.props.selectIngredient(this.props.ingred.id)
+      if (this.props.userIngredSearch) {
+        this.props.selectIngredient(this.props.ingred['ingredient_id'])
+      } else {
+        this.props.selectIngredient(this.props.ingred.id)
+      }
     } else if (window.location.pathname === "/manage-ingredients") {
       if (this.props.userIngredients.includes(this.props.ingred)) {
         console.log("props", this.props.ingred.id)
@@ -42,17 +46,51 @@ class Ingredient extends Component {
         .then(data => this.props.addUserIngredient(data))
       }
     }
+  }
 
+  renderIngredClass = () => {
+  //  if (window.location.pathname === "/find-recipes") {
+    //   if (this.props.userIngredSearch) {
+    //     if (this.props.selectedIngredients.includes(this.props.ingred['ingredient_id'])) {
+    //       return  "ingredient selected"
+    //     } else {
+    //       return "ingredient"
+    //     }
+    //   } else {
+    //     if (this.props.selectedIngredients.includes(this.props.ingred.id)) {
+    //       return "ingredient selected"
+    //     } else {
+    //       return "ingrdi"
+    //     }
+    //   }
+    // } else {
+    //   return "ingredient"
+    // }
+
+
+
+    if (this.props.userIngredSearch && this.props.selectedIngredients.includes(this.props.ingred['ingredient_id'])) {
+      return  "ingredient selected"
+    } else if (this.props.selectedIngredients.includes(this.props.ingred.id)) {
+      return  "ingredient selected"
+    } else {
+      return "ingredient"
+    }
   }
 
   render() {
     const ingred = this.props.ingred
 
     return (
-      <div className={this.props.selectedIngredients.includes(ingred.id) ? "ingredient selected" : "ingredient"} onClick={this.handleClick}>
-        <h4>{this.createTitleName(ingred.name)}</h4>
-        {/* {this.props.selectable ? "sup" : "nope"} */}
-      </div>
+      // <div className={this.props.selectedIngredients.includes(ingred.id) ? "ingredient selected" : "ingredient"} onClick={this.handleClick}>
+      //   <h4>{this.createTitleName(ingred.name)}</h4>
+      // </div>
+      <h4
+        className={this.renderIngredClass()}
+        onClick={this.handleClick}
+        >
+        {this.createTitleName(this.props.ingred.name)}
+      </h4>
     );
   }
 }
@@ -61,7 +99,8 @@ const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
     selectedIngredients: state.selectedIngredients,
-    userIngredients: state.userIngredients
+    userIngredients: state.userIngredients,
+    userIngredSearch: state.userIngredSearch
   }
 }
 

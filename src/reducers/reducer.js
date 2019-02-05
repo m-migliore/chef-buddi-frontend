@@ -9,6 +9,7 @@ const defaultState = {
   viewedRecipe: null,
   selectedIngredients: [],
   queryIngredients: [],
+  userIngredSearch: false,
   stepsCompleted: 0,
   stepThreeIngredients: [],
   recipeSearchCompleted: false,
@@ -26,7 +27,7 @@ export default function reducer(state = defaultState, action) {
       return {...state,  userIngredients: action.payload}
     case "LOAD_QUERY_INGREDIENTS":
       if (action.payload === "user") {
-        return {...state, queryIngredients: state.userIngredients, stepsCompleted: 1}
+        return {...state, queryIngredients: state.userIngredients, stepsCompleted: 1, userIngredSearch: true}
       } else {
         return {...state, queryIngredients: state.ingredients, stepsCompleted: 1}
       }
@@ -52,7 +53,7 @@ export default function reducer(state = defaultState, action) {
     case "LOAD_FOUND_RECIPES":
       return {...state, foundRecipes: action.payload, recipeSearchCompleted: true}
     case "RESET_FIND_PARAMS":
-      return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null}
+      return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null, userIngredSearch: false}
     case "SET_RECIPE_SAVE_STATUS":
       return {...state, successfulRecipeSave: true}
     case "REMOVE_USER_INGREDIENT":
