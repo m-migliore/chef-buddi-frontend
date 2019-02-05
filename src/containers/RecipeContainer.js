@@ -39,7 +39,7 @@ class RecipeContainer extends Component {
         </div>
 
         {/* {this.props.viewedRecipeId ? <RecipeView /> : <div className="row">{ recipeList() }</div>} */}
-        {this.props.viewedRecipeId ? <RecipeView /> : null}
+        {/* {this.props.viewedRecipeId ? <RecipeView /> : null} */}
       </div>
     );
   }

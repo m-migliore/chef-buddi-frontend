@@ -11,6 +11,7 @@ import ingredListSelector from './hocs/ingredListSelector'
 import recipeListSelector from './hocs/recipeListSelector'
 import FindRecipesContainer from './containers/FindRecipesContainer'
 import ManageIngredientsContainer from './containers/ManageIngredientsContainer'
+import RecipeView from './components/RecipeView'
 
 
 class App extends Component {
@@ -42,7 +43,8 @@ class App extends Component {
 
     return (
       <Router>
-        <div className="App">
+      <>
+        <div className={this.props.viewedRecipeId ? "App blurred" : "App"}>
           <Navbar />
           <Route path="/" exact component={Home} />
           <Route path="/ingredients" render={props => <AllIngredientContainer />} />
@@ -51,7 +53,8 @@ class App extends Component {
           <Route path="/find-recipes" component={FindRecipesContainer} />
           <Route path="/manage-ingredients" component={ManageIngredientsContainer} />
         </div>
-
+        {this.props.viewedRecipeId ? <RecipeView /> : null}
+      </>
       </Router>
     );
   }
@@ -60,7 +63,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
-    recipes: state.recipes
+    recipes: state.recipes,
+    viewedRecipeId: state.viewedRecipeId
   }
 }
 
