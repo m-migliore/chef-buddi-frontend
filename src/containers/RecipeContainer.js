@@ -27,18 +27,21 @@ class RecipeContainer extends Component {
     const recipeList = () => filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)
 
     return (
-      <div className="recipe-container">
+      <div className="recipe-container container">
         {this.props.viewedRecipeId ? null :
-          <div className="filter-form">
-            <input
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.filter}
-              placeholder="Filter by recipe name"
-            />
+          <div className="row filter-form">
+            <div className="col-12">
+              <input
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.filter}
+                placeholder="Filter by recipe name"
+                className="form-control"
+              />
+            </div>
           </div>
         }
-        {this.props.viewedRecipeId ? <RecipeView /> : recipeList()}
+        {this.props.viewedRecipeId ? <RecipeView /> : <div className="row">{ recipeList() }</div>}
       </div>
     );
   }

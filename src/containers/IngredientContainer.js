@@ -28,7 +28,7 @@ class IngredientContainer extends Component {
     const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.toLowerCase().includes(this.state.filter))
 
     return (
-      <div className="ingredient-container">
+      <div className="ingredient-container container">
         {/* {window.location.pathname === "/find-recipes" ? null : <div className="filter-form">
           <input
             type="text"
@@ -37,13 +37,16 @@ class IngredientContainer extends Component {
             placeholder="Filter by ingredient"
           />
         </div>} */}
-        <div className="filter-form">
-          <input
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.filter}
-            placeholder="Filter by ingredient"
-          />
+        <div className="row filter-form">
+          <div className="col-12">
+            <input
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.filter}
+              placeholder="Filter by ingredient"
+              className="form-control"
+            />
+          </div>
         </div>
 
 

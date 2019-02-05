@@ -12,4 +12,10 @@ class ManageIngredientsContainer extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    
+  }
+}
+
 export default ManageIngredientsContainer;

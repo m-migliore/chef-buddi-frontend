@@ -5,7 +5,13 @@ class Home extends Component {
 
   render() {
     return (
-      <Login />
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <Login />
+          </div>
+        </div>
+      </div>
     );
   }
 

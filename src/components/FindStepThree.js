@@ -34,9 +34,9 @@ class FindStepThree extends Component {
       const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
       return <FoundRecipeContainer/>
     } else {
-      return <div>
+      return <div >
               <h2>No Results Found</h2>
-              <button onClick={this.handleClick}>New Search</button>
+              <button className="btn btn-primary" onClick={this.handleClick}>New Search</button>
              </div>
     }
   }
@@ -48,7 +48,7 @@ class FindStepThree extends Component {
 
 
     return (
-      <div className="step-two">
+      <div className="step-three">
         <h3>Ingredients Selected:</h3>
         <QueryIngredientContainer />
         {this.props.recipeSearchCompleted ? this.renderResults() : <Loader title="Recipes"/>}

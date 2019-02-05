@@ -2,6 +2,16 @@
   text-align: center
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}
+
 /********** NAVBAR **********/
 nav a {
   margin: 10px;
@@ -20,7 +30,7 @@ nav a {
 }
 
 /********** RECIPE PREVIEW **********/
-.recipe-preview {
+/* .recipe-preview {
   display: inline-block;
   width: 22%;
   margin: 1%;
@@ -30,7 +40,7 @@ nav a {
   display: block;
   width: 100%;
   height: auto;
-}
+} */
 
 /********** LOADER **********/
 .loader {

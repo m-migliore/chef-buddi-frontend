@@ -13,10 +13,20 @@ class FindStepOne extends Component {
 
   render() {
     return (
-      <div className="step-one">
-        <h2>Step 1. Select Ingredients</h2>
-        <button name="user" onClick={this.handleClick}>Your Ingredients</button>
-        <button name="all" onClick={this.handleClick}>All Ingredients Ingredients</button>
+      <div className="step-one container">
+        <div className="row">
+          <div className="col">
+            <h2>Step 1. Select Ingredients</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6">
+            <button name="user" className="btn btn-primary" onClick={this.handleClick}>Your Ingredients</button>
+          </div>
+          <div className="col-md-6">
+            <button name="all" className="btn btn-primary" onClick={this.handleClick}>All Ingredients Ingredients</button>
+          </div>
+        </div>
       </div>
     );
   }

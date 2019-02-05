@@ -13,7 +13,14 @@ class FindStepTwo extends Component {
 
     return (
       <div className="step-two">
-        <button onClick={this.handleClick}>Find Recipes</button>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <button onClick={this.handleClick}>Find Recipes</button>
+            </div>
+          </div>
+        </div>
+        
         <QueryIngredientContainer />
       </div>
     );

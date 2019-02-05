@@ -13,10 +13,16 @@ class RecipeSaveSuccess extends Component {
 
   render() {
     return (
-      <div className="save-success">
-        <h4>Recipe Saved</h4>
-        <button onClick={this.handleClick} name="new">New Search</button>
-        <button onClick={this.handleClick} name="view">View Saved Recipes</button>
+      <div className="row save-success">
+        <div className="col-12">
+          <h4>Recipe Saved</h4>
+        </div>
+        <div className="col-md-6">
+          <button className="btn btn-primary" onClick={this.handleClick} name="new">New Search</button>
+        </div>
+        <div className="col-md-6">
+          <button className="btn btn-primary" onClick={this.handleClick} name="view">View Saved Recipes</button>
+        </div>
       </div>
     );
   }

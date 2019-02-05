@@ -21,7 +21,7 @@ class Ingredient extends Component {
 
     return (
       <div className={this.props.selectedIngredients.includes(ingred.id) ? "ingredient selected" : "ingredient"} onClick={this.handleClick}>
-        <h3>{this.createTitleName(ingred.name)}</h3>
+        <h4>{this.createTitleName(ingred.name)}</h4>
         {/* {this.props.selectable ? "sup" : "nope"} */}
       </div>
     );
