@@ -13,10 +13,25 @@ class Ingredient extends Component {
   }
 
   handleClick = () => {
-    // if (window.location.pathname === "/find-recipes") {
-    //   this.props.selectIngredient(this.props.ingred.id)
-    // }
-    this.props.selectIngredient(this.props.ingred.id)
+    //this.props.selectIngredient(this.props.ingred.id)
+
+    if (window.location.pathname === "/find-recipes") {
+      this.props.selectIngredient(this.props.ingred.id)
+    } else if (window.location.pathname === "/manage-ingredients") {
+      if (this.props.userIngredients.includes(this.props.ingred)) {
+        console.log("props", this.props.ingred.id)
+        fetch(`http://localhost:4000/api/v1/user_ingredients/${this.props.ingred.id}`, {
+          method: "DELETE"
+        })
+        .then(
+          this.props.updateUserIngredients(this.props.ingred.id)
+        )
+
+      } else {
+        console.log("add")
+      }
+    }
+
   }
 
   render() {
@@ -33,13 +48,16 @@ class Ingredient extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedIngredients: state.selectedIngredients
+    currentUserId: state.currentUserId,
+    selectedIngredients: state.selectedIngredients,
+    userIngredients: state.userIngredients
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectIngredient: (ingredientId) => dispatch({type: "SELECT_INGREDIENT", payload: ingredientId})
+    selectIngredient: (ingredientId) => dispatch({type: "SELECT_INGREDIENT", payload: ingredientId}),
+    updateUserIngredients: (ingredientId) => dispatch({type: "UPDATE_USER_INGREDIENTS", payload: ingredientId})
   }
 }
 

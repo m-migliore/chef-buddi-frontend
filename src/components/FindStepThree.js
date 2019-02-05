@@ -35,7 +35,7 @@ class FindStepThree extends Component {
       // return <FoundRecipeContainer/>
       return <RecipeContainer recipes={this.props.foundRecipes} />
     } else {
-      return <div >
+      return <div>
               <h2>No Results Found</h2>
               <button className="btn btn-primary" onClick={this.handleClick}>New Search</button>
              </div>

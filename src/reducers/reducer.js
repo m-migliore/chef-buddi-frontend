@@ -55,6 +55,15 @@ export default function reducer(state = defaultState, action) {
       return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null}
     case "SET_RECIPE_SAVE_STATUS":
       return {...state, successfulRecipeSave: true}
+    case "UPDATE_USER_INGREDIENTS":
+      // console.log("hit reducer");
+      // fetch(`http://localhost:4000/api/v1/users/${action.payload}`)
+      // .then(res => res.json())
+      // .then(data => {
+      //   return {...state, ingredients: state.ingredients, userIngredients: data}
+      // })
+      const updatedUserIngredients = [...state.userIngredients].filter(ingred => ingred.id !== action.payload)
+      return {...state, userIngredients: updatedUserIngredients}
     default:
       return defaultState
   }

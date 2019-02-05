@@ -31,7 +31,6 @@ class App extends Component {
     fetch(`http://localhost:4000/api/v1/users/3`)
     .then(res => res.json())
     .then(data => {
-      //return {...state, userIngredients: data.ingredients}
       this.props.loadUserIngredients(data.ingredients)
     })
   }
