@@ -23,12 +23,23 @@ class Ingredient extends Component {
         fetch(`http://localhost:4000/api/v1/user_ingredients/${this.props.ingred.id}`, {
           method: "DELETE"
         })
-        .then(
-          this.props.updateUserIngredients(this.props.ingred.id)
-        )
+        .then(this.props.removeUserIngredient(this.props.ingred.id))
 
       } else {
-        console.log("add")
+        // console.log("add", this.props.ingred)
+        fetch("http://localhost:4000/api/v1/user_ingredients/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            user_id: this.props.currentUserId,
+            ingredient_id: this.props.ingred.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => this.props.addUserIngredient(data))
       }
     }
 
@@ -57,7 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     selectIngredient: (ingredientId) => dispatch({type: "SELECT_INGREDIENT", payload: ingredientId}),
-    updateUserIngredients: (ingredientId) => dispatch({type: "UPDATE_USER_INGREDIENTS", payload: ingredientId})
+    removeUserIngredient: (ingredientId) => dispatch({type: "REMOVE_USER_INGREDIENT", payload: ingredientId}),
+    addUserIngredient: (ingredientId) => dispatch({type: "ADD_USER_INGREDIENT", payload: ingredientId})
   }
 }
 

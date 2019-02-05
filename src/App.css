@@ -20,8 +20,9 @@ nav a {
 /********** INGREDIENT **********/
 .ingredient {
   display: inline-block;
+  vertical-align: top;
   width: 22%;
-  margin: 1%;
+  margin: 2% 1%;
   text-align: center;
 }
 

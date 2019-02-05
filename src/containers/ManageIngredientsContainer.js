@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import IngredientContainer from './IngredientContainer'
 
 class ManageIngredientsContainer extends Component {
-  meheh = (ingredientId) => {
+  hideUserIngreds = (ingredientId) => {
     const userIngredIds = this.props.userIngredients.map(ingred => ingred['ingredient_id'])
     return userIngredIds.includes(ingredientId)
   }
 
   render() {
-    const nonUserIngredients = this.props.ingredients.filter(ingred => !this.meheh(ingred.id))
+    const nonUserIngredients = this.props.ingredients.filter(ingred => !this.hideUserIngreds(ingred.id))
     return (
       <div>
         <div className="container">

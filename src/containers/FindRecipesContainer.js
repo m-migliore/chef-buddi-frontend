@@ -21,7 +21,7 @@ class FindRecipesContainer extends Component {
         case 2:
           return <FindStepThree />
         default:
-          return "redner step one"
+          return <FindStepOne />
       }
     }
     return (
