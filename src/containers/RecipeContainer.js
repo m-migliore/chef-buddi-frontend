@@ -33,7 +33,10 @@ class RecipeContainer extends Component {
             </div>
           </div>
         }
-        {filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)}
+
+        <div className="row">
+          {filteredRecipes.map(recipe => <RecipePreview key={recipe.id} recipe={recipe}/>)}
+        </div>
 
         {/* {this.props.viewedRecipeId ? <RecipeView /> : <div className="row">{ recipeList() }</div>} */}
         {this.props.viewedRecipeId ? <RecipeView /> : null}
