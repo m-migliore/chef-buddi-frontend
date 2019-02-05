@@ -35,6 +35,33 @@ class RecipeView extends Component {
     })
   }
 
+  handleRemove = () => {
+    console.log("remove")
+  }
+
+  renderActionButton = () => {
+    if (window.location.pathname === "/find-recipes") {
+      return <button className="btn btn-primary" onClick={this.handleSave}>Save Recipe</button>
+    } else {
+      return <button className="btn btn-primary" onClick={this.handleRemove}>Remove Recipe</button>
+    }
+  }
+
+  renderAboveView = () => {
+    if (this.props.successfulRecipeSave) {
+      return <RecipeSaveSuccess />
+    } else {
+      return <div className="row text-center">
+                <div className="col-md-6">
+                  <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
+                </div>
+                <div className="col-md-6">
+                  {this.renderActionButton()}
+                </div>
+              </div>
+    }
+  }
+
   render() {
     let recipe
 
@@ -54,26 +81,26 @@ class RecipeView extends Component {
       return <ul className="list-unstyled">{ingredients}</ul>
     }
 
-    const renderAboveView = () => {
-      if (this.props.successfulRecipeSave) {
-        return <RecipeSaveSuccess />
-      } else {
-        return <div className="row text-center">
-                  <div className="col-md-6">
-                    <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
-                  </div>
-                  <div className="col-md-6">
-                    <button className="btn btn-primary" onClick={this.handleSave}>Save</button>
-                  </div>
-                </div>
-      }
-    }
+    // const renderAboveView = () => {
+    //   if (this.props.successfulRecipeSave) {
+    //     return <RecipeSaveSuccess />
+    //   } else {
+    //     return <div className="row text-center">
+    //               <div className="col-md-6">
+    //                 <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
+    //               </div>
+    //               <div className="col-md-6">
+    //                 <button className="btn btn-primary" onClick={this.handleSave}>Save</button>
+    //               </div>
+    //             </div>
+    //   }
+    // }
 
 
     return (
       <div className="recipe-view">
         <div className="container">
-          {renderAboveView()}
+          {this.renderAboveView()}
 
           <div className="row">
             <div className="col-lg-5">
@@ -109,7 +136,7 @@ class RecipeView extends Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
-    viewedRecipeId: state.viewedRecipeId,
+    userRecipes: state.userRecipes,
     viewedRecipe: state.viewedRecipe,
     successfulRecipeSave: state.successfulRecipeSave
   }

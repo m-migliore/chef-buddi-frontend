@@ -20,7 +20,9 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
   switch(action.type) {
     case "SET_CURRENT_USER":
-      return {...state, currentUser: action.payload}
+      const userRecipeIds = action.payload.recipes.map(recipe => recipe.id)
+      const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))
+      return {...state, currentUser: action.payload, userRecipes}
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}
     case "LOAD_USER_INGREDIENTS":

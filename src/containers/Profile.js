@@ -36,7 +36,8 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    userRecipes: state.userRecipes
   }
 }
 
