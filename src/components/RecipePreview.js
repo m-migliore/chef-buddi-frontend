@@ -9,7 +9,7 @@ class RecipePreview extends Component {
   render() {
     const recipe = this.props.recipe
     return (
-      <div className="recipe-preview col-md-3" onClick={this.handleClick}>
+      <div className="recipe-preview col-md-4" onClick={this.handleClick}>
         <h4>{recipe.name}</h4>
         <img src={recipe.image} alt={recipe.name}/>
       </div>
