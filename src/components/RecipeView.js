@@ -58,12 +58,12 @@ class RecipeView extends Component {
       if (this.props.successfulRecipeSave) {
         return <RecipeSaveSuccess />
       } else {
-        return <div className="row">
+        return <div className="row text-center">
                   <div className="col-md-6">
-                    <button className="btn btn-primary" onClick={this.backButtonClick}>Back To Recipe List</button>
+                    <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
                   </div>
                   <div className="col-md-6">
-                    <button className="btn btn-primary" onClick={this.handleSave}>Save Recipe</button>
+                    <button className="btn btn-primary" onClick={this.handleSave}>Save</button>
                   </div>
                 </div>
       }
