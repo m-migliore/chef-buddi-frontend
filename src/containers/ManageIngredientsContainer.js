@@ -4,6 +4,10 @@ import IngredientContainer from './IngredientContainer'
 
 class ManageIngredientsContainer extends Component {
 
+  componentDidMount() {
+    this.props.clearParams()
+  }
+
   render() {
     return (
       <div>
@@ -17,7 +21,7 @@ class ManageIngredientsContainer extends Component {
 
         <h3>User Ingredients</h3>
         <IngredientContainer ingredients={this.props.userIngredients} />
-        
+
         <h3>All Ingredients</h3>
         <IngredientContainer ingredients={this.props.ingredients} />
       </div>
@@ -33,4 +37,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ManageIngredientsContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    clearParams: () => dispatch({type: "CLEAR_ALL_PARAMS"})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageIngredientsContainer)

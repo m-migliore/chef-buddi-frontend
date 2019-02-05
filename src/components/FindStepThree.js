@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import IngredientContainer from '../containers/IngredientContainer'
-import ingredListSelector from '../hocs/ingredListSelector'
+// import ingredListSelector from '../hocs/ingredListSelector'
 import RecipeContainer from '../containers/RecipeContainer'
-import recipeListSelector from '../hocs/recipeListSelector'
+// import recipeListSelector from '../hocs/recipeListSelector'
 import Loader from './Loader'
 
 class FindStepThree extends Component {
@@ -31,8 +31,9 @@ class FindStepThree extends Component {
 
   renderResults = () => {
     if (this.props.foundRecipes.length > 0 ) {
-      const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
-      return <FoundRecipeContainer/>
+      // const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
+      // return <FoundRecipeContainer/>
+      return <RecipeContainer recipes={this.props.foundRecipes} />
     } else {
       return <div >
               <h2>No Results Found</h2>
@@ -43,14 +44,15 @@ class FindStepThree extends Component {
 
 
   render() {
-    const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.stepThreeIngredients)
+    // const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.stepThreeIngredients)
     // const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
 
 
     return (
       <div className="step-three">
         <h3>Ingredients Selected:</h3>
-        <QueryIngredientContainer />
+        {/* <QueryIngredientContainer /> */}
+        <IngredientContainer ingredients={this.props.stepThreeIngredients}/>
         {this.props.recipeSearchCompleted ? this.renderResults() : <Loader title="Recipes"/>}
         {/* <RecipeContainer ingredients={this.props.foundRecipes} /> */}
       </div>

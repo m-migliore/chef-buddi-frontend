@@ -13,6 +13,9 @@ class Ingredient extends Component {
   }
 
   handleClick = () => {
+    // if (window.location.pathname === "/find-recipes") {
+    //   this.props.selectIngredient(this.props.ingred.id)
+    // }
     this.props.selectIngredient(this.props.ingred.id)
   }
 
