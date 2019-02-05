@@ -6,7 +6,6 @@ import RecipeSaveSuccess from './RecipeSaveSuccess'
 
 class RecipeView extends Component {
   componentDidMount() {
-    debugger
     fetch(`http://localhost:4000/api/v1/recipes/${this.props.viewedRecipeId}`)
     .then(res => res.json())
     .then(data => {
@@ -37,7 +36,12 @@ class RecipeView extends Component {
   }
 
   handleRemove = () => {
-    console.log("remove")
+    console.log("userrecipeId", this.props.viewedUserRecipeId)
+    console.log("userId", this.props.currentUserId)
+    fetch(`http://localhost:4000/api/v1/user_recipes/${this.props.viewedUserRecipeId}`, {
+      method: "DELETE"
+    })
+    .then(this.props.postRemoveUserRecipe(this.props.viewedUserRecipeId))
   }
 
   renderActionButton = () => {
@@ -140,6 +144,7 @@ const mapStateToProps = state => {
     userRecipes: state.userRecipes,
     viewedRecipeId: state.viewedRecipeId,
     viewedRecipe: state.viewedRecipe,
+    viewedUserRecipeId: state.viewedUserRecipeId,
     successfulRecipeSave: state.successfulRecipeSave
   }
 }
@@ -148,7 +153,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe}),
     clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"}),
-    setRecipeSaveStatus: () => dispatch({type: "SET_RECIPE_SAVE_STATUS"})
+    setRecipeSaveStatus: () => dispatch({type: "SET_RECIPE_SAVE_STATUS"}),
+    postRemoveUserRecipe: (userRecipeId) => dispatch({type: "POST_REMOVE_USER_RECIPE", payload: userRecipeId})
   }
 }
 

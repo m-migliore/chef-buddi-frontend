@@ -27,7 +27,7 @@ class Profile extends Component {
         {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
         {this.props.currentUser.recipes ? <h3>User Recipes</h3> : <h3>No Recipes Found</h3>}
         {/* {this.props.currentUser.recipes ? <UserRecipeContainer /> : null} */}
-        {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.currentUser.recipes} /> : null}
+        {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null}
       </div>
     );
   }

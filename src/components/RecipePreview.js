@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 
 class RecipePreview extends Component {
   handleClick = () => {
-    console.log(this.props)
-    this.props.setViewRecipeId(this.props.recipe.id)
+    if (window.location.pathname === "/profile") {
+      this.props.setViewUserRecipeId(this.props.recipe['recipe_id'], this.props.recipe.id)
+    } else {
+      this.props.setViewRecipeId(this.props.recipe.id)
+    }
   }
 
   render() {
@@ -21,7 +24,8 @@ class RecipePreview extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setViewRecipeId: (recipeId) => dispatch({type: "SET_VIEW_RECIPE_ID", payload: recipeId})
+    setViewRecipeId: (recipeId) => dispatch({type: "SET_VIEW_RECIPE_ID", payload: recipeId}),
+    setViewUserRecipeId: (recipeId, userRecipeId) => dispatch({type: "SET_VIEW_USER_RECIPE_ID", payload: {recipeId, userRecipeId}})
   }
 }
 

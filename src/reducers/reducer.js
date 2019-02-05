@@ -7,6 +7,7 @@ const defaultState = {
   recipes: [],
   viewedRecipeId: null,
   viewedRecipe: null,
+  viewedUserRecipeId: null,
   selectedIngredients: [],
   queryIngredients: [],
   userIngredSearch: false,
@@ -20,9 +21,11 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
   switch(action.type) {
     case "SET_CURRENT_USER":
-      const userRecipeIds = action.payload.recipes.map(recipe => recipe.id)
-      const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))
-      return {...state, currentUser: action.payload, userRecipes}
+      // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
+      // const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))
+      // return {...state, currentUser: action.payload, userRecipes}
+
+      return {...state, currentUser: action.payload, userRecipes: action.payload.recipes}
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}
     case "LOAD_USER_INGREDIENTS":
@@ -37,6 +40,9 @@ export default function reducer(state = defaultState, action) {
       return {...state, recipes: action.payload}
     case "SET_VIEW_RECIPE_ID":
       return {...state, viewedRecipeId: action.payload}
+    case "SET_VIEW_USER_RECIPE_ID":
+      debugger
+      return {...state, viewedRecipeId: action.payload.recipeId, viewedUserRecipeId: action.payload.userRecipeId}
     case "SET_VIEW_RECIPE":
       return {...state, viewedRecipe: action.payload}
     case "CLEAR_VIEW_RECIPE_ID":
@@ -63,6 +69,10 @@ export default function reducer(state = defaultState, action) {
       return {...state, userIngredients: updatedUserIngredients}
     case "ADD_USER_INGREDIENT":
       return {...state, userIngredients: [...state.userIngredients, action.payload]}
+    case "POST_REMOVE_USER_RECIPE":
+      console.log("hit post remove")
+      const updatedUserRecipes = state.userRecipes.filter(recipe => recipe.id !== action.payload)
+      return {...state, viewedRecipeId: null, viewedRecipe: null, viewedUserRecipeId: null, userRecipes: updatedUserRecipes}
     default:
       return defaultState
   }
