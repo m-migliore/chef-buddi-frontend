@@ -64,7 +64,8 @@ const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
     recipes: state.recipes,
-    viewedRecipeId: state.viewedRecipeId
+    viewedRecipeId: state.viewedRecipeId,
+    viewedRecipe: state.viewedRecipe
   }
 }
 

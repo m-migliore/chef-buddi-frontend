@@ -6,6 +6,7 @@ import RecipeSaveSuccess from './RecipeSaveSuccess'
 
 class RecipeView extends Component {
   componentDidMount() {
+    debugger
     fetch(`http://localhost:4000/api/v1/recipes/${this.props.viewedRecipeId}`)
     .then(res => res.json())
     .then(data => {
@@ -137,6 +138,7 @@ const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
     userRecipes: state.userRecipes,
+    viewedRecipeId: state.viewedRecipeId,
     viewedRecipe: state.viewedRecipe,
     successfulRecipeSave: state.successfulRecipeSave
   }

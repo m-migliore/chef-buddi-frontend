@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 class RecipePreview extends Component {
   handleClick = () => {
+    console.log(this.props)
     this.props.setViewRecipeId(this.props.recipe.id)
   }
 
