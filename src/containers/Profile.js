@@ -12,6 +12,7 @@ class Profile extends Component {
       fetch(`http://localhost:4000/api/v1/users/${this.props.currentUserId}`)
       .then(res => res.json())
       .then(data => {
+        console.log("logged in")
         this.props.setUser(data)
       })
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Navbar from './containers/Navbar'
 import Home from './containers/Home'
@@ -46,7 +46,14 @@ class App extends Component {
       <>
         <div className={this.props.viewedRecipeId ? "App blurred" : "App"}>
           <Navbar />
-          <Route path="/" exact component={Home} />
+          {/* <Route path="/" exact component={Home} /> */}
+          <Route path="/" exact render={() => (
+            this.props.currentUserId ? (
+              <Redirect to="/profile" />
+            ) : (
+              <Home />
+            )
+          )} />
           <Route path="/ingredients" render={props => <AllIngredientContainer />} />
           <Route path="/recipes" render={props => <AllRecipeContainer />} />
           <Route path="/profile" component={Profile} />
@@ -62,6 +69,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
     ingredients: state.ingredients,
     recipes: state.recipes,
     viewedRecipeId: state.viewedRecipeId,

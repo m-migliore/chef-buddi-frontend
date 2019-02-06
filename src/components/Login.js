@@ -16,7 +16,6 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log("submit login")
     fetch("http://localhost:4000/api/v1/login", {
       method: "POST",
       headers: {
@@ -30,6 +29,7 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(data => {
+      console.log("logged in")
       this.props.loginUser(data)
     })
   }
