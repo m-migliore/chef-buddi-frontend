@@ -7,13 +7,13 @@ import RecipeContainer from './RecipeContainer'
 
 class Profile extends Component {
 
-  componentDidMount() {
-    fetch(`http://localhost:4000/api/v1/users/4`)
-    .then(res => res.json())
-    .then(data => {
-      this.props.setUser(data)
-    })
-  }
+  // componentDidMount() {
+  //   fetch(`http://localhost:4000/api/v1/users/4`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     this.props.setUser(data)
+  //   })
+  // }
 
   render() {
     // const UserIngredientContainer = ingredListSelector(IngredientContainer, this.props.currentUser.ingredients)

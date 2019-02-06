@@ -24,7 +24,7 @@ class Login extends Component {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        username: this.state.username,
+        username: this.state.username.trim(),
         password: this.state.password
       })
     })
