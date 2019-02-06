@@ -49,7 +49,7 @@ export default function reducer(state = defaultState, action) {
     case "SET_VIEW_RECIPE_ID":
       return {...state, viewedRecipeId: action.payload}
     case "SET_VIEW_USER_RECIPE_ID":
-      return {...state, viewedRecipeId: action.payload.recipeId, viewedUserRecipeId: action.payload.userRecipeId}
+      return {...state, viewedRecipeId: action.payload.recipeId, viewedUserRecipeId: action.payload.userRecipeId, successfulRecipeSave: false}
     case "SET_VIEW_RECIPE":
       return {...state, viewedRecipe: action.payload}
     case "CLEAR_VIEW_RECIPE_ID":

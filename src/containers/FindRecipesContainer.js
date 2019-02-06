@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 // import RecipeContainer from './RecipeContainer'
 // import recipeListSelector from '../hocs/recipeListSelector'
 import FindStepOne from '../components/FindStepOne'
@@ -9,6 +10,12 @@ import FindStepThree from '../components/FindStepThree'
 class FindRecipesContainer extends Component {
   componentDidMount() {
     this.props.resetFindParams()
+  }
+
+  loginRedirect = () => {
+    if (this.props.currentUserId === null) {
+      return <Redirect to="/" />
+    }
   }
 
   render() {
@@ -26,6 +33,8 @@ class FindRecipesContainer extends Component {
     }
     return (
       <div className="find-recipe-container">
+        {this.loginRedirect()}
+
         {renderStep()}
       </div>
     );
@@ -35,6 +44,7 @@ class FindRecipesContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
     stepsCompleted: state.stepsCompleted,
     queryIngredients: state.queryIngredients,
     // selectedIngredients: state.selectedIngredients

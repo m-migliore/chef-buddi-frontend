@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import IngredientContainer from './IngredientContainer'
 // import ingredListSelector from '../hocs/ingredListSelector'
 import RecipeContainer from './RecipeContainer'
@@ -18,12 +19,19 @@ class Profile extends Component {
     }
   }
 
+  loginRedirect = () => {
+    if (this.props.currentUserId === null) {
+      return <Redirect to="/" />
+    }
+  }
+
   render() {
     // const UserIngredientContainer = ingredListSelector(IngredientContainer, this.props.currentUser.ingredients)
     // const UserRecipeContainer = recipeListSelector(RecipeContainer, this.props.currentUser.recipes)
-
     return (
       <div>
+        {this.loginRedirect()}
+        
         <h2>Profile Page for User: {this.props.currentUser.username}</h2>
         {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
         {/* {this.props.currentUser.ingredients ? <UserIngredientContainer /> : null} */}

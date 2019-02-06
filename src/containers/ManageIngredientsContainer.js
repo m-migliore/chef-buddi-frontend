@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import IngredientContainer from './IngredientContainer'
 
 class ManageIngredientsContainer extends Component {
@@ -8,12 +9,20 @@ class ManageIngredientsContainer extends Component {
     return userIngredIds.includes(ingredientId)
   }
 
+  loginRedirect = () => {
+    if (this.props.currentUserId === null) {
+      return <Redirect to="/" />
+    }
+  }
+
   render() {
 
     const nonUserIngredients = this.props.ingredients.filter(ingred => !this.hideUserIngreds(ingred.id))
 
     return (
       <div>
+        {this.loginRedirect()}
+
         <div className="container">
           <div className="row">
             <div className="col">
@@ -35,6 +44,7 @@ class ManageIngredientsContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
     ingredients: state.ingredients,
     userIngredients: state.userIngredients
   }
