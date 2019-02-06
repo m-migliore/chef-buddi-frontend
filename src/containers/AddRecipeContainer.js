@@ -157,7 +157,7 @@ class AddRecipeContainer extends Component {
                     />
                   </div>
 
-                  {this.props.ingredientInputs.map(ingredInput => <IngredientInput idx={this.props.ingredientInputs.indexOf(ingredInput) + 1} />)}
+                  {this.props.ingredientInputs.map(ingredInput => <IngredientInput key={this.props.ingredientInputs.indexOf(ingredInput)} idx={this.props.ingredientInputs.indexOf(ingredInput) + 1} />)}
                   <button onClick={this.handleIngredAdd} type="button" className="btn btn-primary">Add Ingredient</button>
 
                 </div>
