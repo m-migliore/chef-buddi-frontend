@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import IngredientContainer from '../containers/IngredientContainer'
-// import ingredListSelector from '../hocs/ingredListSelector'
 import RecipeContainer from '../containers/RecipeContainer'
-// import recipeListSelector from '../hocs/recipeListSelector'
 import Loader from './Loader'
 
 class FindStepThree extends Component {
@@ -31,9 +29,9 @@ class FindStepThree extends Component {
 
   renderResults = () => {
     if (this.props.foundRecipes.length > 0 ) {
-      // const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
-      // return <FoundRecipeContainer/>
-      return <RecipeContainer recipes={this.props.foundRecipes} />
+      const userRecipeIds = this.props.userRecipes.map(recipe => recipe['recipe_id'])
+      const cleanedFoundRecipes = this.props.foundRecipes.filter(recipe => !userRecipeIds.includes(recipe.id) )
+      return <RecipeContainer recipes={cleanedFoundRecipes} />
     } else {
       return <div>
               <h2>No Results Found</h2>
@@ -44,17 +42,16 @@ class FindStepThree extends Component {
 
 
   render() {
-    // const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.stepThreeIngredients)
-    // const FoundRecipeContainer = recipeListSelector(RecipeContainer, this.props.foundRecipes)
-
-
     return (
       <div className="step-three">
-        <h3>Ingredients Selected:</h3>
-        {/* <QueryIngredientContainer /> */}
+        <div className="row">
+          <div className="col">
+            <h2>Search Results</h2>
+          </div>
+        </div>
+        <h3>Selected Ingredients</h3>
         <IngredientContainer ingredients={this.props.stepThreeIngredients}/>
         {this.props.recipeSearchCompleted ? this.renderResults() : <Loader title="Recipes"/>}
-        {/* <RecipeContainer ingredients={this.props.foundRecipes} /> */}
       </div>
     );
   }
@@ -66,7 +63,8 @@ const mapStateToProps = state => {
     selectedIngredients: state.selectedIngredients,
     stepThreeIngredients: state.stepThreeIngredients,
     foundRecipes: state.foundRecipes,
-    recipeSearchCompleted: state.recipeSearchCompleted
+    recipeSearchCompleted: state.recipeSearchCompleted,
+    userRecipes: state.userRecipes
   }
 }
 

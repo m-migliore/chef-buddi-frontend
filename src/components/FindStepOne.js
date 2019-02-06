@@ -16,7 +16,7 @@ class FindStepOne extends Component {
       <div className="step-one container">
         <div className="row">
           <div className="col">
-            <h2>Step 1. Select Ingredients</h2>
+            <h2>Select Ingredient Pool</h2>
           </div>
         </div>
         <div className="row">
