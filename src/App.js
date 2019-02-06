@@ -46,7 +46,6 @@ class App extends Component {
       <>
         <div className={this.props.viewedRecipeId ? "App blurred" : "App"}>
           <Navbar />
-          {/* <Route path="/" exact component={Home} /> */}
           <Route path="/" exact render={() => (
             this.props.currentUserId ? (
               <Redirect to="/profile" />
@@ -54,9 +53,9 @@ class App extends Component {
               <Home />
             )
           )} />
-          <Route path="/ingredients" render={props => <AllIngredientContainer />} />
-          <Route path="/recipes" render={props => <AllRecipeContainer />} />
-          <Route path="/profile" component={Profile} />
+          {/* <Route path="/ingredients" render={props => <AllIngredientContainer />} />
+          <Route path="/recipes" render={props => <AllRecipeContainer />} /> */}
+          <Route path="/profile" component={Profile} /> 
           <Route path="/find-recipes" component={FindRecipesContainer} />
           <Route path="/manage-ingredients" component={ManageIngredientsContainer} />
         </div>
