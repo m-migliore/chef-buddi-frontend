@@ -12,6 +12,7 @@ import recipeListSelector from './hocs/recipeListSelector'
 import FindRecipesContainer from './containers/FindRecipesContainer'
 import ManageIngredientsContainer from './containers/ManageIngredientsContainer'
 import RecipeView from './components/RecipeView'
+import AddRecipeContainer from './containers/AddRecipeContainer'
 
 
 class App extends Component {
@@ -55,9 +56,10 @@ class App extends Component {
           )} />
           {/* <Route path="/ingredients" render={props => <AllIngredientContainer />} />
           <Route path="/recipes" render={props => <AllRecipeContainer />} /> */}
-          <Route path="/profile" component={Profile} /> 
+          <Route path="/add-recipe" component={AddRecipeContainer} />
           <Route path="/find-recipes" component={FindRecipesContainer} />
           <Route path="/manage-ingredients" component={ManageIngredientsContainer} />
+          <Route path="/profile" component={Profile} />
         </div>
         {this.props.viewedRecipeId ? <RecipeView /> : null}
       </>
