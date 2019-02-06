@@ -16,17 +16,25 @@ class AddRecipeContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log(this.state)
-    fetch("http://localhost:4000/api/v1/recipes/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({...this.state, custom: true, userId: this.props.currentUserId})
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    const ingredInputs = document.querySelectorAll('.ingred-input')
+    let ingredValues = []
+    for (let i = 0; i < ingredInputs.length; i++) {
+      ingredValues.push(ingredInputs[i].value)
+    }
+    //const ingredValues = Array.from()
+    this.props.addIngredValues(ingredValues)
+
+    // console.log(this.state)
+    // fetch("http://localhost:4000/api/v1/recipes/add", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify({...this.state, custom: true, userId: this.props.currentUserId})
+    // })
+    // .then(res => res.json())
+    // .then(data => console.log(data))
   }
 
   handleChange = e => {
@@ -175,13 +183,15 @@ class AddRecipeContainer extends Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
-    ingredientInputs: state.ingredientInputs
+    ingredientInputs: state.ingredientInputs,
+    ingredientInputValues: state.ingredientInputValues
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addIngredInput: () => dispatch({type: "ADD_INGRED_INPUT_FOR_ADD_RECIPE"})
+    addIngredInput: () => dispatch({type: "ADD_INGRED_INPUT_FOR_ADD_RECIPE"}),
+    addIngredValues: ingredValues => dispatch({type: "ADD_INGRED_INPUT_VALUE", payload: ingredValues})
   }
 }
 

@@ -13,7 +13,7 @@ class IngredientInput extends Component {
           placeholder="Enter Ingredient Name"
           onChange={this.handleChange}
           id={`ingred-input-${this.props.idx}`}
-          className="form-control"
+          className="form-control ingred-input"
         />
       </div>
     );

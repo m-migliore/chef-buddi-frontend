@@ -16,7 +16,8 @@ const defaultState = {
   recipeSearchCompleted: false,
   foundRecipes: [],
   successfulRecipeSave: false,
-  ingredientInputs: [1]
+  ingredientInputs: [1],
+  ingredientInputValues: []
 }
 
 export default function reducer(state = defaultState, action) {
@@ -83,6 +84,8 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedRecipeId: null, viewedRecipe: null, viewedUserRecipeId: null, userRecipes: updatedUserRecipes}
     case "ADD_INGRED_INPUT_FOR_ADD_RECIPE":
       return {...state, ingredientInputs: [...state.ingredientInputs, state.ingredientInputs.length + 1]}
+    case "ADD_INGRED_INPUT_VALUE":
+      return {...state, ingredientInputValues: action.payload}
     default:
       return defaultState
   }
