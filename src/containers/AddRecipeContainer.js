@@ -16,16 +16,14 @@ class AddRecipeContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const ingredInputs = document.querySelectorAll('.ingred-input')
-    let ingredValues = ""
-    for (let i = 0; i < ingredInputs.length; i++) {
-      // ingredValues.push(ingredInputs[i].value)
-      if (i === 0) {
-        ingredValues += `${ingredInputs[i].value}`
-      } else {
-        ingredValues += `@@@${ingredInputs[i].value}`
-      }
+    const ingredNameInputs = document.querySelectorAll('.ingred-name-input')
+    const ingredMeasurementInputs = document.querySelectorAll('.ingred-measurement-input')
+    let ingredValues = []
+    for (let i = 0; i < ingredNameInputs.length; i++) {
+      ingredValues.push({name: ingredNameInputs[i].value, measurement: ingredMeasurementInputs[i].value})
     }
+
+    debugger
     //const ingredValues = Array.from()
     this.props.addIngredValues(ingredValues)
 
@@ -39,6 +37,17 @@ class AddRecipeContainer extends Component {
     // })
     // .then(res => res.json())
     // .then(data => console.log(data))
+
+    fetch("http://localhost:4000/api/v1/recipes/test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ingredients: ingredValues}, )
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
   }
 
   handleChange = e => {
