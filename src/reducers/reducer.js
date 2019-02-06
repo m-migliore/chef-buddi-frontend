@@ -1,5 +1,5 @@
 const defaultState = {
-  currentUserId: 3,
+  currentUserId: 4,
   currentUser: {},
   ingredients: [],
   userIngredients: [],
@@ -41,7 +41,6 @@ export default function reducer(state = defaultState, action) {
     case "SET_VIEW_RECIPE_ID":
       return {...state, viewedRecipeId: action.payload}
     case "SET_VIEW_USER_RECIPE_ID":
-      debugger
       return {...state, viewedRecipeId: action.payload.recipeId, viewedUserRecipeId: action.payload.userRecipeId}
     case "SET_VIEW_RECIPE":
       return {...state, viewedRecipe: action.payload}

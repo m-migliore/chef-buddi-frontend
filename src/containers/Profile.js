@@ -8,7 +8,7 @@ import RecipeContainer from './RecipeContainer'
 class Profile extends Component {
 
   componentDidMount() {
-    fetch(`http://localhost:4000/api/v1/users/3`)
+    fetch(`http://localhost:4000/api/v1/users/4`)
     .then(res => res.json())
     .then(data => {
       this.props.setUser(data)
@@ -21,7 +21,7 @@ class Profile extends Component {
 
     return (
       <div>
-        <h2>Profile Page of User#: {this.props.currentUser.id}</h2>
+        <h2>Profile Page for User: {this.props.currentUser.username}</h2>
         {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
         {/* {this.props.currentUser.ingredients ? <UserIngredientContainer /> : null} */}
         {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}

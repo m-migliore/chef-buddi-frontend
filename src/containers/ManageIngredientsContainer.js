@@ -9,7 +9,9 @@ class ManageIngredientsContainer extends Component {
   }
 
   render() {
+
     const nonUserIngredients = this.props.ingredients.filter(ingred => !this.hideUserIngreds(ingred.id))
+
     return (
       <div>
         <div className="container">
@@ -21,10 +23,10 @@ class ManageIngredientsContainer extends Component {
         </div>
 
         <h3>User Ingredients</h3>
-        <IngredientContainer ingredients={this.props.userIngredients} />
+        {this.props.userIngredients.length === 0 ? <p>Add ingredients to your list</p> : <IngredientContainer ingredients={this.props.userIngredients} />}
 
         <h3>All Ingredients</h3>
-        <IngredientContainer ingredients={nonUserIngredients} />
+        {this.props.userIngredients.length === 0 ? <IngredientContainer ingredients={this.props.ingredients} /> : <IngredientContainer ingredients={nonUserIngredients} />}
       </div>
     );
   }

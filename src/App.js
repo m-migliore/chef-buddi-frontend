@@ -29,7 +29,7 @@ class App extends Component {
     })
 
     // move to login once auth is setup
-    fetch(`http://localhost:4000/api/v1/users/3`)
+    fetch(`http://localhost:4000/api/v1/users/4`)
     .then(res => res.json())
     .then(data => {
       this.props.loadUserIngredients(data.ingredients)
