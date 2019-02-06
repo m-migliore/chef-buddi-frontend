@@ -3,10 +3,24 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 class RecipeSaveSuccess extends Component {
+  state = {
+    redirect: false
+  }
+
   handleClick = e => {
     if (e.target.name === "new") {
       this.props.resetFindParams()
     } else {
+      console.log("redirect")
+      this.setState({
+        redirect: true
+      })
+    }
+  }
+
+  profileRedirect = () => {
+    if (this.state.redirect) {
+      this.props.resetFindParams()
       return <Redirect to="/profile"/>
     }
   }
@@ -14,6 +28,8 @@ class RecipeSaveSuccess extends Component {
   render() {
     return (
       <div className="row save-success">
+        {this.profileRedirect()}
+
         <div className="col-12">
           <h4>Recipe Saved</h4>
         </div>

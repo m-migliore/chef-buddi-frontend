@@ -21,7 +21,13 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
   switch(action.type) {
     case "LOGIN_USER":
-      return {...state, currentUser:action.payload, currentUserId: action.payload.id}
+      return {
+        ...state,
+        currentUser:action.payload,
+        currentUserId: action.payload.id,
+        userIngredients: action.payload.ingredients,
+        userRecipes: action.payload.recipes
+      }
     case "SET_CURRENT_USER":
       // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
       // const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))
@@ -62,7 +68,7 @@ export default function reducer(state = defaultState, action) {
     case "LOAD_FOUND_RECIPES":
       return {...state, foundRecipes: action.payload, recipeSearchCompleted: true}
     case "RESET_FIND_PARAMS":
-      return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null, userIngredSearch: false}
+      return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null, userIngredSearch: false, recipeSearchCompleted: false}
     case "SET_RECIPE_SAVE_STATUS":
       return {...state, successfulRecipeSave: true}
     case "REMOVE_USER_INGREDIENT":
