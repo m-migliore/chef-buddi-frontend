@@ -1,5 +1,5 @@
 const defaultState = {
-  currentUserId: 4,
+  currentUserId: null,
   currentUser: {},
   ingredients: [],
   userIngredients: [],
@@ -20,6 +20,8 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch(action.type) {
+    case "LOGIN_USER":
+      return {...state, currentUser:action.payload, currentUserId: action.payload.id}
     case "SET_CURRENT_USER":
       // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
       // const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))

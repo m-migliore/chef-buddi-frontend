@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -15,6 +17,21 @@ class Login extends Component {
   handleSubmit = e => {
     e.preventDefault()
     console.log("submit login")
+    fetch("http://localhost:4000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.props.loginUser(data)
+    })
   }
 
   render() {
@@ -56,4 +73,10 @@ class Login extends Component {
 
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData})
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login)
