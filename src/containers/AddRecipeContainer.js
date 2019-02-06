@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class AddRecipeContainer extends Component {
   state = {
@@ -15,6 +16,16 @@ class AddRecipeContainer extends Component {
   handleSubmit = e => {
     e.preventDefault()
     console.log(this.state)
+    fetch("http://localhost:4000/api/v1/recipes/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({...this.state, custom: true, userId: this.props.currentUserId})
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
   }
 
   handleChange = e => {
@@ -31,7 +42,6 @@ class AddRecipeContainer extends Component {
             <h2>Add Recipe</h2>
           </div>
         </div>
-        
         <div className="row">
           <div className="col">
             <form onSubmit={this.handleSubmit}>
@@ -153,4 +163,10 @@ class AddRecipeContainer extends Component {
 
 }
 
-export default AddRecipeContainer;
+const mapStateToProps = state => {
+  return {
+    currentUserId: state.currentUserId
+  }
+}
+
+export default connect(mapStateToProps)(AddRecipeContainer)
