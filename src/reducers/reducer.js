@@ -15,7 +15,8 @@ const defaultState = {
   stepThreeIngredients: [],
   recipeSearchCompleted: false,
   foundRecipes: [],
-  successfulRecipeSave: false
+  successfulRecipeSave: false,
+  ingredientInputs: []
 }
 
 export default function reducer(state = defaultState, action) {
@@ -80,6 +81,8 @@ export default function reducer(state = defaultState, action) {
       console.log("hit post remove")
       const updatedUserRecipes = state.userRecipes.filter(recipe => recipe.id !== action.payload)
       return {...state, viewedRecipeId: null, viewedRecipe: null, viewedUserRecipeId: null, userRecipes: updatedUserRecipes}
+    case "ADD_INGRED_INPUT_FOR_ADD_RECIPE":
+      return {...state, ingredientInputs: [...state.ingredientInputs, state.ingredientInputs.length + 1]}
     default:
       return defaultState
   }

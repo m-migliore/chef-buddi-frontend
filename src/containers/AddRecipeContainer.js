@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import IngredientInput from '../components/IngredientInput'
 
 class AddRecipeContainer extends Component {
   state = {
@@ -32,6 +33,10 @@ class AddRecipeContainer extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  handleIngredAdd = () => {
+    this.props.addIngredInput()
   }
 
   render() {
@@ -151,6 +156,10 @@ class AddRecipeContainer extends Component {
                       className="form-control"
                     />
                   </div>
+
+                  {/* {this.props.ingredientInputs.map(ingredInput => <IngredientInput />)} */}
+                  <button onClick={this.handleIngredAdd} type="button" className="btn btn-primary">Add Ingredient</button>
+
                 </div>
               </div>
               <button className="btn btn-primary" type="submit">Submit</button>
@@ -165,8 +174,15 @@ class AddRecipeContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUserId: state.currentUserId
+    currentUserId: state.currentUserId,
+    ingredientInputs: state.ingredientInputs
   }
 }
 
-export default connect(mapStateToProps)(AddRecipeContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    addIngredInput: () => dispatch({type: "ADD_INGRED_INPUT_FOR_ADD_RECIPE"})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecipeContainer)
