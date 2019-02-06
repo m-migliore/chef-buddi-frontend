@@ -17,7 +17,7 @@ const defaultState = {
   foundRecipes: [],
   successfulRecipeSave: false,
   ingredientInputs: [1],
-  ingredientInputValues: []
+  ingredientInputValues: ""
 }
 
 export default function reducer(state = defaultState, action) {

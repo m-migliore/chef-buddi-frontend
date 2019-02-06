@@ -17,21 +17,25 @@ class AddRecipeContainer extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const ingredInputs = document.querySelectorAll('.ingred-input')
-    let ingredValues = []
+    let ingredValues = ""
     for (let i = 0; i < ingredInputs.length; i++) {
-      ingredValues.push(ingredInputs[i].value)
+      // ingredValues.push(ingredInputs[i].value)
+      if (i === 0) {
+        ingredValues += `${ingredInputs[i].value}`
+      } else {
+        ingredValues += `@@@${ingredInputs[i].value}`
+      }
     }
     //const ingredValues = Array.from()
     this.props.addIngredValues(ingredValues)
 
-    // console.log(this.state)
     // fetch("http://localhost:4000/api/v1/recipes/add", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
     //     "Accept": "application/json"
     //   },
-    //   body: JSON.stringify({...this.state, custom: true, userId: this.props.currentUserId})
+    //   body: JSON.stringify({...this.state, custom: true, userId: this.props.currentUserId}, )
     // })
     // .then(res => res.json())
     // .then(data => console.log(data))
