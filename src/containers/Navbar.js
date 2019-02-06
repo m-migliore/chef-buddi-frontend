@@ -7,7 +7,6 @@ class Navbar extends Component {
     return (
       <nav className="navbar">
         <h1>Chef Buddi</h1>
-        <Link to="/">Home</Link>
         {/* <Link to="/ingredients">Ingredients</Link>
         <Link to="/recipes">Recipes</Link> */}
         <Link to="/profile">Profile</Link>
