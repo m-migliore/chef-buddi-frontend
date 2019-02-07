@@ -17,16 +17,19 @@ class AddRecipeContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+
     const ingredNameInputs = document.querySelectorAll('.ingred-name-input')
     const ingredMeasurementInputs = document.querySelectorAll('.ingred-measurement-input')
     let ingredValues = []
+
     for (let i = 0; i < ingredNameInputs.length; i++) {
-      ingredValues.push({name: ingredNameInputs[i].value, measurement: ingredMeasurementInputs[i].value})
+      ingredValues.push({
+        name: ingredNameInputs[i].value,
+        measurement: ingredMeasurementInputs[i].value
+      })
     }
 
-    debugger
-    //const ingredValues = Array.from()
-    this.props.addIngredValues(ingredValues)
+    // this.props.addIngredValues(ingredValues)
 
     // fetch("http://localhost:4000/api/v1/recipes/add", {
     //   method: "POST",
@@ -77,7 +80,7 @@ class AddRecipeContainer extends Component {
 
       <div className="container add-recipe-form">
         {this.loginRedirect()}
-        
+
         <div className="row">
           <div className="col">
             <h2>Add Recipe</h2>
