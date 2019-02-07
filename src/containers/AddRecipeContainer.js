@@ -38,13 +38,18 @@ class AddRecipeContainer extends Component {
     // .then(res => res.json())
     // .then(data => console.log(data))
 
-    fetch("http://localhost:4000/api/v1/recipes/test", {
+    fetch("http://localhost:4000/api/v1/recipes/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify({ingredients: ingredValues}, )
+      body: JSON.stringify({
+        ...this.state,
+        custom: true,
+        userId: this.props.currentUserId,
+        ingredients: ingredValues
+      })
     })
     .then(res => res.json())
     .then(data => console.log(data))
