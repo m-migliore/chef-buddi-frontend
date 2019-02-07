@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RecipePreview from '../components/RecipePreview'
-import RecipeView from '../components/RecipeView'
+// import RecipeView from '../components/RecipeView'
 
 class RecipeContainer extends Component {
   state = {

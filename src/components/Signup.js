@@ -16,6 +16,18 @@ class Signup extends Component {
   handleSubmit = e => {
     e.preventDefault()
     console.log("signup")
+    fetch("http://localhost:4000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.props.loginUser(data)
+    })
   }
 
   handleSwitch = e => {
@@ -59,7 +71,7 @@ class Signup extends Component {
         </form>
       </div>
       <div className="col-12">
-        <a href="#" onClick={this.handleSwitch}>Login</a>
+        <button onClick={this.handleSwitch} className="btn btn-link">Login</button>
       </div>
       </>
     );
@@ -69,6 +81,7 @@ class Signup extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
+    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData}),
     setHomeFormType: () => dispatch({type: "SET_HOME_FORM_TYPE", payload: "login"})
   }
 }

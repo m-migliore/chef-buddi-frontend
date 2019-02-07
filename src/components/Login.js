@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -75,7 +75,7 @@ class Login extends Component {
         </form>
       </div>
       <div className="col-12">
-        <a href="#" onClick={this.handleSwitch}>Signup</a>
+        <button onClick={this.handleSwitch} className="btn btn-link">Signup</button>
       </div>
       </>
     );

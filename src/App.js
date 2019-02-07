@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import Navbar from './containers/Navbar'
 import Home from './containers/Home'
 import Profile from './containers/Profile'
-import IngredientContainer from './containers/IngredientContainer'
-import RecipeContainer from './containers/RecipeContainer'
-import ingredListSelector from './hocs/ingredListSelector'
-import recipeListSelector from './hocs/recipeListSelector'
+// import IngredientContainer from './containers/IngredientContainer'
+// import RecipeContainer from './containers/RecipeContainer'
+// import ingredListSelector from './hocs/ingredListSelector'
+// import recipeListSelector from './hocs/recipeListSelector'
 import FindRecipesContainer from './containers/FindRecipesContainer'
 import ManageIngredientsContainer from './containers/ManageIngredientsContainer'
 import RecipeView from './components/RecipeView'
@@ -39,8 +39,8 @@ class App extends Component {
 
 
   render() {
-    const AllIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
-    const AllRecipeContainer = recipeListSelector(RecipeContainer, this.props.recipes)
+    // const AllIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
+    // const AllRecipeContainer = recipeListSelector(RecipeContainer, this.props.recipes)
 
     return (
       <Router>

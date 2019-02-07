@@ -79,7 +79,7 @@ class Ingredient extends Component {
   }
 
   render() {
-    const ingred = this.props.ingred
+    // const ingred = this.props.ingred
 
     return (
       // <div className={this.props.selectedIngredients.includes(ingred.id) ? "ingredient selected" : "ingredient"} onClick={this.handleClick}>
