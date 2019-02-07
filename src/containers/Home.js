@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Login from '../components/Login'
+import Signup from '../components/Signup'
 
 class Home extends Component {
   handleClick = e => {
@@ -13,7 +14,7 @@ class Home extends Component {
       this.props.homeFormType ?
         <div className="container">
           <div className="row">
-            {this.props.homeFormType === "login" ? <Login /> : <p>signup</p>}
+            {this.props.homeFormType === "login" ? <Login /> : <Signup />}
           </div>
         </div>
       :

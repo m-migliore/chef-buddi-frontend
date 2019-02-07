@@ -34,7 +34,8 @@ class Login extends Component {
     })
   }
 
-  handleSwitch = () =>{
+  handleSwitch = e => {
+    e.preventDefault()
     this.props.setHomeFormType()
   }
 
