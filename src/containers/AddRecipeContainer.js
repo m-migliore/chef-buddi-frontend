@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import IngredientInput from '../components/IngredientInput'
 
 class AddRecipeContainer extends Component {
@@ -65,9 +66,18 @@ class AddRecipeContainer extends Component {
     this.props.addIngredInput()
   }
 
+  loginRedirect = () => {
+    if (this.props.currentUserId === null) {
+      return <Redirect to="/" />
+    }
+  }
+
   render() {
     return (
+
       <div className="container add-recipe-form">
+        {this.loginRedirect()}
+        
         <div className="row">
           <div className="col">
             <h2>Add Recipe</h2>
