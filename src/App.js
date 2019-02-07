@@ -39,8 +39,8 @@ class App extends Component {
 
 
   render() {
-    const AllIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
-    const AllRecipeContainer = recipeListSelector(RecipeContainer, this.props.recipes)
+    // const AllIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
+    // const AllRecipeContainer = recipeListSelector(RecipeContainer, this.props.recipes)
 
     return (
       <Router>

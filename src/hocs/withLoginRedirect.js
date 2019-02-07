@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-function loginRedirect(WrappedComponent) {
+function withLoginRedirect(WrappedComponent) {
   return class loginCheck extends Component {
     render() {
       return (
         <>
-          {this.props.currentUserId ? <WrappedComponent  /> : <Redirect to="/" />}
+          {this.props.currentUserId ? <WrappedComponent {...this.props} /> : <Redirect to="/" />}
         </>
       )
     }
   }
 }
 
-mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId
   }
 }
 
-export default connect(mapStateToProps)(loginRedirect)
+// const loginCheckWrap = () => connect(mapStateToProps)(withLoginRedirect)
+
+export default connect(mapStateToProps)(withLoginRedirect)
