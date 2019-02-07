@@ -34,8 +34,13 @@ class Login extends Component {
     })
   }
 
+  handleSwitch = () =>{
+    this.props.setHomeFormType()
+  }
+
   render() {
     return (
+      <>
       <div className="col-12">
         <h2>Login</h2>
         <form onSubmit={this.handleSubmit}>
@@ -68,6 +73,10 @@ class Login extends Component {
           <button className="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
+      <div className="col-12">
+        <a href="#" onClick={this.handleSwitch}>Signup</a>
+      </div>
+      </>
     );
   }
 
@@ -75,7 +84,8 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData})
+    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData}),
+    setHomeFormType: () => dispatch({type: "SET_HOME_FORM_TYPE", payload: "signup"})
   }
 }
 
