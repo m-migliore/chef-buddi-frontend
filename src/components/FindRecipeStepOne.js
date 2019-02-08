@@ -24,7 +24,7 @@ class FindStepOne extends Component {
             <button name="user" className="btn btn-primary" onClick={this.handleClick}>Your Ingredients</button>
           </div>
           <div className="col-md-6">
-            <button name="all" className="btn btn-primary" onClick={this.handleClick}>All Ingredients Ingredients</button>
+            <button name="all" className="btn btn-primary" onClick={this.handleClick}>All Ingredients</button>
           </div>
         </div>
       </div>
