@@ -44,9 +44,29 @@ class RecipeView extends Component {
     .then(this.props.postRemoveUserRecipe(this.props.viewedUserRecipeId))
   }
 
+  handleMeal = () => {
+    console.log("create meal, add to mealplan", this.props.viewedRecipeId);
+    fetch("http://localhost:4000/api/v1/meals", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        mealplan_id: this.props.createdMealplan.id,
+        recipe_id: this.props.viewedRecipeId
+      })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+
+
   renderActionButton = () => {
     if (window.location.pathname === "/find-recipes") {
       return <button className="btn btn-primary" onClick={this.handleSave}>Save Recipe</button>
+    } else if (window.location.pathname === "/create-mealplan") {
+      return <button className="btn btn-primary" onClick={this.handleMeal}>Add to Mealplan</button>
     } else {
       return <button className="btn btn-primary" onClick={this.handleRemove}>Remove Recipe</button>
     }
@@ -132,7 +152,8 @@ const mapStateToProps = state => {
     viewedRecipeId: state.viewedRecipeId,
     viewedRecipe: state.viewedRecipe,
     viewedUserRecipeId: state.viewedUserRecipeId,
-    successfulRecipeSave: state.successfulRecipeSave
+    successfulRecipeSave: state.successfulRecipeSave,
+    createdMealplan: state.createdMealplan
   }
 }
 
