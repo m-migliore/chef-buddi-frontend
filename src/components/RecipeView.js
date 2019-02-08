@@ -45,20 +45,24 @@ class RecipeView extends Component {
   }
 
   handleMeal = () => {
-    console.log("create meal, add to mealplan", this.props.viewedRecipeId);
-    fetch("http://localhost:4000/api/v1/meals", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        mealplan_id: this.props.createdMealplan.id,
-        recipe_id: this.props.viewedRecipeId
-      })
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    console.log("create meal, add to mealplan", this.props.viewedRecipe);
+    // fetch("http://localhost:4000/api/v1/meals", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     mealplan_id: this.props.createdMealplan.id,
+    //     recipe_id: this.props.viewedRecipeId
+    //   })
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //
+    // }
+
+    this.props.stageRecipe(this.props.viewedRecipe)
   }
 
 
@@ -162,7 +166,8 @@ const mapDispatchToProps = dispatch => {
     setViewRecipe: (recipe) => dispatch({type: "SET_VIEW_RECIPE", payload: recipe}),
     clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"}),
     setRecipeSaveStatus: () => dispatch({type: "SET_RECIPE_SAVE_STATUS"}),
-    postRemoveUserRecipe: (userRecipeId) => dispatch({type: "POST_REMOVE_USER_RECIPE", payload: userRecipeId})
+    postRemoveUserRecipe: (userRecipeId) => dispatch({type: "POST_REMOVE_USER_RECIPE", payload: userRecipeId}),
+    stageRecipe: (recipe) => dispatch({type:"STAGE_RECIPE_TO_MEALPLAN", payload: recipe})
   }
 }
 

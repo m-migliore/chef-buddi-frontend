@@ -21,6 +21,7 @@ const defaultState = {
   homeFormType: null,
   mealplanStepsCompleted: 0,
   createdMealplan: {},
+  availableMealplanRecipes: [],
   stagedMealplanRecipes: []
 }
 
@@ -94,6 +95,17 @@ export default function reducer(state = defaultState, action) {
       return {...state, homeFormType: action.payload}
     case "COMPLETE_MEALPLAN_STEP_ONE":
       return {...state, mealplanStepsCompleted: 1, createdMealplan: action.payload}
+    case "LOAD_AVAILABLE_MEALPLAN_RECIPES":
+      return {...state, availableMealplanRecipes: action.payload}
+    case "STAGE_RECIPE_TO_MEALPLAN":
+      // const recipeId = action.payload['recipe_id']
+      // const updatedAvailable = state.availableMealplanRecipes.filter(recipe => !recipe['recipe_id'] === recipeId)
+      // return {
+      //   ...state,
+      //   stagedMealplanRecipes: [...state.stagedMealplanRecipes, action.payload],
+      //   availableMealplanRecipes: updatedAvailable
+      // }
+      return {...state, stagedMealplanRecipes: [...state.stagedMealplanRecipes, action.payload], viewedRecipeId: null}
     case "COMPLETE_MEALPLAN_STEP_TWO":
       return {...state, mealplanStepsCompleted: 2}
     default:
