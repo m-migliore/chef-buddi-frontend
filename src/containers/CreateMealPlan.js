@@ -24,7 +24,7 @@ class CreateMealPlan extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h2>create meal plan title and stuff yo</h2>
+            <h2>Create Mealplan</h2>
             {renderStep()}
           </div>
         </div>
