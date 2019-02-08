@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import IngredientContainer from './IngredientContainer'
 import RecipeContainer from './RecipeContainer'
 
@@ -23,14 +23,28 @@ class Profile extends Component {
     }
   }
 
+  handleClick = () => {
+
+  }
+
   render() {
     // const UserIngredientContainer = ingredListSelector(IngredientContainer, this.props.currentUser.ingredients)
     // const UserRecipeContainer = recipeListSelector(RecipeContainer, this.props.currentUser.recipes)
     return (
-      <div>
+      <div className="profile">
         {this.loginRedirect()}
 
-        <h2>Profile Page for User: {this.props.currentUser.username}</h2>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <h2>Profile Page for User: {this.props.currentUser.username}</h2>
+            </div>
+            <div className="col-12">
+              <Link to="/create-mealplan" className="btn btn-primary">Create Mealplan</Link>
+            </div>
+          </div>
+        </div>
+
         {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
         {/* {this.props.currentUser.ingredients ? <UserIngredientContainer /> : null} */}
         {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}

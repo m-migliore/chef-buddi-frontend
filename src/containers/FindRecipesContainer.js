@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 // import RecipeContainer from './RecipeContainer'
 // import recipeListSelector from '../hocs/recipeListSelector'
-import FindStepOne from '../components/FindStepOne'
-import FindStepTwo from '../components/FindStepTwo'
-import FindStepThree from '../components/FindStepThree'
+import FindRecipeStepOne from '../components/FindRecipeStepOne'
+import FindRecipeStepTwo from '../components/FindRecipeStepTwo'
+import FindRecipeStepThree from '../components/FindRecipeStepThree'
 
 class FindRecipesContainer extends Component {
   componentDidMount() {
@@ -20,15 +20,15 @@ class FindRecipesContainer extends Component {
 
   render() {
     const renderStep = () => {
-      switch(this.props.stepsCompleted) {
+      switch(this.props.findRecipeStepsCompleted) {
         case 0:
-          return <FindStepOne />
+          return <FindRecipeStepOne />
         case 1:
-          return <FindStepTwo />
+          return <FindRecipeStepTwo />
         case 2:
-          return <FindStepThree />
+          return <FindRecipeStepThree />
         default:
-          return <FindStepOne />
+          return <FindRecipeStepOne />
       }
     }
     return (
@@ -45,7 +45,7 @@ class FindRecipesContainer extends Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
-    stepsCompleted: state.stepsCompleted,
+    findRecipeStepsCompleted: state.findRecipeStepsCompleted,
     queryIngredients: state.queryIngredients,
     // selectedIngredients: state.selectedIngredients
   }

@@ -11,7 +11,7 @@ const defaultState = {
   selectedIngredients: [],
   queryIngredients: [],
   userIngredSearch: false,
-  stepsCompleted: 0,
+  findRecipeStepsCompleted: 0,
   stepThreeIngredients: [],
   recipeSearchCompleted: false,
   foundRecipes: [],
@@ -43,9 +43,9 @@ export default function reducer(state = defaultState, action) {
       return {...state,  userIngredients: action.payload}
     case "LOAD_QUERY_INGREDIENTS":
       if (action.payload === "user") {
-        return {...state, queryIngredients: state.userIngredients, stepsCompleted: 1, userIngredSearch: true}
+        return {...state, queryIngredients: state.userIngredients, findRecipeStepsCompleted: 1, userIngredSearch: true}
       } else {
-        return {...state, queryIngredients: state.ingredients, stepsCompleted: 1}
+        return {...state, queryIngredients: state.ingredients, findRecipeStepsCompleted: 1}
       }
     case "LOAD_RECIPES":
       return {...state, recipes: action.payload}
@@ -67,11 +67,11 @@ export default function reducer(state = defaultState, action) {
       }
     case "COMPLETE_STEP_TWO":
       const ingredients = state.ingredients.filter(ingred => action.payload.includes(ingred.id))
-      return {...state, stepsCompleted: 2, stepThreeIngredients: ingredients, selectedIngredients: []}
+      return {...state, findRecipeStepsCompleted: 2, stepThreeIngredients: ingredients, selectedIngredients: []}
     case "LOAD_FOUND_RECIPES":
       return {...state, foundRecipes: action.payload, recipeSearchCompleted: true}
     case "RESET_FIND_PARAMS":
-      return {...state, stepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null, userIngredSearch: false, recipeSearchCompleted: false}
+      return {...state, findRecipeStepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null, userIngredSearch: false, recipeSearchCompleted: false}
     case "SET_RECIPE_SAVE_STATUS":
       return {...state, successfulRecipeSave: true}
     case "REMOVE_USER_INGREDIENT":

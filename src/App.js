@@ -13,6 +13,7 @@ import FindRecipesContainer from './containers/FindRecipesContainer'
 import ManageIngredientsContainer from './containers/ManageIngredientsContainer'
 import RecipeView from './components/RecipeView'
 import AddRecipeContainer from './containers/AddRecipeContainer'
+import CreateMealPlan from './containers/CreateMealPlan'
 
 
 class App extends Component {
@@ -60,6 +61,7 @@ class App extends Component {
           <Route path="/find-recipes" component={FindRecipesContainer} />
           <Route path="/manage-ingredients" component={ManageIngredientsContainer} />
           <Route path="/profile" component={Profile} />
+          <Route path="/create-mealplan" component={CreateMealPlan} />
         </div>
         {this.props.viewedRecipeId ? <RecipeView /> : null}
       </>

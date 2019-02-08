@@ -86,26 +86,13 @@ class RecipeView extends Component {
       return <ul className="list-unstyled">{ingredients}</ul>
     }
 
-    // const renderAboveView = () => {
-    //   if (this.props.successfulRecipeSave) {
-    //     return <RecipeSaveSuccess />
-    //   } else {
-    //     return <div className="row text-center">
-    //               <div className="col-md-6">
-    //                 <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
-    //               </div>
-    //               <div className="col-md-6">
-    //                 <button className="btn btn-primary" onClick={this.handleSave}>Save</button>
-    //               </div>
-    //             </div>
-    //   }
-    // }
-
 
     return (
       <div className="recipe-view">
         <div className="container">
           {this.renderAboveView()}
+
+          {}
 
           <div className="row">
             <div className="col-lg-5">
