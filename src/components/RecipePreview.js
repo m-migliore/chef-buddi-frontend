@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 class RecipePreview extends Component {
   handleClick = () => {
-    if (window.location.pathname === "/profile") {
+    if (window.location.pathname === "/profile" || window.location.pathname === "/create-mealplan") {
       this.props.setViewUserRecipeId(this.props.recipe['recipe_id'], this.props.recipe.id)
     } else {
       this.props.setViewRecipeId(this.props.recipe.id)

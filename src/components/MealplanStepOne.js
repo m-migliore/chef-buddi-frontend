@@ -26,11 +26,9 @@ class MealplanStepOne extends Component {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
-  }
-
-  handleClick = () => {
-    this.props.completeStepOne()
+    .then(data => {
+      this.props.completeStepOne(data)
+    })
   }
 
   render() {
@@ -39,7 +37,6 @@ class MealplanStepOne extends Component {
         <div className="row">
           <div className="col-12">
             <h3>Add a Title</h3>
-            {/* <button onClick={this.handleClick}>Complete</button> */}
           </div>
           <div className="col-12">
             <form onSubmit={this.handleSubmit}>
@@ -73,7 +70,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    completeStepOne: () => dispatch({type: "COMPLETE_MEALPLAN_STEP_ONE"})
+    completeStepOne: (mealplan) => dispatch({type: "COMPLETE_MEALPLAN_STEP_ONE", payload: mealplan})
   }
 }
 

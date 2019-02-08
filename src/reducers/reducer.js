@@ -19,7 +19,9 @@ const defaultState = {
   ingredientInputs: [1],
   ingredientInputValues: "",
   homeFormType: null,
-  mealplanStepsCompleted: 0
+  mealplanStepsCompleted: 0,
+  createdMealplan: {},
+  stagedMealplanRecipes: []
 }
 
 export default function reducer(state = defaultState, action) {
@@ -91,7 +93,7 @@ export default function reducer(state = defaultState, action) {
     case "SET_HOME_FORM_TYPE":
       return {...state, homeFormType: action.payload}
     case "COMPLETE_MEALPLAN_STEP_ONE":
-      return {...state, mealplanStepsCompleted: 1}
+      return {...state, mealplanStepsCompleted: 1, createdMealplan: action.payload}
     case "COMPLETE_MEALPLAN_STEP_TWO":
       return {...state, mealplanStepsCompleted: 2}
     default:

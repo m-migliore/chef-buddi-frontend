@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import RecipeContainer from '../containers/RecipeContainer'
 
 class MealplanStepTwo extends Component {
 
@@ -9,17 +10,27 @@ class MealplanStepTwo extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div>mp step 2</div>
-            <button onClick={this.handleClick}>Complete</button>
+      <>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <h3>Add Recipes to Mealplan {this.props.createdMealplan.title}</h3>
+            </div>
           </div>
         </div>
-      </div>
+        <RecipeContainer recipes={this.props.userRecipes} />
+      </>
     );
   }
 
+}
+
+const mapStateToProps = state => {
+  return {
+    userRecipes: state.userRecipes,
+    createdMealplan: state.createdMealplan,
+    stagedMealplanRecipes: state.stagedMealplanRecipes
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -28,4 +39,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(MealplanStepTwo)
+export default connect(mapStateToProps, mapDispatchToProps)(MealplanStepTwo)
