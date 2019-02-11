@@ -4,7 +4,12 @@ import { connect } from 'react-redux'
 class RecipePreview extends Component {
   handleClick = () => {
     if (window.location.pathname === "/profile" || window.location.pathname === "/create-mealplan") {
-      this.props.setViewUserRecipeId(this.props.recipe['recipe_id'], this.props.recipe.id)
+      if (this.props.viewedMealplanId) {
+        this.props.setViewRecipeId(this.props.recipe.id)
+      } else {
+        this.props.setViewUserRecipeId(this.props.recipe['recipe_id'], this.props.recipe.id)
+      }
+
     } else {
       this.props.setViewRecipeId(this.props.recipe.id)
     }
@@ -22,6 +27,12 @@ class RecipePreview extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    viewedMealplanId: state.viewedMealplanId
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     setViewRecipeId: (recipeId) => dispatch({type: "SET_VIEW_RECIPE_ID", payload: recipeId}),
@@ -29,4 +40,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(RecipePreview)
+export default connect(mapStateToProps, mapDispatchToProps)(RecipePreview)

@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import MealplanPreview from '../components/MealplanPreview'
+import MealplanView from '../components/MealplanView'
 
 class MealplanContainer extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.userMealplans.map(mealplan => <MealplanPreview mealplan={mealplan} />)}
+      <div className="mealplans container">
+        <div className="row">
+          <div className="col">
+            <h3>User Mealplans</h3>
+          </div>
+        </div>
+        <div className="row">
+          {this.props.viewedMealplanId ? <MealplanView /> : this.props.userMealplans.map(mealplan => <MealplanPreview key={mealplan.id} mealplan={mealplan} />)}
+        </div>
       </div>
     );
   }
@@ -16,7 +24,8 @@ class MealplanContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    userMealplans: state.userMealplans
+    userMealplans: state.userMealplans,
+    viewedMealplanId: state.viewedMealplanId
   }
 }
 

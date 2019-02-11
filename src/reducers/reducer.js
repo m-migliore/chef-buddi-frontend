@@ -23,7 +23,9 @@ const defaultState = {
   createdMealplanTitle: "",
   stagedMealplanRecipes: [],
   successfulMealplanCreate: false,
-  userMealplans: []
+  userMealplans: [],
+  viewedMealplanId: null,
+  viewedMealplan: null
 }
 
 export default function reducer(state = defaultState, action) {
@@ -62,7 +64,7 @@ export default function reducer(state = defaultState, action) {
     case "SET_VIEW_RECIPE":
       return {...state, viewedRecipe: action.payload}
     case "CLEAR_VIEW_RECIPE_ID":
-      return {...state, viewedRecipeId: null}
+      return {...state, viewedRecipeId: null, viewedRecipe: null}
     case "SELECT_INGREDIENT":
       if (state.selectedIngredients.includes(action.payload)) {
         const currentSelections = [...state.selectedIngredients]
@@ -114,6 +116,10 @@ export default function reducer(state = defaultState, action) {
       return {...state, stagedMealplanRecipes: updatedRecipes, viewedRecipe: null, viewedRecipeId: null}
     case "MEALPLAN_CREATED":
       return {...state, successfulMealplanCreate: true}
+    case "SET_VIEWED_MEALPLAN_ID":
+      return {...state, viewedMealplanId: action.payload}
+      case "SET_VIEWED_MEALPLAN":
+        return {...state, viewedMealplan: action.payload}
     default:
       return defaultState
   }
