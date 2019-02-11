@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import MealplanStepOne from '../components/MealplanStepOne'
 import MealplanStepTwo from '../components/MealplanStepTwo'
 import MealplanStepThree from '../components/MealplanStepThree'
+import { Redirect } from 'react-router-dom'
 
 class CreateMealPlan extends Component {
 
@@ -21,14 +22,18 @@ class CreateMealPlan extends Component {
     }
     return (
 
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <h2>Create Mealplan</h2>
-            {renderStep()}
+      <>
+        {this.props.currentUserId ? null : <Redirect to="/" />}
+
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <h2>Create Mealplan</h2>
+              {renderStep()}
+            </div>
           </div>
         </div>
-      </div>
+      </>
 
     );
   }
@@ -37,6 +42,7 @@ class CreateMealPlan extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
     mealplanStepsCompleted: state.mealplanStepsCompleted
   }
 }
