@@ -63,11 +63,6 @@ class MealplanStepOne extends Component {
 
 }
 
-const mapStateToProps = state => {
-  return {
-    currentUserId: state.currentUserId
-  }
-}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -75,4 +70,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MealplanStepOne)
+export default connect(null, mapDispatchToProps)(MealplanStepOne)

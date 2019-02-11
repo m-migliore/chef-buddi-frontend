@@ -5,7 +5,23 @@ import RecipeContainer from '../containers/RecipeContainer'
 class MealplanStepTwo extends Component {
 
   handleClick = () => {
-    this.props.completeStepTwo()
+    console.log("create mealplan")
+    console.log("title:", this.props.createdMealplanTitle)
+    console.log(("recipeIds:", this.props.stagedMealplanRecipes))
+    fetch("http://localhost:4000/api/v1/mealplans", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUserId,
+        title: this.props.createdMealplanTitle,
+        recipeIds: this.props.stagedMealplanRecipes
+      })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
   }
 
 
@@ -24,7 +40,7 @@ class MealplanStepTwo extends Component {
             <h4>No Recipes Added</h4> :
             <>
               <RecipeContainer recipes={this.props.userRecipes.filter(recipe => this.props.stagedMealplanRecipes.includes(recipe['recipe_id']))} />
-              <p>sup</p>
+              <button className="btn btn-primary" onClick={this.handleClick}>Create Mealplan</button>
             </>
           }
 
@@ -44,6 +60,7 @@ class MealplanStepTwo extends Component {
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
     userRecipes: state.userRecipes,
     createdMealplanTitle: state.createdMealplanTitle,
     stagedMealplanRecipes: state.stagedMealplanRecipes
