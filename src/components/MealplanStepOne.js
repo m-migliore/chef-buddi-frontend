@@ -14,21 +14,22 @@ class MealplanStepOne extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    fetch("http://localhost:4000/api/v1/mealplans", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        user_id: this.props.currentUserId,
-        title: this.state.title
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      this.props.completeStepOne(data)
-    })
+    // fetch("http://localhost:4000/api/v1/mealplans", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     user_id: this.props.currentUserId,
+    //     title: this.state.title
+    //   })
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //   this.props.completeStepOne(data)
+    // })
+    this.props.completeStepOne(this.state.title)
   }
 
   render() {

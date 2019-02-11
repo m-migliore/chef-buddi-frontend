@@ -8,11 +8,7 @@ class MealplanStepTwo extends Component {
     this.props.completeStepTwo()
   }
 
-  componentDidMount() {
-    const availRecipeIds = this.props.userRecipes.map(recipe => recipe['recipe_id'])
-    console.log(this.props.userRecipes);
-    this.props.loadAvailableRecipes(availRecipeIds)
-  }
+
 
   render() {
 
@@ -24,16 +20,22 @@ class MealplanStepTwo extends Component {
               <h3>Selected Recipes</h3>
             </div>
           </div>
-          {this.props.stagedMealplanRecipes.length === 0 ? <h4>No Recipes Added</h4> :  <RecipeContainer recipes={this.props.stagedMealplanRecipes} />}
+          {this.props.stagedMealplanRecipes.length === 0 ?
+            <h4>No Recipes Added</h4> :
+            <>
+              <RecipeContainer recipes={this.props.userRecipes.filter(recipe => this.props.stagedMealplanRecipes.includes(recipe['recipe_id']))} />
+              <p>sup</p>
+            </>
+          }
 
           <div className="row">
             <div className="col">
-              <h3>Add Recipes to Mealplan {this.props.createdMealplan.title}</h3>
+              <h3>Add Recipes to Mealplan {this.props.createdMealplanTitle}</h3>
             </div>
           </div>
         </div>
-        {/* <RecipeContainer recipes={this.props.userRecipes.filter(recipe => !this.props.availRecipeIds.includes(recipe['recipe_id']))} /> */}
-        <RecipeContainer recipes={this.props.userRecipes} />
+        {/* <RecipeContainer recipes={this.props.userRecipes} /> */}
+          <RecipeContainer recipes={this.props.userRecipes.filter(recipe => !this.props.stagedMealplanRecipes.includes(recipe['recipe_id']))} />
       </>
     );
   }
@@ -43,16 +45,14 @@ class MealplanStepTwo extends Component {
 const mapStateToProps = state => {
   return {
     userRecipes: state.userRecipes,
-    createdMealplan: state.createdMealplan,
-    stagedMealplanRecipes: state.stagedMealplanRecipes,
-    availableMealplanRecipes: state.availableMealplanRecipes
+    createdMealplanTitle: state.createdMealplanTitle,
+    stagedMealplanRecipes: state.stagedMealplanRecipes
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     completeStepTwo: () => dispatch({type: "COMPLETE_MEALPLAN_STEP_TWO"}),
-    loadAvailableRecipes: recipes => dispatch({type:"LOAD_AVAILABLE_MEALPLAN_RECIPES", payload: recipes})
   }
 }
 

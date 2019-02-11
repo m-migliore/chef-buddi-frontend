@@ -44,7 +44,7 @@ class RecipeView extends Component {
     .then(this.props.postRemoveUserRecipe(this.props.viewedUserRecipeId))
   }
 
-  handleMeal = () => {
+  handleAddMeal = () => {
     console.log("create meal, add to mealplan", this.props.viewedRecipe);
     // fetch("http://localhost:4000/api/v1/meals", {
     //   method: "POST",
@@ -62,7 +62,12 @@ class RecipeView extends Component {
     //
     // }
 
-    this.props.stageRecipe(this.props.viewedRecipe)
+    this.props.stageMealplanRecipe(this.props.viewedRecipeId)
+  }
+
+  handleRemoveMeal = () => {
+    console.log("REMOVE");
+    this.props.removeMealplanRecipe(this.props.viewedRecipeId)
   }
 
 
@@ -70,7 +75,11 @@ class RecipeView extends Component {
     if (window.location.pathname === "/find-recipes") {
       return <button className="btn btn-primary" onClick={this.handleSave}>Save Recipe</button>
     } else if (window.location.pathname === "/create-mealplan") {
-      return <button className="btn btn-primary" onClick={this.handleMeal}>Add to Mealplan</button>
+      if (this.props.stagedMealplanRecipes.includes(this.props.viewedRecipeId)) {
+        return <button className="btn btn-primary" onClick={this.handleRemoveMeal}>Remove from Mealplan</button>
+      } else {
+        return <button className="btn btn-primary" onClick={this.handleAddMeal}>Add to Mealplan</button>
+      }
     } else {
       return <button className="btn btn-primary" onClick={this.handleRemove}>Remove Recipe</button>
     }
@@ -157,7 +166,8 @@ const mapStateToProps = state => {
     viewedRecipe: state.viewedRecipe,
     viewedUserRecipeId: state.viewedUserRecipeId,
     successfulRecipeSave: state.successfulRecipeSave,
-    createdMealplan: state.createdMealplan
+    createdMealplan: state.createdMealplan,
+    stagedMealplanRecipes: state.stagedMealplanRecipes
   }
 }
 
@@ -167,7 +177,8 @@ const mapDispatchToProps = dispatch => {
     clearViewRecipeId: () => dispatch({type: "CLEAR_VIEW_RECIPE_ID"}),
     setRecipeSaveStatus: () => dispatch({type: "SET_RECIPE_SAVE_STATUS"}),
     postRemoveUserRecipe: (userRecipeId) => dispatch({type: "POST_REMOVE_USER_RECIPE", payload: userRecipeId}),
-    stageRecipe: (recipe) => dispatch({type:"STAGE_RECIPE_TO_MEALPLAN", payload: recipe})
+    stageMealplanRecipe: (recipe) => dispatch({type:"STAGE_RECIPE_TO_MEALPLAN", payload: recipe}),
+    removeMealplanRecipe: (recipeId) => dispatch({type: "REMOVE_MEALPLAN_RECIPE", payload: recipeId})
   }
 }
 
