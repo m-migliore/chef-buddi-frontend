@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import IngredientContainer from './IngredientContainer'
 import RecipeContainer from './RecipeContainer'
+import MealplanContainer from './MealplanContainer'
 
 class Profile extends Component {
   state = {
@@ -39,7 +40,7 @@ class Profile extends Component {
                 {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null}
                </>
       case "mealplans":
-        return <div>Mealplans</div>
+        return <MealplanContainer />
       default:
         return <>
                 {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}

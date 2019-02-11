@@ -22,7 +22,8 @@ const defaultState = {
   mealplanStepsCompleted: 0,
   createdMealplanTitle: "",
   stagedMealplanRecipes: [],
-  successfulMealplanCreate: false
+  successfulMealplanCreate: false,
+  userMealplans: []
 }
 
 export default function reducer(state = defaultState, action) {
@@ -33,7 +34,8 @@ export default function reducer(state = defaultState, action) {
         currentUser:action.payload,
         currentUserId: action.payload.id,
         userIngredients: action.payload.ingredients,
-        userRecipes: action.payload.recipes
+        userRecipes: action.payload.recipes,
+        userMealplans: action.payload.mealplans
       }
     case "SET_CURRENT_USER":
       // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
