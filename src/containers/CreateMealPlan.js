@@ -22,7 +22,7 @@ class CreateMealPlan extends Component {
     }
     return (
 
-      <>
+      <div className="create-mealplan">
         {this.props.currentUserId ? null : <Redirect to="/" />}
 
         <div className="container">
@@ -33,7 +33,7 @@ class CreateMealPlan extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
 
     );
   }

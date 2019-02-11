@@ -20,7 +20,7 @@ class ManageIngredientsContainer extends Component {
     const nonUserIngredients = this.props.ingredients.filter(ingred => !this.hideUserIngreds(ingred.id))
 
     return (
-      <div>
+      <div className="manage-ingredients">
         {this.loginRedirect()}
 
         <div className="container">
