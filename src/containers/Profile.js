@@ -5,6 +5,9 @@ import IngredientContainer from './IngredientContainer'
 import RecipeContainer from './RecipeContainer'
 
 class Profile extends Component {
+  state = {
+    view: "ingredients"
+  }
 
   componentDidMount() {
     if (this.props.currentUserId) {
@@ -23,13 +26,37 @@ class Profile extends Component {
     }
   }
 
-  handleClick = () => {
-
+  renderInterior = () => {
+    switch(this.state.view) {
+      case "ingredients":
+        return <>
+                {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
+                {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
+               </>
+      case "recipes":
+        return <>
+                {this.props.currentUser.recipes ? <h3>User Recipes</h3> : <h3>No Recipes Found</h3>}
+                {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null}
+               </>
+      case "mealplans":
+        return <div>Mealplans</div>
+      default:
+        return <>
+                {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
+                {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
+               </>
+    }
   }
 
+  handleClick = e => {
+    this.setState({
+      view: e.target.name
+    })
+  }
+
+
   render() {
-    // const UserIngredientContainer = ingredListSelector(IngredientContainer, this.props.currentUser.ingredients)
-    // const UserRecipeContainer = recipeListSelector(RecipeContainer, this.props.currentUser.recipes)
+
     return (
       <div className="profile">
         {this.loginRedirect()}
@@ -37,20 +64,34 @@ class Profile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <h2>Profile Page for User: {this.props.currentUser.username}</h2>
-            </div>
-            <div className="col-12">
-              <Link to="/create-mealplan" className="btn btn-primary">Create Mealplan</Link>
+              <h2>{this.props.currentUser.username}'s Profile</h2>
             </div>
           </div>
         </div>
 
-        {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
-        {/* {this.props.currentUser.ingredients ? <UserIngredientContainer /> : null} */}
+        <div className="container btn-box">
+          <div className="row">
+            <div className="col-md-3">
+              <button className="btn btn-primary" onClick={this.handleClick} name="ingredients">View Ingredients</button>
+            </div>
+            <div className="col-md-3">
+              <button className="btn btn-primary" onClick={this.handleClick} name="recipes">View Recipes</button>
+            </div>
+            <div className="col-md-3">
+              <Link to="/create-mealplan" className="btn btn-primary">Create Mealplan</Link>
+            </div>
+            <div className="col-md-3">
+              <button className="btn btn-primary" onClick={this.handleClick} name="mealplans">View Mealplans</button>
+            </div>
+          </div>
+        </div>
+
+        {this.renderInterior()}
+
+        {/* {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
         {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
         {this.props.currentUser.recipes ? <h3>User Recipes</h3> : <h3>No Recipes Found</h3>}
-        {/* {this.props.currentUser.recipes ? <UserRecipeContainer /> : null} */}
-        {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null}
+        {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null} */}
       </div>
     );
   }

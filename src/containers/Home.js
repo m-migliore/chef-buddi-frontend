@@ -10,24 +10,31 @@ class Home extends Component {
 
   render() {
     return (
-
-      this.props.homeFormType ?
-        <div className="container">
-          <div className="row">
-            {this.props.homeFormType === "login" ? <Login /> : <Signup />}
-          </div>
-        </div>
-      :
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <button className="btn btn-primary" name="login" onClick={this.handleClick}>Login</button>
-            </div>
-            <div className="col-md-6">
-              <button className="btn btn-primary" name="signup" onClick={this.handleClick}>Signup</button>
+      <div className="homepage">
+        {this.props.homeFormType ?
+          <div className="container">
+            <div className="row">
+              <div className="home-form">
+                {this.props.homeFormType === "login" ? <Login /> : <Signup />}
+              </div>
             </div>
           </div>
-        </div>
+        :
+          <div className="container prompts">
+            <div className="row">
+              <div className="col-12 welcome">
+                <h2>Welcome To Chef Buddi</h2>
+                <h4>An Interactive Kitchen Manager</h4>
+              </div>
+              <div className="col-md-6">
+                <button className="btn btn-primary" name="login" onClick={this.handleClick}>Login</button>
+              </div>
+              <div className="col-md-6">
+                <button className="btn btn-primary" name="signup" onClick={this.handleClick}>Signup</button>
+              </div>
+            </div>
+          </div>}
+      </div>
     );
   }
 

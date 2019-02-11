@@ -85,12 +85,12 @@ class Ingredient extends Component {
       // <div className={this.props.selectedIngredients.includes(ingred.id) ? "ingredient selected" : "ingredient"} onClick={this.handleClick}>
       //   <h4>{this.createTitleName(ingred.name)}</h4>
       // </div>
-      <h4
+      <p
         className={this.renderIngredClass()}
         onClick={this.handleClick}
         >
         {this.createTitleName(this.props.ingred.name)}
-      </h4>
+      </p>
     );
   }
 }

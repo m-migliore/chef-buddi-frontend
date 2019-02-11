@@ -8,15 +8,6 @@ class IngredientContainer extends Component {
     filter: ""
   }
 
-  // componentDidMount() {
-  //   fetch("http://localhost:4000/api/v1/ingredients")
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     console.log(data)
-  //     this.props.loadIngredients(data)
-  //   })
-  // }
-
   handleChange = e => {
     this.setState({
       filter: e.target.value.toLowerCase()
@@ -24,7 +15,6 @@ class IngredientContainer extends Component {
   }
 
   render() {
-    // const SelectableIngredient = withSelect(Ingredient)
     const filteredIngredients = this.props.ingredients.filter(ingred => ingred.name.toLowerCase().includes(this.state.filter))
 
     return (
@@ -49,14 +39,7 @@ class IngredientContainer extends Component {
           </div>
         </div>
 
-
-        {/* {this.state.ingredients.map(ingred => {
-          // return <SelectableIngredient key={ingred.id} ingred={ingred} selectable={true}/>
-          return <Ingredient key={ingred.id} ingred={ingred}/>
-        })} */}
-
         {filteredIngredients.map(ingred => {
-          // return <SelectableIngredient key={ingred.id} ingred={ingred} selectable={true}/>
           return <Ingredient key={ingred.id} ingred={ingred}/>
         })}
       </div>
@@ -64,17 +47,4 @@ class IngredientContainer extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     ingredients: state.ingredients,
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadIngredients: (loadedIngredients) => dispatch({type: "LOAD_INGREDIENTS", payload: loadedIngredients})
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(IngredientContainer)
 export default IngredientContainer

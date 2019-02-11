@@ -34,8 +34,6 @@ class RecipeView extends Component {
   }
 
   handleRemove = () => {
-    console.log("userrecipeId", this.props.viewedUserRecipeId)
-    console.log("userId", this.props.currentUserId)
     fetch(`http://localhost:4000/api/v1/user_recipes/${this.props.viewedUserRecipeId}`, {
       method: "DELETE"
     })
@@ -43,28 +41,10 @@ class RecipeView extends Component {
   }
 
   handleAddMeal = () => {
-    console.log("create meal, add to mealplan", this.props.viewedRecipe);
-    // fetch("http://localhost:4000/api/v1/meals", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     mealplan_id: this.props.createdMealplan.id,
-    //     recipe_id: this.props.viewedRecipeId
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //
-    // }
-
     this.props.stageMealplanRecipe(this.props.viewedRecipeId)
   }
 
   handleRemoveMeal = () => {
-    console.log("REMOVE");
     this.props.removeMealplanRecipe(this.props.viewedRecipeId)
   }
 
@@ -123,30 +103,30 @@ class RecipeView extends Component {
         <div className="container">
           {this.renderAboveView()}
 
-          {}
+          <div className="recipe-view-inner">
+            <div className="row">
+              <div className="col-lg-5">
+                <img src={recipe.image} alt={recipe.name}/>
+              </div>
+              <div className="col-lg-7 recipe-info">
+                <h2>{recipe.name}</h2>
+                <h4>Category: <span>{recipe.category}</span></h4>
+                <h4>Area: <span>{recipe.area}</span></h4>
+                {recipe.tags ? <h4>Tags: {recipe.tags}</h4> : null}
+                <h4><a href={recipe.youtube} target="_blank" rel="noopener noreferrer">View on YouTube</a></h4>
+                <h4><a href={recipe.source} target="_blank" rel="noopener noreferrer">Source</a></h4>
+              </div>
+            </div>
 
-          <div className="row">
-            <div className="col-lg-5">
-              <img src={recipe.image} alt={recipe.name}/>
-            </div>
-            <div className="col-lg-7 recipe-info">
-              <h2>{recipe.name}</h2>
-              <h4>Category: <span>{recipe.category}</span></h4>
-              <h4>Area: <span>{recipe.area}</span></h4>
-              {recipe.tags ? <h4>Tags: {recipe.tags}</h4> : null}
-              <h4><a href={recipe.youtube} target="_blank" rel="noopener noreferrer">View on YouTube</a></h4>
-              <h4><a href={recipe.source} target="_blank" rel="noopener noreferrer">Source</a></h4>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-6">
-              <h3>Ingredients</h3>
-              {recipe['recipe_ingredients'] ? renderIngredients() : null}
-            </div>
-            <div className="col-md-6">
-              <h3>Instructions</h3>
-              <p>{recipe.instructions}</p>
+            <div className="row">
+              <div className="col-md-6">
+                <h3>Ingredients</h3>
+                {recipe['recipe_ingredients'] ? renderIngredients() : null}
+              </div>
+              <div className="col-md-6">
+                <h3>Instructions</h3>
+                <p>{recipe.instructions}</p>
+              </div>
             </div>
           </div>
         </div>

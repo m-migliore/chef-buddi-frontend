@@ -46,7 +46,7 @@ class Login extends Component {
         <h2>Login</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-12">
               <label htmlFor="username-input">Username</label>
               <input
                 type="text"
@@ -58,7 +58,7 @@ class Login extends Component {
                 className="form-control"
               />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-12">
               <label htmlFor="password-input">Password</label>
               <input
                 type="password"
