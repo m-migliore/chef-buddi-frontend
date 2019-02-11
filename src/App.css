@@ -26,7 +26,17 @@ h2 {
   display: inline-block;
   padding-bottom: 5px;
   margin-bottom: 25px;
-  border-bottom: 5px solid #F21B3F;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #29BF12, #08BDBD, #F21B3F, #FF9914);
 }
 
 .App {
@@ -50,42 +60,82 @@ img {
   padding-left: 0;
 }
 
-.btn.btn-primary {
-  background-color: #087abd;
-  border-color: #087abd;
+.App .btn {
+  color: #fff;
   text-transform: uppercase;
 }
 
-.btn.btn-primary:hover, .App .btn.btn-primary:active, .btn.btn-primary:focus {
-  background-color: #05669e;
-  border-color: #05669e;
+.App .btn:hover, .App .btn:active, .btn:focus {
   outline: none;
   box-shadow: none;
 }
 
-.btn.btn-link {
+.App .btn.btn-link {
   color: #087abd;
 }
 
-.btn.btn-link:hover, .btn.btn-link:active, .btn.btn-link:focus {
-  color: #05669e;
+.App .btn.btn-link:hover, .App .btn.btn-link:active, .App .btn.btn-link:focus {
+  outline: none;
+  box-shadow: none;
 }
 
+.btn.btn-blue {
+  background-color: #087abd;
+  border-color: #087abd;
+}
+
+.btn.btn-blue:hover, .App .btn.btn-blue:active, .btn.btn-blue:focus {
+  background-color: #05669e;
+  border-color: #05669e;
+}
+
+.btn.btn-green {
+  background-color: #29BF12;
+  border-color: #29BF12;
+}
+
+.btn.btn-green:hover, .App .btn.btn-green:active, .btn.btn-green:focus {
+  background-color: #1e920c;
+  border-color: #1e920c;
+}
+
+.btn.btn-red {
+  background-color: #F21B3F;
+  border-color: #F21B3F;
+}
+
+.btn.btn-orange {
+  background-color: #FF9914;
+  border-color: #FF9914;
+}
+
+
 /********** NAVBAR **********/
+.navbox {
+  position: relative;
+}
+
 .navbox.floating {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255,255,255,.9);
+  background-color: rgba(255,255,255,.85);
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .5);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
   border-bottom: 0;
 }
 
-.navbox {
-  border-bottom: 3px solid #222;
+.navbox::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #29BF12, #08BDBD, #F21B3F, #FF9914);
 }
+
 
 .navbar a {
   margin: 10px;
@@ -100,7 +150,7 @@ img {
   min-height: 100vh;
 }
 
-.homepage .prompts .btn.btn-primary {
+.homepage .prompts .btn {
   font-size: 1.5rem;
   padding: .5rem 1.25rem;
 }

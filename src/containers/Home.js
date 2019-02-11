@@ -23,14 +23,14 @@ class Home extends Component {
           <div className="container prompts">
             <div className="row">
               <div className="col-12 welcome">
-                <h2>Welcome To Chef Buddi</h2>
+                <h2 className="rainbow-border">Welcome To Chef Buddi</h2>
                 <h4>An Interactive Kitchen Manager</h4>
               </div>
               <div className="col-md-6">
-                <button className="btn btn-primary" name="login" onClick={this.handleClick}>Login</button>
+                <button className="btn btn-blue" name="login" onClick={this.handleClick}>Login</button>
               </div>
               <div className="col-md-6">
-                <button className="btn btn-primary" name="signup" onClick={this.handleClick}>Signup</button>
+                <button className="btn btn-blue" name="signup" onClick={this.handleClick}>Signup</button>
               </div>
             </div>
           </div>}

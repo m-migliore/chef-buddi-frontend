@@ -72,16 +72,16 @@ class Profile extends Component {
         <div className="container btn-box">
           <div className="row">
             <div className="col-md-3">
-              <button className="btn btn-primary" onClick={this.handleClick} name="ingredients">View Ingredients</button>
+              <button className="btn btn-green" onClick={this.handleClick} name="ingredients">View Ingredients</button>
             </div>
             <div className="col-md-3">
-              <button className="btn btn-primary" onClick={this.handleClick} name="recipes">View Recipes</button>
+              <button className="btn btn-blue" onClick={this.handleClick} name="recipes">View Recipes</button>
             </div>
             <div className="col-md-3">
-              <Link to="/create-mealplan" className="btn btn-primary">Create Mealplan</Link>
+              <Link to="/create-mealplan" className="btn btn-red">Create Mealplan</Link>
             </div>
             <div className="col-md-3">
-              <button className="btn btn-primary" onClick={this.handleClick} name="mealplans">View Mealplans</button>
+              <button className="btn btn-orange" onClick={this.handleClick} name="mealplans">View Mealplans</button>
             </div>
           </div>
         </div>

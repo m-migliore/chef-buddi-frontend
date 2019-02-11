@@ -6,7 +6,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div className={this.props.currentUserId ? "navbox" : "navbox floating"}>
+      <div className={this.props.currentUserId ? "navbox rainbow-border" : "navbox rainbow-border floating"}>
         <div className="container">
           <div className="row">
             <div className="col">

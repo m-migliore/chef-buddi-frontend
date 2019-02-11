@@ -43,7 +43,7 @@ class Login extends Component {
     return (
       <>
       <div className="col-12">
-        <h2>Login</h2>
+        <h2 className="rainbow-border">Login</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="form-group col-12">
@@ -71,7 +71,7 @@ class Login extends Component {
               />
             </div>
           </div>
-          <button className="btn btn-primary" type="submit">Login</button>
+          <button className="btn btn-blue" type="submit">Login</button>
         </form>
       </div>
       <div className="col-12">
