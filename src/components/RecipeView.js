@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import IngredientContainer from '../containers/IngredientContainer'
-// import ingredListSelector from '../hocs/ingredListSelector'
 import RecipeSaveSuccess from './RecipeSaveSuccess'
 
 class RecipeView extends Component {

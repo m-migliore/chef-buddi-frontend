@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RecipeContainer from '../containers/RecipeContainer'
+import { Redirect } from 'react-router-dom'
 
 class MealplanStepTwo extends Component {
 
@@ -21,7 +22,9 @@ class MealplanStepTwo extends Component {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      this.props.mealplanCreated()
+    })
   }
 
 
@@ -30,6 +33,8 @@ class MealplanStepTwo extends Component {
 
     return (
       <>
+        {this.props.successfulMealplanCreate ? <Redirect to="/profile"/> : null}
+
         <div className="container">
           <div className="row">
             <div className="col">
@@ -63,13 +68,15 @@ const mapStateToProps = state => {
     currentUserId: state.currentUserId,
     userRecipes: state.userRecipes,
     createdMealplanTitle: state.createdMealplanTitle,
-    stagedMealplanRecipes: state.stagedMealplanRecipes
+    stagedMealplanRecipes: state.stagedMealplanRecipes,
+    successfulMealplanCreate: state.successfulMealplanCreate
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     completeStepTwo: () => dispatch({type: "COMPLETE_MEALPLAN_STEP_TWO"}),
+    mealplanCreated: () => dispatch({type: "MEALPLAN_CREATED"})
   }
 }
 

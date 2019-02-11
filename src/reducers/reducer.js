@@ -21,7 +21,8 @@ const defaultState = {
   homeFormType: null,
   mealplanStepsCompleted: 0,
   createdMealplanTitle: "",
-  stagedMealplanRecipes: []
+  stagedMealplanRecipes: [],
+  successfulMealplanCreate: false
 }
 
 export default function reducer(state = defaultState, action) {
@@ -109,6 +110,8 @@ export default function reducer(state = defaultState, action) {
     case "REMOVE_MEALPLAN_RECIPE":
       const updatedRecipes = state.stagedMealplanRecipes.filter(recipe => !action.payload)
       return {...state, stagedMealplanRecipes: updatedRecipes, viewedRecipeId: null}
+    case "MEALPLAN_CREATED":
+      return {...state, successfulMealplanCreate: true}
     default:
       return defaultState
   }
