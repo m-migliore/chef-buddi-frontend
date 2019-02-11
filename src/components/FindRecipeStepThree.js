@@ -51,7 +51,7 @@ class FindStepThree extends Component {
         </div>
         <h3>Selected Ingredients</h3>
         <IngredientContainer ingredients={this.props.stepThreeIngredients}/>
-        {this.props.recipeSearchCompleted ? this.renderResults() : <Loader title="Recipes"/>}
+        {this.props.recipeSearchCompleted ? this.renderResults() : <Loader />}
       </div>
     );
   }

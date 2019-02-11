@@ -176,6 +176,10 @@ img {
   font-family: 'Pacifico', cursive;
 }
 
+.home-form .loader {
+  width: 125px;
+}
+
 /********** CONTAINER BUFFERS **********/
 .profile, .manage-ingredients, .find-recipe-container, .add-recipe-form, .create-mealplan {
   margin: 50px 0;

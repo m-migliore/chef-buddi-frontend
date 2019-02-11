@@ -103,7 +103,8 @@ const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
     currentUser: state.currentUser,
-    userRecipes: state.userRecipes
+    userRecipes: state.userRecipes,
+    userMealplans: state.userMealplans
   }
 }
 

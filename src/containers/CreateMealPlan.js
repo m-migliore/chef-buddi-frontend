@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import MealplanStepOne from '../components/MealplanStepOne'
 import MealplanStepTwo from '../components/MealplanStepTwo'
-import MealplanStepThree from '../components/MealplanStepThree'
 import { Redirect } from 'react-router-dom'
 
 class CreateMealPlan extends Component {
@@ -14,8 +13,6 @@ class CreateMealPlan extends Component {
           return <MealplanStepOne />
         case 1:
           return <MealplanStepTwo />
-        case 2:
-          return <MealplanStepThree />
         default:
           return <MealplanStepOne />
       }

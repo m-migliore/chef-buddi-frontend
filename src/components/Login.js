@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import { Redirect } from 'react-router-dom'
+import Loader from './Loader'
 
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loading: false
   }
 
   handleChange = e => {
@@ -15,6 +16,10 @@ class Login extends Component {
   }
 
   handleSubmit = e => {
+    this.setState({
+      loading: true
+    })
+
     e.preventDefault()
     fetch("http://localhost:4000/api/v1/login", {
       method: "POST",
@@ -37,6 +42,12 @@ class Login extends Component {
   handleSwitch = e => {
     e.preventDefault()
     this.props.setHomeFormType()
+  }
+
+  handleClick = () => {
+    this.setState({
+      loading: true
+    })
   }
 
   render() {
@@ -71,7 +82,8 @@ class Login extends Component {
               />
             </div>
           </div>
-          <button className="btn btn-blue" type="submit">Login</button>
+          {this.state.loading ? <Loader /> : <button className="btn btn-blue" type="submit">Login</button> }
+
         </form>
       </div>
       <div className="col-12">

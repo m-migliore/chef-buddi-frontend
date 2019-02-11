@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import Loader from './Loader'
 
 class Signup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loading: false
   }
 
   handleChange = e => {
@@ -14,6 +16,10 @@ class Signup extends Component {
   }
 
   handleSubmit = e => {
+    this.setState = {
+      loading: true
+    }
+
     e.preventDefault()
     console.log("signup")
     fetch("http://localhost:4000/api/v1/users", {
@@ -71,7 +77,7 @@ class Signup extends Component {
         </form>
       </div>
       <div className="col-12">
-        <button onClick={this.handleSwitch} className="btn btn-link">Login</button>
+        {this.state.loading ? <Loader /> : <button onClick={this.handleSwitch} className="btn btn-link">Login</button> }
       </div>
       </>
     );
