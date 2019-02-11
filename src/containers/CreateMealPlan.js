@@ -6,6 +6,10 @@ import { Redirect } from 'react-router-dom'
 
 class CreateMealPlan extends Component {
 
+  componentDidMount() {
+    this.props.clearMealplanData()
+  }
+
   render() {
     const renderStep = () => {
       switch(this.props.mealplanStepsCompleted) {
@@ -41,6 +45,12 @@ const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
     mealplanStepsCompleted: state.mealplanStepsCompleted
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    clearMealplanData: () => dispatch({type: "CLEAR_MEALPLAN_DATA"})
   }
 }
 

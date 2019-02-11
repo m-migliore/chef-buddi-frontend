@@ -48,6 +48,10 @@ class RecipeView extends Component {
     this.props.removeMealplanRecipe(this.props.viewedRecipeId)
   }
 
+  handleDeleteMeal = () => {
+    console.log("delete meal");
+  }
+
 
   renderActionButton = () => {
     if (window.location.pathname === "/find-recipes") {
@@ -58,6 +62,8 @@ class RecipeView extends Component {
       } else {
         return <button className="btn btn-primary" onClick={this.handleAddMeal}>Add to Mealplan</button>
       }
+    } else if (this.props.viewedMealplanId){
+      return <button className="btn btn-primary" onClick={this.handleDeleteMeal}>Remove from Mealplan</button>
     } else {
       return <button className="btn btn-primary" onClick={this.handleRemove}>Remove Recipe</button>
     }
@@ -145,7 +151,8 @@ const mapStateToProps = state => {
     viewedUserRecipeId: state.viewedUserRecipeId,
     successfulRecipeSave: state.successfulRecipeSave,
     createdMealplan: state.createdMealplan,
-    stagedMealplanRecipes: state.stagedMealplanRecipes
+    stagedMealplanRecipes: state.stagedMealplanRecipes,
+    viewedMealplanId: state.viewedMealplanId
   }
 }
 

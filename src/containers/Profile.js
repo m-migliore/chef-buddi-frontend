@@ -11,6 +11,8 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    this.props.clearMealplanData()
+    
     if (this.props.currentUserId) {
       fetch(`http://localhost:4000/api/v1/users/${this.props.currentUserId}`)
       .then(res => res.json())
@@ -50,6 +52,7 @@ class Profile extends Component {
   }
 
   handleClick = e => {
+    this.props.clearMealplanData()
     this.setState({
       view: e.target.name
     })
@@ -111,6 +114,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setUser: (userData) => dispatch({type: "SET_CURRENT_USER", payload: userData}),
+    clearMealplanData: () => dispatch({type: "CLEAR_MEALPLAN_DATA"})
   }
 }
 

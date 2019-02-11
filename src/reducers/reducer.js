@@ -118,8 +118,10 @@ export default function reducer(state = defaultState, action) {
       return {...state, successfulMealplanCreate: true}
     case "SET_VIEWED_MEALPLAN_ID":
       return {...state, viewedMealplanId: action.payload}
-      case "SET_VIEWED_MEALPLAN":
-        return {...state, viewedMealplan: action.payload}
+    case "SET_VIEWED_MEALPLAN":
+      return {...state, viewedMealplan: action.payload}
+    case "CLEAR_MEALPLAN_DATA":
+      return {...state, viewedMealplanId: null, viewedMealplan: null}
     default:
       return defaultState
   }
