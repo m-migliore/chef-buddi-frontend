@@ -104,12 +104,12 @@ export default function reducer(state = defaultState, action) {
       //   stagedMealplanRecipes: [...state.stagedMealplanRecipes, action.payload],
       //   availableMealplanRecipes: updatedAvailable
       // }
-      return {...state, stagedMealplanRecipes: [...state.stagedMealplanRecipes, action.payload], viewedRecipeId: null}
+      return {...state, stagedMealplanRecipes: [...state.stagedMealplanRecipes, action.payload], viewedRecipe: null, viewedRecipeId: null}
     case "COMPLETE_MEALPLAN_STEP_TWO":
       return {...state, mealplanStepsCompleted: 2}
     case "REMOVE_MEALPLAN_RECIPE":
       const updatedRecipes = state.stagedMealplanRecipes.filter(recipe => !action.payload)
-      return {...state, stagedMealplanRecipes: updatedRecipes, viewedRecipeId: null}
+      return {...state, stagedMealplanRecipes: updatedRecipes, viewedRecipe: null, viewedRecipeId: null}
     case "MEALPLAN_CREATED":
       return {...state, successfulMealplanCreate: true}
     default:
