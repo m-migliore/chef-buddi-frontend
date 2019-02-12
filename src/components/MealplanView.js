@@ -26,6 +26,11 @@ class MealplanView extends Component {
 
   handleClick = () => {
     console.log("delete mealplan");
+    fetch(`http://localhost:4000/api/v1/mealplans/${this.props.viewedMealplanId}`, {
+      method: "DELETE"
+    })
+    .then( this.props.postMealplanDelete(this.props.viewedMealplanId) )
+
   }
 
   render() {
@@ -62,7 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setViewedMealplan: mealplan => dispatch({type: "SET_VIEWED_MEALPLAN", payload: mealplan})
+    setViewedMealplan: mealplan => dispatch({type: "SET_VIEWED_MEALPLAN", payload: mealplan}),
+    postMealplanDelete: deletedMealplanId => dispatch({type: "POST_MEALPLAN_DELETE", payload: deletedMealplanId})
   }
 }
 

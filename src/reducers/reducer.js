@@ -148,6 +148,9 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedRecipeId: null, viewedRecipe: null, viewedMealId: null, mealDeleted: true}
     case "SET_PROFILE_VIEW":
       return {...state, profileView: action.payload}
+    case "POST_MEALPLAN_DELETE":
+      const updatedMealplans = state.userMealplans.filter(mealplan => mealplan.id !== action.payload)
+      return {...state, viewedMealplanId: null, viewedMealplan: null, userMealplans: updatedMealplans}
     default:
       return defaultState
   }
