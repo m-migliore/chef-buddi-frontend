@@ -63,7 +63,8 @@ export default function reducer(state = defaultState, action) {
         userIngredients: [],
         userRecipes: [],
         userMealplans: [],
-        homeFormType: null
+        homeFormType: null,
+        profileView: "ingredients"
       }
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}

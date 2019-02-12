@@ -34,27 +34,53 @@ class Profile extends Component {
     switch(this.props.profileView) {
       case "ingredients":
         return <>
-                <h3>Ingredients</h3>
-                {this.props.currentUser.ingredients && this.props.currentUser.ingredients > 0 ?
-                  <IngredientContainer ingredients={this.props.currentUser.ingredients}/>
-                :
-                  <>
-                    <h4>No Ingredients Found</h4>
-                    <Link to="/manage-ingredients" className="btn btn-primary">Add Ingredients</Link>
-                  </>
-                }
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12">
+                      <h3>Ingredients</h3>
+                    </div>
+                    <div className="col-12">
+                      <Link to="/manage-ingredients" className="btn btn-primary">Manage Ingredients</Link>
+                    </div>
+                  </div>
+                </div>
+
+                {this.props.userIngredients.length > 0 ? <IngredientContainer ingredients={this.props.userIngredients}/> : <h4>No Ingredients Found</h4>}
                </>
       case "recipes":
         return <>
-                {this.props.currentUser.recipes ? <h3>Recipes</h3> : <h3>No Recipes Found</h3>}
-                {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null}
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12">
+                      <h3>Recipes</h3>
+                    </div>
+                    <div className="col-md-6 text-right">
+                      <Link to="/find-recipes" className="btn btn-primary">Find Recipes</Link>
+                    </div>
+                    <div className="col-md-6 text-left">
+                      <Link to="/add-recipe" className="btn btn-primary">Add Recipe</Link>
+                    </div>
+                  </div>
+                </div>
+
+                {this.props.userRecipes.length > 0 ? <RecipeContainer recipes={this.props.userRecipes} /> : <h4>No Recipes Found</h4>}
                </>
       case "mealplans":
         return <MealplanContainer />
       default:
         return <>
-                {this.props.currentUser.ingredients? <h3>Ingredients</h3> : <h3>No Ingredients Found</h3>}
-                {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12">
+                      <h3>Ingredients</h3>
+                    </div>
+                    <div className="col-12">
+                      <Link to="/manage-ingredients" className="btn btn-primary">Manage Ingredients</Link>
+                    </div>
+                  </div>
+                </div>
+
+                {this.props.userIngredients.length > 0 ? <IngredientContainer ingredients={this.props.userIngredients}/> : <h4>No Ingredients Found</h4>}
                </>
     }
   }
