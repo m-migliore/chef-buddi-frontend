@@ -120,9 +120,9 @@ class RecipeView extends Component {
     return (
       <div className="recipe-view">
         <div className="container">
-          {this.renderAboveView()}
-
           <div className="recipe-view-inner">
+            {this.renderAboveView()}
+            
             <div className="row">
               <div className="col-lg-5">
                 <img src={recipe.image} alt={recipe.name}/>
