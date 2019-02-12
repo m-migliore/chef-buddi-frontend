@@ -116,6 +116,8 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedRecipeId: null, viewedRecipe: null, viewedUserRecipeId: null, userRecipes: updatedUserRecipes}
     case "ADD_INGRED_INPUT_FOR_ADD_RECIPE":
       return {...state, ingredientInputs: [...state.ingredientInputs, state.ingredientInputs.length + 1]}
+    case "REMOVE_INGRED_INPUT":
+      return {...state, ingredientInputs: state.ingredientInputs.slice(0, state.ingredientInputs.length - 1)}
     case "ADD_INGRED_INPUT_VALUE":
       return {...state, ingredientInputValues: action.payload}
     case "SET_HOME_FORM_TYPE":

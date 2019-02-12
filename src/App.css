@@ -74,6 +74,8 @@ label {
   position: relative;
   color: #fff;
   text-transform: uppercase;
+  font-weight: 700;
+  border-width: 3px;
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .5);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
   -webkit-transition: all .25s ease-in-out;
@@ -124,15 +126,13 @@ transition: all .25s ease-in-out;
 
 .btn.btn-primary {
   background-color: #fff;
-  border: 3px solid #222;
+  border-color: #222;
   color: #222;
-  font-weight: 700;
 }
 
-.btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
+.btn.btn-primary:hover, .btn.btn-primary:active {
   background-color: #222;
   color: #fafafa;
-  border-color: transparent;
 }
 
 
@@ -142,9 +142,9 @@ transition: all .25s ease-in-out;
   border-color: #087abd;
 }
 
-.btn.btn-blue:hover, .App .btn.btn-blue:active, .btn.btn-blue:focus {
-  background-color: #05669e;
-  border-color: #05669e;
+.btn.btn-blue:hover, .App .btn.btn-blue:active {
+  background-color: #fff;
+  color: #05669e;
 }
 
 .btn.btn-green {
@@ -152,9 +152,9 @@ transition: all .25s ease-in-out;
   border-color: #29BF12;
 }
 
-.btn.btn-green:hover, .App .btn.btn-green:active, .btn.btn-green:focus {
-  background-color: #1e920c;
-  border-color: #1e920c;
+.btn.btn-green:hover, .App .btn.btn-green:active {
+  background-color: #fff;
+  color: #1e920c;
 }
 
 .btn.btn-red {
@@ -162,9 +162,9 @@ transition: all .25s ease-in-out;
   border-color: #F21B3F;
 }
 
-.btn.btn-red:hover, .btn.btn-red:active, .btn.btn-red:focus {
-  background-color: #d81838;
-  border-color: #d81838;
+.btn.btn-red:hover, .btn.btn-red:active {
+  background-color: #fff;
+  color: #d81838;
 }
 
 .btn.btn-orange {
@@ -172,9 +172,9 @@ transition: all .25s ease-in-out;
   border-color: #FF9914;
 }
 
-.btn.btn-orange:hover, .btn.btn-orange:active, .btn.btn-orange:focus {
-  background-color: #e48912;
-  border-color: #e48912;
+.btn.btn-orange:hover, .btn.btn-orange:active {
+  background-color: #fff;
+  color: #e48912;
 }
 
 /********** NAVBAR **********/

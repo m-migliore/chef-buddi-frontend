@@ -69,6 +69,10 @@ class AddRecipeContainer extends Component {
     this.props.addIngredInput()
   }
 
+  handleIngredRemove = () => {
+    this.props.removeIngredInput()
+  }
+
   loginRedirect = () => {
     if (this.props.currentUserId === null) {
       return <Redirect to="/" />
@@ -90,21 +94,21 @@ class AddRecipeContainer extends Component {
             <div className="col">
               <form onSubmit={this.handleSubmit}>
                 <div className="row">
-                  <div className="col">
-                    <div className="form-group">
-                      <label htmlFor="name-input">Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={this.state.name}
-                        placeholder="Enter name"
-                        onChange={this.handleChange}
-                        id="name-input"
-                        className="form-control"
-                      />
-                    </div>
 
-                    <div className="form-group">
+                  <div className="form-group col-lg-4">
+                    <label htmlFor="name-input">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      placeholder="Enter name"
+                      onChange={this.handleChange}
+                      id="name-input"
+                      className="form-control"
+                    />
+                  </div>
+
+                    <div className="form-group col-lg-4">
                       <label htmlFor="category-input">Category</label>
                       <input
                         type="text"
@@ -117,7 +121,7 @@ class AddRecipeContainer extends Component {
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group col-lg-4">
                       <label htmlFor="area-input">Area</label>
                       <input
                         type="text"
@@ -130,7 +134,7 @@ class AddRecipeContainer extends Component {
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group col-12">
                       <label htmlFor="instructions-input">Instructions</label>
                       <textarea
                         type="text"
@@ -144,7 +148,7 @@ class AddRecipeContainer extends Component {
                       ></textarea>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                       <label htmlFor="image-input">Image</label>
                       <input
                         type="text"
@@ -157,7 +161,7 @@ class AddRecipeContainer extends Component {
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                       <label htmlFor="youtube-input">Video</label>
                       <input
                         type="text"
@@ -170,7 +174,7 @@ class AddRecipeContainer extends Component {
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                       <label htmlFor="tags-input">Tags</label>
                       <input
                         type="text"
@@ -183,25 +187,33 @@ class AddRecipeContainer extends Component {
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                       <label htmlFor="source-input">Source</label>
                       <input
                         type="text"
                         name="source"
                         value={this.state.username}
-                        placeholder="Enter Source URl"
+                        placeholder="Enter Source URL"
                         onChange={this.handleChange}
                         id="source-input"
                         className="form-control"
                       />
                     </div>
 
-                    {this.props.ingredientInputs.map(ingredInput => <IngredientInput key={this.props.ingredientInputs.indexOf(ingredInput)} idx={this.props.ingredientInputs.indexOf(ingredInput) + 1} />)}
-                    <button onClick={this.handleIngredAdd} type="button" className="btn btn-primary">Add Ingredient</button>
+                    <div className="col-12">
+                      {this.props.ingredientInputs.map(ingredInput => <IngredientInput key={this.props.ingredientInputs.indexOf(ingredInput)} idx={this.props.ingredientInputs.indexOf(ingredInput) + 1} />)}
+                      <button onClick={this.handleIngredAdd} type="button" className="btn btn-primary">Add Ingredient</button>
+                      {this.props.ingredientInputs.length >= 2 ?
+                        <button onClick={this.handleIngredRemove} type="button" className="btn btn-red">X</button>
+                      :
+                        null
+                      }
+                    </div>
 
-                  </div>
                 </div>
-                <button className="btn btn-primary" type="submit">Submit</button>
+                <div className="col-12">
+                  <button className="btn btn-primary" type="submit">Submit</button>
+                </div>
               </form>
             </div>
           </div>
@@ -223,7 +235,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addIngredInput: () => dispatch({type: "ADD_INGRED_INPUT_FOR_ADD_RECIPE"}),
-    addIngredValues: ingredValues => dispatch({type: "ADD_INGRED_INPUT_VALUE", payload: ingredValues})
+    addIngredValues: ingredValues => dispatch({type: "ADD_INGRED_INPUT_VALUE", payload: ingredValues}),
+    removeIngredInput: () => dispatch({type: "REMOVE_INGRED_INPUT"})
   }
 }
 
