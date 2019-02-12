@@ -6,9 +6,9 @@ import RecipeContainer from './RecipeContainer'
 import MealplanContainer from './MealplanContainer'
 
 class Profile extends Component {
-  state = {
-    view: "ingredients"
-  }
+  // state = {
+  //   view: "ingredients"
+  // }
 
   componentDidMount() {
     this.props.clearMealplanData()
@@ -30,7 +30,8 @@ class Profile extends Component {
   }
 
   renderInterior = () => {
-    switch(this.state.view) {
+    // switch(this.state.view) {
+    switch(this.props.profileView) {
       case "ingredients":
         return <>
                 {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
@@ -53,9 +54,10 @@ class Profile extends Component {
 
   handleClick = e => {
     this.props.clearMealplanData()
-    this.setState({
-      view: e.target.name
-    })
+    // this.setState({
+    //   view: e.target.name
+    // })
+    this.props.setProfileView(e.target.name)
   }
 
 
@@ -116,14 +118,16 @@ const mapStateToProps = state => {
     currentUser: state.currentUser,
     userRecipes: state.userRecipes,
     userMealplans: state.userMealplans,
-    mealDeleted: state.mealDeleted
+    mealDeleted: state.mealDeleted,
+    profileView: state.profileView
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     setUser: (userData) => dispatch({type: "SET_USER_DATA", payload: userData}),
-    clearMealplanData: () => dispatch({type: "CLEAR_MEALPLAN_DATA"})
+    clearMealplanData: () => dispatch({type: "CLEAR_MEALPLAN_DATA"}),
+    setProfileView: (viewName) => dispatch({type: "SET_PROFILE_VIEW", payload: viewName})
   }
 }
 

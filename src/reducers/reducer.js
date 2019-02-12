@@ -27,7 +27,8 @@ const defaultState = {
   viewedMealplanId: null,
   viewedMealplan: null,
   viewedMealId: null,
-  mealDeleted: false
+  mealDeleted: false,
+  profileView: "ingredients"
 }
 
 export default function reducer(state = defaultState, action) {
@@ -145,6 +146,8 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedRecipeId: action.payload.recipeId, viewedMealId: action.payload.mealId}
     case "CLEAR_MEAL_PARAMS":
       return {...state, viewedRecipeId: null, viewedRecipe: null, viewedMealId: null, mealDeleted: true}
+    case "SET_PROFILE_VIEW":
+      return {...state, profileView: action.payload}
     default:
       return defaultState
   }

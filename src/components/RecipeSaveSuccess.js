@@ -21,6 +21,7 @@ class RecipeSaveSuccess extends Component {
   profileRedirect = () => {
     if (this.state.redirect) {
       this.props.resetFindParams()
+      this.props.setProfileView("recipes")
       return <Redirect to="/profile"/>
     }
   }
@@ -48,6 +49,7 @@ class RecipeSaveSuccess extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     resetFindParams: () => dispatch({type: "RESET_FIND_PARAMS"}),
+    setProfileView: (viewName) => dispatch({type: "SET_PROFILE_VIEW", payload: viewName})
   }
 }
 
