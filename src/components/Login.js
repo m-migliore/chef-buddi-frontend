@@ -32,10 +32,33 @@ class Login extends Component {
         password: this.state.password
       })
     })
-    .then(res => res.json())
+    // .then(res => res.json())
+    .then(res => {
+      console.log("res", res)
+      return res.json()
+    })
     .then(data => {
-      console.log("logged in")
-      this.props.loginUser(data)
+
+      if (Object.keys(data).includes("error")) {
+        this.setState({
+          loading: false
+        })
+
+        console.log("denied");
+        console.log(data)
+        this.props.handleLoginError(data)
+        // if (data.type === "username") {
+        //   console.log("un error");
+        //   this.props.handleLoginError(data)
+        // } else {
+        //   console.log("pw error");
+        // }
+
+      } else {
+        console.log("logged in")
+        this.props.loginUser(data)
+      }
+
     })
   }
 
@@ -68,6 +91,7 @@ class Login extends Component {
                 id="username-input"
                 className="form-control"
               />
+              {this.props.errors && this.props.errors.type === "username" ? <p className="error">{this.props.errors.error}</p> : null}
             </div>
             <div className="form-group col-12">
               <label htmlFor="password-input">Password</label>
@@ -80,6 +104,7 @@ class Login extends Component {
                 id="password-input"
                 className="form-control"
               />
+              {this.props.errors && this.props.errors.type === "password" ? <p className="error">{this.props.errors.error}</p> : null}
             </div>
           </div>
           {this.state.loading ? <Loader /> : <button className="btn btn-blue" type="submit">Login</button> }
@@ -95,11 +120,18 @@ class Login extends Component {
 
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData}),
-    setHomeFormType: () => dispatch({type: "SET_HOME_FORM_TYPE", payload: "signup"})
+    errors: state.errors
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData}),
+    setHomeFormType: () => dispatch({type: "SET_HOME_FORM_TYPE", payload: "signup"}),
+    handleLoginError: error => dispatch({type: "HANDLE_LOGIN_ERROR", payload: error})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

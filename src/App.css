@@ -203,6 +203,14 @@ transition: all .25s ease-in-out;
 .navbar a {
   margin: 10px;
 }
+
+/********** ERRORS **********/
+.error {
+  color: #990000;
+  font-size: .85em;
+  font-style: italic;
+}
+
 /********** HOMEPAGE **********/
 .homepage {
   display: flex;
