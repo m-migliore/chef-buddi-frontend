@@ -26,7 +26,8 @@ const defaultState = {
   userMealplans: [],
   viewedMealplanId: null,
   viewedMealplan: null,
-  viewedMealId: null
+  viewedMealId: null,
+  mealDeleted: false
 }
 
 export default function reducer(state = defaultState, action) {
@@ -40,12 +41,21 @@ export default function reducer(state = defaultState, action) {
         userRecipes: action.payload.recipes,
         userMealplans: action.payload.mealplans
       }
-    case "SET_CURRENT_USER":
+    case "SET_USER_DATA":
       // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
       // const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))
       // return {...state, currentUser: action.payload, userRecipes}
 
-      return {...state, currentUser: action.payload, userRecipes: action.payload.recipes}
+      // return {...state, currentUser: action.payload, userRecipes: action.payload.recipes}
+      return {
+        ...state,
+        currentUser:action.payload,
+        currentUserId: action.payload.id,
+        userIngredients: action.payload.ingredients,
+        userRecipes: action.payload.recipes,
+        userMealplans: action.payload.mealplans,
+        mealDeleted: false
+      }
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}
     case "LOAD_USER_INGREDIENTS":
@@ -120,11 +130,13 @@ export default function reducer(state = defaultState, action) {
     case "SET_VIEWED_MEALPLAN_ID":
       return {...state, viewedMealplanId: action.payload}
     case "SET_VIEWED_MEALPLAN":
-      return {...state, viewedMealplan: action.payload}
+      return {...state, viewedMealplan: action.payload, mealDeleted: false,  viewedRecipeId: null, viewedRecipe: null, viewedMealId: null}
     case "CLEAR_MEALPLAN_DATA":
       return {...state, viewedMealplanId: null, viewedMealplan: null}
     case "SET_VIEW_MEAL_IDS":
       return {...state, viewedRecipeId: action.payload.recipeId, viewedMealId: action.payload.mealId}
+    case "CLEAR_MEAL_PARAMS":
+      return {...state, viewedRecipeId: null, viewedRecipe: null, viewedMealId: null, mealDeleted: true}
     default:
       return defaultState
   }

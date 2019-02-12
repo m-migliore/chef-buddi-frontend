@@ -12,7 +12,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.clearMealplanData()
-    
+
     if (this.props.currentUserId) {
       fetch(`http://localhost:4000/api/v1/users/${this.props.currentUserId}`)
       .then(res => res.json())
@@ -60,6 +60,14 @@ class Profile extends Component {
 
 
   render() {
+    if (this.props.mealDeleted) {
+      fetch(`http://localhost:4000/api/v1/users/${this.props.currentUserId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("logged in")
+        this.props.setUser(data)
+      })
+    }
 
     return (
       <div className="profile">
@@ -107,13 +115,14 @@ const mapStateToProps = state => {
     currentUserId: state.currentUserId,
     currentUser: state.currentUser,
     userRecipes: state.userRecipes,
-    userMealplans: state.userMealplans
+    userMealplans: state.userMealplans,
+    mealDeleted: state.mealDeleted
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUser: (userData) => dispatch({type: "SET_CURRENT_USER", payload: userData}),
+    setUser: (userData) => dispatch({type: "SET_USER_DATA", payload: userData}),
     clearMealplanData: () => dispatch({type: "CLEAR_MEALPLAN_DATA"})
   }
 }

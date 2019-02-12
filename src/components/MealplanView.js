@@ -11,6 +11,19 @@ class MealplanView extends Component {
     })
   }
 
+  // componentDidUpdate() {
+  //   console.log("update hit")
+  //   if (this.props.mealDeleted) {
+  //     fetch(`http://localhost:4000/api/v1/mealplans/${this.props.viewedMealplanId}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       debugger
+  //       console.log("ftch hit")
+  //       this.props.setViewedMealplan(data)
+  //     })
+  //   }
+  // }
+
   render() {
     const mealplan = this.props.viewedMealplan
 
@@ -28,7 +41,8 @@ class MealplanView extends Component {
 const mapStateToProps = state => {
   return {
     viewedMealplanId: state.viewedMealplanId,
-    viewedMealplan: state.viewedMealplan
+    viewedMealplan: state.viewedMealplan,
+    mealDeleted: state.mealDeleted
   }
 }
 

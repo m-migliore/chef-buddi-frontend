@@ -10,7 +10,7 @@ class MealplanPreview extends Component {
     const mealplan = this.props.mealplan
 
     return (
-      <div className="col-md-3">
+      <div className="col-md-4">
         <div className="mealplan-preview">
           <h3>{mealplan.title}</h3>
           <p>Created: {mealplan['created_at']}</p>

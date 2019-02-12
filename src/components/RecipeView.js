@@ -50,6 +50,19 @@ class RecipeView extends Component {
 
   handleDeleteMeal = () => {
     console.log("delete meal", this.props.viewedMealId);
+    fetch(`http://localhost:4000/api/v1/meals/${this.props.viewedMealId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    // .then( this.props.clearMealParams() )
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      this.props.setViewedMealplan(data)
+    })
   }
 
 
@@ -164,7 +177,9 @@ const mapDispatchToProps = dispatch => {
     setRecipeSaveStatus: () => dispatch({type: "SET_RECIPE_SAVE_STATUS"}),
     postRemoveUserRecipe: (userRecipeId) => dispatch({type: "POST_REMOVE_USER_RECIPE", payload: userRecipeId}),
     stageMealplanRecipe: (recipe) => dispatch({type:"STAGE_RECIPE_TO_MEALPLAN", payload: recipe}),
-    removeMealplanRecipe: (recipeId) => dispatch({type: "REMOVE_MEALPLAN_RECIPE", payload: recipeId})
+    removeMealplanRecipe: (recipeId) => dispatch({type: "REMOVE_MEALPLAN_RECIPE", payload: recipeId}),
+    clearMealParams: () => dispatch({type: "CLEAR_MEAL_PARAMS"}),
+    setViewedMealplan: mealplan => dispatch({type: "SET_VIEWED_MEALPLAN", payload: mealplan})
   }
 }
 
