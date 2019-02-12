@@ -29,11 +29,21 @@ class FindStepThree extends Component {
 
   renderResults = () => {
     if (this.props.foundRecipes.length > 0 ) {
-      const userRecipeIds = this.props.userRecipes.map(recipe => recipe['recipe_id'])
-      const cleanedFoundRecipes = this.props.foundRecipes.filter(recipe => !userRecipeIds.includes(recipe.id) )
-      return <RecipeContainer recipes={cleanedFoundRecipes} />
+      let userRecipeIds
+      userRecipeIds = this.props.userRecipes.map(recipe => recipe['recipe_id'])
+      let cleanedFoundRecipes
+      cleanedFoundRecipes = this.props.foundRecipes.filter(recipe => !userRecipeIds.includes(recipe.id) )
+      if (cleanedFoundRecipes.length === 0) {
+        return <div className="no-results">
+                <h2>No Results Found</h2>
+                <button className="btn btn-primary" onClick={this.handleClick}>New Search</button>
+               </div>
+      } else {
+        return <RecipeContainer recipes={cleanedFoundRecipes} />
+      }
+
     } else {
-      return <div>
+      return <div className="no-results">
               <h2>No Results Found</h2>
               <button className="btn btn-primary" onClick={this.handleClick}>New Search</button>
              </div>

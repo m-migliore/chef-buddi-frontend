@@ -90,7 +90,15 @@ export default function reducer(state = defaultState, action) {
     case "LOAD_FOUND_RECIPES":
       return {...state, foundRecipes: action.payload, recipeSearchCompleted: true}
     case "RESET_FIND_PARAMS":
-      return {...state, findRecipeStepsCompleted: 0, viewedRecipeId: null, viewedRecipe: null, userIngredSearch: false, recipeSearchCompleted: false}
+      return {
+        ...state,
+        findRecipeStepsCompleted: 0,
+        viewedRecipeId: null,
+        viewedRecipe: null,
+        userIngredSearch: false,
+        recipeSearchCompleted: false,
+        successfulRecipeSave: false
+      }
     case "SET_RECIPE_SAVE_STATUS":
       return {...state, successfulRecipeSave: true}
     case "REMOVE_USER_INGREDIENT":
