@@ -34,19 +34,26 @@ class Profile extends Component {
     switch(this.props.profileView) {
       case "ingredients":
         return <>
-                {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
-                {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
+                <h3>Ingredients</h3>
+                {this.props.currentUser.ingredients && this.props.currentUser.ingredients > 0 ?
+                  <IngredientContainer ingredients={this.props.currentUser.ingredients}/>
+                :
+                  <>
+                    <h4>No Ingredients Found</h4>
+                    <Link to="/manage-ingredients" className="btn btn-primary">Add Ingredients</Link>
+                  </>
+                }
                </>
       case "recipes":
         return <>
-                {this.props.currentUser.recipes ? <h3>User Recipes</h3> : <h3>No Recipes Found</h3>}
+                {this.props.currentUser.recipes ? <h3>Recipes</h3> : <h3>No Recipes Found</h3>}
                 {this.props.currentUser.recipes ? <RecipeContainer recipes={this.props.userRecipes} /> : null}
                </>
       case "mealplans":
         return <MealplanContainer />
       default:
         return <>
-                {this.props.currentUser.ingredients? <h3>User Ingredients</h3> : <h3>No Ingredients Found</h3>}
+                {this.props.currentUser.ingredients? <h3>Ingredients</h3> : <h3>No Ingredients Found</h3>}
                 {this.props.currentUser.ingredients ? <IngredientContainer ingredients={this.props.currentUser.ingredients}/> : null}
                </>
     }
@@ -92,10 +99,10 @@ class Profile extends Component {
               <button className="btn btn-blue" onClick={this.handleClick} name="recipes">View Recipes</button>
             </div>
             <div className="col-md-3">
-              <Link to="/create-mealplan" className="btn btn-red">Create Mealplan</Link>
+              <button className="btn btn-red" onClick={this.handleClick} name="mealplans">View Mealplans</button>
             </div>
             <div className="col-md-3">
-              <button className="btn btn-orange" onClick={this.handleClick} name="mealplans">View Mealplans</button>
+              <Link to="/create-mealplan" className="btn btn-orange">Create Mealplan</Link>
             </div>
           </div>
         </div>
@@ -117,6 +124,7 @@ const mapStateToProps = state => {
     currentUserId: state.currentUserId,
     currentUser: state.currentUser,
     userRecipes: state.userRecipes,
+    userIngredients: state.userIngredients,
     userMealplans: state.userMealplans,
     mealDeleted: state.mealDeleted,
     profileView: state.profileView
