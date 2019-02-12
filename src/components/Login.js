@@ -32,28 +32,14 @@ class Login extends Component {
         password: this.state.password
       })
     })
-    // .then(res => res.json())
-    .then(res => {
-      console.log("res", res)
-      return res.json()
-    })
+    .then(res => res.json())
     .then(data => {
 
       if (Object.keys(data).includes("error")) {
         this.setState({
           loading: false
         })
-
-        console.log("denied");
-        console.log(data)
         this.props.handleLoginError(data)
-        // if (data.type === "username") {
-        //   console.log("un error");
-        //   this.props.handleLoginError(data)
-        // } else {
-        //   console.log("pw error");
-        // }
-
       } else {
         console.log("logged in")
         this.props.loginUser(data)
@@ -75,7 +61,6 @@ class Login extends Component {
 
   render() {
     return (
-      <>
       <div className="col-12">
         <h2 className="rainbow-border">Login</h2>
         <form onSubmit={this.handleSubmit}>
@@ -107,14 +92,16 @@ class Login extends Component {
               {this.props.errors && this.props.errors.type === "password" ? <p className="error">{this.props.errors.error}</p> : null}
             </div>
           </div>
-          {this.state.loading ? <Loader /> : <button className="btn btn-blue" type="submit">Login</button> }
+
+          {this.state.loading ? <Loader /> :
+            <>
+              <button className="btn btn-primary" type="submit">Login</button>
+              <button onClick={this.handleSwitch} className="btn btn-link">Signup</button>
+            </>
+          }
 
         </form>
       </div>
-      <div className="col-12">
-        <button onClick={this.handleSwitch} className="btn btn-link">Signup</button>
-      </div>
-      </>
     );
   }
 

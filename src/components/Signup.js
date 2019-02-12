@@ -16,9 +16,9 @@ class Signup extends Component {
   }
 
   handleSubmit = e => {
-    this.setState = {
+    this.setState({
       loading: true
-    }
+    })
 
     e.preventDefault()
     console.log("signup")
@@ -32,7 +32,16 @@ class Signup extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      this.props.loginUser(data)
+      console.log(data)
+      if (Object.keys(data).includes("errors")) {
+        this.setState({
+          loading: false
+        })
+        console.log("errors:", data.errors)
+        this.props.handleErrors(data.errors)
+      } else {
+        this.props.loginUser(data)
+      }
     })
   }
 
@@ -43,7 +52,6 @@ class Signup extends Component {
 
   render() {
     return (
-      <>
       <div className="col-12">
         <h2 className="rainbow-border">Signup</h2>
         <form onSubmit={this.handleSubmit}>
@@ -59,6 +67,7 @@ class Signup extends Component {
                 id="username-input"
                 className="form-control"
               />
+              {this.props.errors && this.props.errors.username ? <p className="error">Username {this.props.errors.username}</p> : null}
             </div>
             <div className="form-group col-12">
               <label htmlFor="password-input">Password</label>
@@ -71,25 +80,35 @@ class Signup extends Component {
                 id="password-input"
                 className="form-control"
               />
+              {this.props.errors && this.props.errors.password ? <p className="error">Password {this.props.errors.username}</p> : null}
             </div>
           </div>
-          <button className="btn btn-blue" type="submit">Signup</button>
+
+          {this.state.loading ? <Loader /> :
+            <>
+              <button className="btn btn-primary" type="submit">Signup</button>
+              <button onClick={this.handleSwitch} className="btn btn-link">Login</button>
+            </>
+          }
         </form>
       </div>
-      <div className="col-12">
-        {this.state.loading ? <Loader /> : <button onClick={this.handleSwitch} className="btn btn-link">Login</button> }
-      </div>
-      </>
     );
   }
 
 }
 
-const mapDispatchToProps = dispatch => {
-  return{
-    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData}),
-    setHomeFormType: () => dispatch({type: "SET_HOME_FORM_TYPE", payload: "login"})
+const mapStateToProps = state => {
+  return {
+    errors: state.errors
   }
 }
 
-export default connect(null, mapDispatchToProps)(Signup)
+const mapDispatchToProps = dispatch => {
+  return{
+    loginUser: (userData) => dispatch({type: "LOGIN_USER", payload: userData}),
+    setHomeFormType: () => dispatch({type: "SET_HOME_FORM_TYPE", payload: "login"}),
+    handleErrors: errors => dispatch({type: "HANDLE_ERRORS", payload: errors})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

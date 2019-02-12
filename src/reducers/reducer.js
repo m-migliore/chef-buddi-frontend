@@ -29,6 +29,7 @@ const defaultState = {
   viewedMealId: null,
   mealDeleted: false,
   profileView: "ingredients",
+  loginErrors: null,
   errors: null
 }
 
@@ -42,7 +43,7 @@ export default function reducer(state = defaultState, action) {
         userIngredients: action.payload.ingredients,
         userRecipes: action.payload.recipes,
         userMealplans: action.payload.mealplans,
-        errors: null
+        loginErrors: null
       }
     case "SET_USER_DATA":
       // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
@@ -154,6 +155,8 @@ export default function reducer(state = defaultState, action) {
       const updatedMealplans = state.userMealplans.filter(mealplan => mealplan.id !== action.payload)
       return {...state, viewedMealplanId: null, viewedMealplan: null, userMealplans: updatedMealplans}
     case "HANDLE_LOGIN_ERROR":
+      return {...state, loginErrors: action.payload}
+    case "HANDLE_ERRORS":
       return {...state, errors: action.payload}
     default:
       return defaultState
