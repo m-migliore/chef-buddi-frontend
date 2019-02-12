@@ -46,11 +46,6 @@ export default function reducer(state = defaultState, action) {
         loginErrors: null
       }
     case "SET_USER_DATA":
-      // const userRecipeIds = action.payload.recipes.map(recipe => recipe['recipe_id'])
-      // const userRecipes = state.recipes.filter(recipe => userRecipeIds.includes(recipe.id))
-      // return {...state, currentUser: action.payload, userRecipes}
-
-      // return {...state, currentUser: action.payload, userRecipes: action.payload.recipes}
       return {
         ...state,
         currentUser:action.payload,
@@ -59,6 +54,16 @@ export default function reducer(state = defaultState, action) {
         userRecipes: action.payload.recipes,
         userMealplans: action.payload.mealplans,
         mealDeleted: false
+      }
+    case "LOGOUT":
+      return {
+        ...state,
+        currentUser: {},
+        currentUserId: null,
+        userIngredients: [],
+        userRecipes: [],
+        userMealplans: [],
+        homeFormType: null
       }
     case "LOAD_INGREDIENTS":
       return {...state, ingredients: action.payload}

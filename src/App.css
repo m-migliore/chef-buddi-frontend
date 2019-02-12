@@ -126,7 +126,9 @@ transition: all .25s ease-in-out;
 
 .btn.btn-primary {
   background-color: #fff;
-  border-color: #222;
+  border: 3px solid #222;
+  font-weight: 700;
+  text-transform: uppercase;
   color: #222;
 }
 
