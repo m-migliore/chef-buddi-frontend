@@ -24,7 +24,7 @@ class Home extends Component {
             <div className="row">
               <div className="col-12 welcome">
                 <h2 className="rainbow-border">Welcome To Chef Buddi</h2>
-                <h4>An Interactive Kitchen Manager</h4>
+                <h4>A Digital Sous Chef</h4>
               </div>
               <div className="col-md-6">
                 <button className="btn btn-blue" name="login" onClick={this.handleClick}>Login</button>

@@ -17,7 +17,6 @@ class MealplanView extends Component {
 
     return (
       <div>
-
         {this.props.viewedMealplan ? <h4>{this.props.viewedMealplan.title}</h4> : null}
         {this.props.viewedMealplan ? <RecipeContainer recipes={mealplan.recipes}/> : <h4>No Meals Found</h4>}
       </div>

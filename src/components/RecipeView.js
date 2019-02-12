@@ -49,7 +49,7 @@ class RecipeView extends Component {
   }
 
   handleDeleteMeal = () => {
-    console.log("delete meal");
+    console.log("delete meal", this.props.viewedMealId);
   }
 
 
@@ -152,7 +152,8 @@ const mapStateToProps = state => {
     successfulRecipeSave: state.successfulRecipeSave,
     createdMealplan: state.createdMealplan,
     stagedMealplanRecipes: state.stagedMealplanRecipes,
-    viewedMealplanId: state.viewedMealplanId
+    viewedMealplanId: state.viewedMealplanId,
+    viewedMealId: state.viewedMealId
   }
 }
 

@@ -25,7 +25,8 @@ const defaultState = {
   successfulMealplanCreate: false,
   userMealplans: [],
   viewedMealplanId: null,
-  viewedMealplan: null
+  viewedMealplan: null,
+  viewedMealId: null
 }
 
 export default function reducer(state = defaultState, action) {
@@ -122,6 +123,8 @@ export default function reducer(state = defaultState, action) {
       return {...state, viewedMealplan: action.payload}
     case "CLEAR_MEALPLAN_DATA":
       return {...state, viewedMealplanId: null, viewedMealplan: null}
+    case "SET_VIEW_MEAL_IDS":
+      return {...state, viewedRecipeId: action.payload.recipeId, viewedMealId: action.payload.mealId}
     default:
       return defaultState
   }

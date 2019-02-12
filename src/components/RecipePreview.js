@@ -5,7 +5,8 @@ class RecipePreview extends Component {
   handleClick = () => {
     if (window.location.pathname === "/profile" || window.location.pathname === "/create-mealplan") {
       if (this.props.viewedMealplanId) {
-        this.props.setViewRecipeId(this.props.recipe.id)
+        //this.props.setViewRecipeId(this.props.recipe.id)
+        this.props.setViewMealIds(this.props.recipe.id, this.props.recipe['meal_id'])
       } else {
         this.props.setViewUserRecipeId(this.props.recipe['recipe_id'], this.props.recipe.id)
       }
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setViewRecipeId: (recipeId) => dispatch({type: "SET_VIEW_RECIPE_ID", payload: recipeId}),
-    setViewUserRecipeId: (recipeId, userRecipeId) => dispatch({type: "SET_VIEW_USER_RECIPE_ID", payload: {recipeId, userRecipeId}})
+    setViewUserRecipeId: (recipeId, userRecipeId) => dispatch({type: "SET_VIEW_USER_RECIPE_ID", payload: {recipeId, userRecipeId}}),
+    setViewMealIds: (recipeId, mealId) => dispatch({type: "SET_VIEW_MEAL_IDS", payload: {recipeId, mealId}})
   }
 }
 

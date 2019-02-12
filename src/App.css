@@ -24,7 +24,7 @@ h2, h3, h4 {
 h2 {
   font-size: 3rem;
   display: inline-block;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   margin-bottom: 25px;
   position: relative;
 }
@@ -176,12 +176,12 @@ img {
   margin-bottom: 65px;
 }
 
-.homepage .welcome span {
-  font-family: 'Pacifico', cursive;
+.homepage .welcome h4 {
+  font-size: 1.75rem;
 }
 
 .home-form .loader {
-  width: 125px;
+  width: 85px;
 }
 
 /********** CONTAINER BUFFERS **********/
