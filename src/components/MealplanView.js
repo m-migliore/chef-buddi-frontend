@@ -24,15 +24,29 @@ class MealplanView extends Component {
   //   }
   // }
 
+  handleClick = () => {
+    console.log("delete mealplan");
+  }
+
   render() {
     const mealplan = this.props.viewedMealplan
 
 
     return (
-      <div>
-        {this.props.viewedMealplan ? <h4>{this.props.viewedMealplan.title}</h4> : null}
+      <>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              {this.props.viewedMealplan ? <h4>{this.props.viewedMealplan.title}</h4> : null}
+            </div>
+            <div className="col-12">
+              <button className="btn btn-primary" onClick={this.handleClick}>Delete Mealplan</button>
+            </div>
+          </div>
+        </div>
+
         {this.props.viewedMealplan ? <RecipeContainer recipes={mealplan.recipes}/> : <h4>No Meals Found</h4>}
-      </div>
+      </>
     );
   }
 

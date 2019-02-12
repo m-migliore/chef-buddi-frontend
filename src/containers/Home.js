@@ -26,11 +26,11 @@ class Home extends Component {
                 <h2 className="rainbow-border">Welcome To Chef Buddi</h2>
                 <h4>A Digital Sous Chef</h4>
               </div>
-              <div className="col-md-6">
-                <button className="btn btn-blue" name="login" onClick={this.handleClick}>Login</button>
+              <div className="col-md-6 text-right">
+                <button className="btn btn-primary" name="login" onClick={this.handleClick}>Login</button>
               </div>
-              <div className="col-md-6">
-                <button className="btn btn-blue" name="signup" onClick={this.handleClick}>Signup</button>
+              <div className="col-md-6 text-left">
+                <button className="btn btn-primary" name="signup" onClick={this.handleClick}>Signup</button>
               </div>
             </div>
           </div>}
