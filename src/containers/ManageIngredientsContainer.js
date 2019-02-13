@@ -31,10 +31,10 @@ class ManageIngredientsContainer extends Component {
           </div>
         </div>
 
-        <h3>Your Ingredients</h3>
+        <h3 className="rainbow-sub">Your Ingredients</h3>
         {this.props.userIngredients.length === 0 ? <p>Click an ingredient to add/remove it from your list</p> : <IngredientContainer ingredients={this.props.userIngredients} />}
 
-        <h3>All Ingredients</h3>
+        <h3 className="rainbow-sub">All Ingredients</h3>
         {this.props.userIngredients.length === 0 ? <IngredientContainer ingredients={this.props.ingredients} /> : <IngredientContainer ingredients={nonUserIngredients} />}
       </div>
     );

@@ -19,10 +19,10 @@ class Navbar extends Component {
                 <h1>Chef <span>Buddi</span></h1>
 
                 {this.props.currentUserId ? <div className="nav-links">
-                  <Link to="/profile">Profile</Link>
                   <Link to="/manage-ingredients">Manage Ingredients</Link>
                   <Link to="/find-recipes">Find Recipes</Link>
                   <Link to="/add-recipe">Add Recipe</Link>
+                  <Link to="/profile">Profile</Link>
                   <a href="#" onClick={this.handleLogout}>Logout</a>
                 </div>
                 :

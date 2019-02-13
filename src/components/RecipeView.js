@@ -86,7 +86,7 @@ class RecipeView extends Component {
     if (this.props.successfulRecipeSave) {
       return <RecipeSaveSuccess />
     } else {
-      return <div className="row text-center">
+      return <div className="row text-center recipe-view-above">
                 <div className="col-md-6">
                   <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
                 </div>
@@ -122,29 +122,29 @@ class RecipeView extends Component {
         <div className="container">
           <div className="recipe-view-inner">
             {this.renderAboveView()}
-            
+
             <div className="row">
-              <div className="col-lg-5">
+              <div className="col-md-5 col-lg-4">
                 <img src={recipe.image} alt={recipe.name}/>
               </div>
-              <div className="col-lg-7 recipe-info">
+              <div className="col-md-7 col-lg-8 recipe-info">
                 <h2>{recipe.name}</h2>
                 <h4>Category: <span>{recipe.category}</span></h4>
                 <h4>Area: <span>{recipe.area}</span></h4>
                 {recipe.tags ? <h4>Tags: {recipe.tags}</h4> : null}
-                <h4><a href={recipe.youtube} target="_blank" rel="noopener noreferrer">View on YouTube</a></h4>
-                <h4><a href={recipe.source} target="_blank" rel="noopener noreferrer">Source</a></h4>
+                {recipe.youtube ? <a href={recipe.youtube} className="btn btn-primary" target="_blank" rel="noopener noreferrer">YouTube</a> : null}
+                {recipe.source ? <a href={recipe.source} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Source</a> : null}
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-md-6">
-                <h3>Ingredients</h3>
-                {recipe['recipe_ingredients'] ? renderIngredients() : null}
-              </div>
-              <div className="col-md-6">
+            <div className="row recipe-below">
+              <div className="col-md-8">
                 <h3>Instructions</h3>
                 <p>{recipe.instructions}</p>
+              </div>
+              <div className="col-md-4">
+                <h3>Ingredients</h3>
+                {recipe['recipe_ingredients'] ? renderIngredients() : null}
               </div>
             </div>
           </div>

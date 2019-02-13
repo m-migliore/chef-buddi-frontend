@@ -37,7 +37,7 @@ class Profile extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-12">
-                      <h3>Ingredients</h3>
+                      <h3 className="rainbow-sub">Ingredients</h3>
                     </div>
                     <div className="col-12">
                       <Link to="/manage-ingredients" className="btn btn-primary">Manage Ingredients</Link>
@@ -52,7 +52,7 @@ class Profile extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-12">
-                      <h3>Recipes</h3>
+                      <h3 className="rainbow-sub">Recipes</h3>
                     </div>
                     <div className="col-md-6 text-right">
                       <Link to="/find-recipes" className="btn btn-primary">Find Recipes</Link>
@@ -66,13 +66,24 @@ class Profile extends Component {
                 {this.props.userRecipes.length > 0 ? <RecipeContainer recipes={this.props.userRecipes} /> : <h4>No Recipes Found</h4>}
                </>
       case "mealplans":
-        return <MealplanContainer />
+        //return <MealplanContainer />
+        return <>
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-12">
+                        <h3 className="rainbow-sub">Mealplans</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  {this.props.userMealplans.length > 0 ? <MealplanContainer /> : <h4>No Mealplans Found</h4>}
+               </>
       default:
         return <>
                 <div className="container">
                   <div className="row">
                     <div className="col-12">
-                      <h3>Ingredients</h3>
+                      <h3 className="rainbow-sub">Ingredients</h3>
                     </div>
                     <div className="col-12">
                       <Link to="/manage-ingredients" className="btn btn-primary">Manage Ingredients</Link>
