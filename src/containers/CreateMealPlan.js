@@ -25,6 +25,7 @@ class CreateMealPlan extends Component {
 
       <div className="create-mealplan">
         {this.props.currentUserId ? null : <Redirect to="/" />}
+        {this.props.successfulMealplanCreate ? <Redirect to="/profile"/> : null}
 
         <div className="container">
           <div className="row">
@@ -44,7 +45,8 @@ class CreateMealPlan extends Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
-    mealplanStepsCompleted: state.mealplanStepsCompleted
+    mealplanStepsCompleted: state.mealplanStepsCompleted,
+    successfulMealplanCreate: state.successfulMealplanCreate
   }
 }
 

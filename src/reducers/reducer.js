@@ -55,7 +55,8 @@ export default function reducer(state = defaultState, action) {
         userIngredients: action.payload.ingredients,
         userRecipes: action.payload.recipes,
         userMealplans: action.payload.mealplans,
-        mealDeleted: false
+        mealDeleted: false,
+        successfulMealplanCreate: false
       }
     case "LOGOUT":
       return {
@@ -148,7 +149,14 @@ export default function reducer(state = defaultState, action) {
       const updatedRecipes = state.stagedMealplanRecipes.filter(recipe => !action.payload)
       return {...state, stagedMealplanRecipes: updatedRecipes, viewedRecipe: null, viewedRecipeId: null}
     case "MEALPLAN_CREATED":
-      return {...state, successfulMealplanCreate: true}
+      return {
+        ...state,
+        successfulMealplanCreate: true,
+        mealplanStepsCompleted: 0,
+        createdMealplanTitle: "",
+        stagedMealplanRecipes: [],
+        profileView: "mealplans"
+      }
     case "SET_VIEWED_MEALPLAN_ID":
       return {...state, viewedMealplanId: action.payload}
     case "SET_VIEWED_MEALPLAN":

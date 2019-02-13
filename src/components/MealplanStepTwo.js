@@ -33,7 +33,7 @@ class MealplanStepTwo extends Component {
 
     return (
       <>
-        {this.props.successfulMealplanCreate ? <Redirect to="/profile"/> : null}
+        {/* {this.props.successfulMealplanCreate ? <Redirect to="/profile"/> : null} */}
 
         <div className="container">
           <div className="row">

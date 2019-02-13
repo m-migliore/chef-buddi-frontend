@@ -487,6 +487,10 @@ transform: scale(1.1);
   margin-top: 25px;
 }
 
+.mealplan-start-btns .btn-primary:first-of-type {
+  margin-right: 15px;
+}
+
 /********** MEALPLAN PREVIEW *********/
 .mealplan-preview {
   background-color: #fff;

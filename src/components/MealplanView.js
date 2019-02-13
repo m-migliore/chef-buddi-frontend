@@ -88,7 +88,7 @@ class MealplanView extends Component {
                 <button className="btn btn-primary" onClick={this.handleBack}>Back</button>
               </div>
             :
-              <div className="col-12">
+              <div className="col-12 mealplan-start-btns">
                 <button className="btn btn-primary" onClick={this.handleAdd}>Add Meals</button>
                 <button className="btn btn-primary" onClick={this.handleDelete}>Delete Mealplan</button>
               </div>
