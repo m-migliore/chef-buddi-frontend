@@ -15,7 +15,7 @@ class MealplanPreview extends Component {
           <h3>{mealplan.title}</h3>
           <p>Created: {mealplan['created_at']}</p>
           <p>Meals: {mealplan.mealCount}</p>
-          <button className="btn btn-blue" onClick={this.handleClick}>View</button>
+          <button className="btn btn-primary" onClick={this.handleClick}>View</button>
         </div>
       </div>
     );

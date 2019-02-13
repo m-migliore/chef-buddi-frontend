@@ -327,8 +327,13 @@ transition: all .25s ease-in-out;
   font-size: 1.75rem;
 }
 
+.home-form input {
+  width: 65%;
+  margin: 0 auto;
+}
+
 .home-form .loader {
-  width: 85px;
+  width: 75px;
 }
 
 /********** CONTAINER BUFFERS **********/
@@ -350,10 +355,25 @@ transition: all .25s ease-in-out;
   margin: 2% 1%;
   text-align: center;
   font-size: 1.5rem;
+  -webkit-transition: all .25s ease-in-out;
+-moz-transition: all .25s ease-in-out;
+-ms-transition: all .25s ease-in-out;
+-o-transition: all .25s ease-in-out;
+transition: all .25s ease-in-out;
 }
 
 .ingredient.selected {
-  color: green;
+  color: #29BF12
+}
+
+/********** FIND RECIPE CONTAINER **********/
+.find-recipe-container .ingredient:hover {
+  cursor: pointer;
+  -moz-transform: scale(1.1);
+-webkit-transform: scale(1.1);
+-o-transform: scale(1.1);
+-ms-transform: scale(1.1);
+transform: scale(1.1);
 }
 
 /********** RECIPE PREVIEW **********/
@@ -443,6 +463,23 @@ transition: all .25s ease-in-out;
 /********** MANAGE INGREDIENTS **********/
 .manage-ingredients .rainbow-sub {
   margin-top: 50px;
+}
+
+.manage-ingredients .your-ingredients .ingredient:hover {
+  color: #990000;
+}
+
+.manage-ingredients .all-ingredients .ingredient:hover {
+  color: green;
+}
+
+.manage-ingredients .ingredient:hover {
+  cursor: pointer;
+  -moz-transform: scale(1.1);
+-webkit-transform: scale(1.1);
+-o-transform: scale(1.1);
+-ms-transform: scale(1.1);
+transform: scale(1.1);
 }
 
 /********** MEALPLAN CONTAINER **********/
