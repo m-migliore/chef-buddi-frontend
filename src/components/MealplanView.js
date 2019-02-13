@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import RecipeContainer from '../containers/RecipeContainer'
+import IngredientContainer from '../containers/IngredientContainer'
 
 class MealplanView extends Component {
   componentDidMount() {
@@ -42,7 +43,7 @@ class MealplanView extends Component {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              {this.props.viewedMealplan ? <h4>{this.props.viewedMealplan.title}</h4> : null}
+              {this.props.viewedMealplan ? <h2>{this.props.viewedMealplan.title}</h2> : null}
             </div>
             <div className="col-12">
               <button className="btn btn-primary" onClick={this.handleClick}>Delete Mealplan</button>
@@ -50,7 +51,27 @@ class MealplanView extends Component {
           </div>
         </div>
 
-        {this.props.viewedMealplan ? <RecipeContainer recipes={mealplan.recipes}/> : <h4>No Meals Found</h4>}
+        <div className="mealplan-meals">
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <h3 className="rainbow-sub">Meals</h3>
+              </div>
+            </div>
+          </div>
+          {this.props.viewedMealplan ? <RecipeContainer recipes={mealplan.recipes}/> : <h4>No Meals Found</h4>}
+        </div>
+
+        <div className="mealplan-shopping-list">
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <h3 className="rainbow-sub">Shopping List</h3>
+              </div>
+            </div>
+          </div>
+          {this.props.viewedMealplan ? <IngredientContainer ingredients={mealplan.shoppingList}/> : <h4>Shopping List is Empty</h4>}
+        </div>
       </>
     );
   }
