@@ -30,7 +30,8 @@ const defaultState = {
   mealDeleted: false,
   profileView: "ingredients",
   loginErrors: null,
-  errors: null
+  errors: null,
+  addingMeals: false
 }
 
 export default function reducer(state = defaultState, action) {
@@ -166,6 +167,10 @@ export default function reducer(state = defaultState, action) {
       return {...state, loginErrors: action.payload}
     case "HANDLE_ERRORS":
       return {...state, errors: action.payload}
+    case "START_ADDING_MEALS":
+      return {...state, addingMeals: true}
+    case "STOP_ADDING_MEALS":
+      return {...state, addingMeals: false}
     default:
       return defaultState
   }
