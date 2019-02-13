@@ -60,7 +60,8 @@ h3 {
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, #29BF12, #08BDBD, #F21B3F, #FF9914);
+  /* background: linear-gradient(to right, #29BF12, #08BDBD, #F21B3F, #FF9914); */
+  background: linear-gradient(to right, #FF9914, #F21B3F, #08BDBD, #29BF12);
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
 }
@@ -356,17 +357,7 @@ transition: all .25s ease-in-out;
 }
 
 /********** RECIPE PREVIEW **********/
-/* .recipe-preview {
-  display: inline-block;
-  width: 22%;
-  margin: 1%;
-  text-align: center;
-}
-.recipe-preview img {
-  display: block;
-  width: 100%;
-  height: auto;
-} */
+
 
 /********** RECIPE VIEW **********/
 .recipe-view {
@@ -379,11 +370,6 @@ transition: all .25s ease-in-out;
   padding: 50px 0;
   background-color: rgba(0,0,0,.8);
 }
-
-/* div:not(.recipe-view) {
-  filter: blur(2px);
-  -webkit-filter: blur(2px);
-} */
 
 .recipe-view-inner {
   padding: 15px 50px;
@@ -439,9 +425,6 @@ transition: all .25s ease-in-out;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
 }
 
-
-
-
 /********** LOADER **********/
 .loader {
   display: block;
@@ -460,6 +443,11 @@ transition: all .25s ease-in-out;
 /********** MANAGE INGREDIENTS **********/
 .manage-ingredients .rainbow-sub {
   margin-top: 50px;
+}
+
+/********** MEALPLAN CONTAINER **********/
+.mealplan-container h2 {
+  margin-top: 25px;
 }
 
 /********** MEALPLAN PREVIEW *********/
