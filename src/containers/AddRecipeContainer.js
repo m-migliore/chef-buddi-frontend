@@ -56,7 +56,15 @@ class AddRecipeContainer extends Component {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data)
+      if (Object.keys(data).includes("errors")) {
+        console.log("errors:", data.errors)
+        this.props.handleErrors(data.errors)
+      } else {
+        console.log("recipe_added");
+      }
+    })
   }
 
   handleChange = e => {
@@ -106,6 +114,7 @@ class AddRecipeContainer extends Component {
                       id="name-input"
                       className="form-control"
                     />
+                    {this.props.errors && this.props.errors.name ? <p className="error">Name {this.props.errors.name}</p> : null}
                   </div>
 
                     <div className="form-group col-lg-4">
@@ -119,6 +128,7 @@ class AddRecipeContainer extends Component {
                         id="category-input"
                         className="form-control"
                       />
+                      {this.props.errors && this.props.errors.category ? <p className="error">Category {this.props.errors.category}</p> : null}
                     </div>
 
                     <div className="form-group col-lg-4">
@@ -146,6 +156,7 @@ class AddRecipeContainer extends Component {
                         className="form-control"
                         rows="5"
                       ></textarea>
+                      {this.props.errors && this.props.errors.instructions ? <p className="error">Instructions {this.props.errors.instructions}</p> : null}
                     </div>
 
                     <div className="form-group col-md-6">
@@ -159,6 +170,7 @@ class AddRecipeContainer extends Component {
                         id="image-input"
                         className="form-control"
                       />
+                      {this.props.errors && this.props.errors.image ? <p className="error">Image {this.props.errors.image}</p> : null}
                     </div>
 
                     <div className="form-group col-md-6">
@@ -228,7 +240,8 @@ const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
     ingredientInputs: state.ingredientInputs,
-    ingredientInputValues: state.ingredientInputValues
+    ingredientInputValues: state.ingredientInputValues,
+    errors: state.errors
   }
 }
 
@@ -236,7 +249,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addIngredInput: () => dispatch({type: "ADD_INGRED_INPUT_FOR_ADD_RECIPE"}),
     addIngredValues: ingredValues => dispatch({type: "ADD_INGRED_INPUT_VALUE", payload: ingredValues}),
-    removeIngredInput: () => dispatch({type: "REMOVE_INGRED_INPUT"})
+    removeIngredInput: () => dispatch({type: "REMOVE_INGRED_INPUT"}),
+    handleErrors: errors => dispatch({type: "HANDLE_ERRORS", payload: errors})
   }
 }
 

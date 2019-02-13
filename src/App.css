@@ -363,7 +363,7 @@ transition: all .25s ease-in-out;
 }
 
 .ingredient.selected {
-  color: #29BF12
+  color: green;
 }
 
 /********** FIND RECIPE CONTAINER **********/
