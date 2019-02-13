@@ -11,19 +11,13 @@ class MealplanView extends Component {
       this.props.setViewedMealplan(data)
     })
   }
-
-  // componentDidUpdate() {
-  //   console.log("update hit")
-  //   if (this.props.mealDeleted) {
-  //     fetch(`http://localhost:4000/api/v1/mealplans/${this.props.viewedMealplanId}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       debugger
-  //       console.log("ftch hit")
-  //       this.props.setViewedMealplan(data)
-  //     })
-  //   }
-  // }
+  dataRefresh = () => {
+    fetch(`http://localhost:4000/api/v1/mealplans/${this.props.viewedMealplanId}`)
+    .then(res => res.json())
+    .then(data => {
+      this.props.refreshMealplanData(data)
+    })
+  }
 
   handleDelete = () => {
     console.log("delete mealplan");
@@ -80,9 +74,9 @@ class MealplanView extends Component {
   render() {
     // const mealplan = this.props.viewedMealplan
 
-
     return (
       <>
+        {this.props.successfulMealAdd ? this.dataRefresh() : null}
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -116,7 +110,8 @@ const mapStateToProps = state => {
     viewedMealplan: state.viewedMealplan,
     mealDeleted: state.mealDeleted,
     addingMeals: state.addingMeals,
-    userRecipes: state.userRecipes
+    userRecipes: state.userRecipes,
+    successfulMealAdd: state.successfulMealAdd
   }
 }
 
@@ -125,7 +120,8 @@ const mapDispatchToProps = dispatch => {
     setViewedMealplan: mealplan => dispatch({type: "SET_VIEWED_MEALPLAN", payload: mealplan}),
     postMealplanDelete: deletedMealplanId => dispatch({type: "POST_MEALPLAN_DELETE", payload: deletedMealplanId}),
     startAddingMeals: () => dispatch({type: "START_ADDING_MEALS"}),
-    stopAddingMeals: () => dispatch({type: "STOP_ADDING_MEALS"})
+    stopAddingMeals: () => dispatch({type: "STOP_ADDING_MEALS"}),
+    refreshMealplanData: mealplan => dispatch({type: "REFRESH_MEALPLAN_DATA", payload: mealplan})
   }
 }
 

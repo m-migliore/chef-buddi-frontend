@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RecipeSaveSuccess from './RecipeSaveSuccess'
+import MealAddSuccess from './MealAddSuccess'
 
 class RecipeView extends Component {
   componentDidMount() {
@@ -65,6 +66,28 @@ class RecipeView extends Component {
     })
   }
 
+  handleAddToMealplan = () => {
+    console.log("add me")
+    console.log("current mealplan id", this.props.viewedMealplanId)
+    console.log("viewed reci id", this.props.viewedRecipeId)
+    fetch("http://localhost:4000/api/v1/meals", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        mealplan_id: this.props.viewedMealplanId,
+        recipe_id: this.props.viewedRecipeId
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("daata", data)
+      this.props.postMealAdd(data)
+    })
+  }
+
 
   renderActionButton = () => {
     if (window.location.pathname === "/find-recipes") {
@@ -76,7 +99,12 @@ class RecipeView extends Component {
         return <button className="btn btn-primary" onClick={this.handleAddMeal}>Add to Mealplan</button>
       }
     } else if (this.props.viewedMealplanId){
-      return <button className="btn btn-primary" onClick={this.handleDeleteMeal}>Remove from Mealplan</button>
+      if (this.props.addingMeals) {
+        return <button className="btn btn-primary" onClick={this.handleAddToMealplan}>Add to Mealplan</button>
+      } else {
+        return <button className="btn btn-primary" onClick={this.handleDeleteMeal}>Remove from Mealplan</button>
+      }
+
     } else {
       return <button className="btn btn-primary" onClick={this.handleRemove}>Remove Recipe</button>
     }
@@ -85,6 +113,8 @@ class RecipeView extends Component {
   renderAboveView = () => {
     if (this.props.successfulRecipeSave) {
       return <RecipeSaveSuccess />
+    } else if (this.props.successfulMealAdd){
+      return <MealAddSuccess />
     } else {
       return <div className="row text-center recipe-view-above">
                 <div className="col-md-6">
@@ -166,7 +196,9 @@ const mapStateToProps = state => {
     createdMealplan: state.createdMealplan,
     stagedMealplanRecipes: state.stagedMealplanRecipes,
     viewedMealplanId: state.viewedMealplanId,
-    viewedMealId: state.viewedMealId
+    viewedMealId: state.viewedMealId,
+    addingMeals: state.addingMeals,
+    successfulMealAdd: state.successfulMealAdd
   }
 }
 
@@ -179,7 +211,8 @@ const mapDispatchToProps = dispatch => {
     stageMealplanRecipe: (recipe) => dispatch({type:"STAGE_RECIPE_TO_MEALPLAN", payload: recipe}),
     removeMealplanRecipe: (recipeId) => dispatch({type: "REMOVE_MEALPLAN_RECIPE", payload: recipeId}),
     clearMealParams: () => dispatch({type: "CLEAR_MEAL_PARAMS"}),
-    setViewedMealplan: mealplan => dispatch({type: "SET_VIEWED_MEALPLAN", payload: mealplan})
+    setViewedMealplan: mealplan => dispatch({type: "SET_VIEWED_MEALPLAN", payload: mealplan}),
+    postMealAdd: (meal) => dispatch({type: "POST_MEAL_ADD", payload: meal})
   }
 }
 

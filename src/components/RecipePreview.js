@@ -3,7 +3,12 @@ import { connect } from 'react-redux'
 
 class RecipePreview extends Component {
   handleClick = () => {
-    if (window.location.pathname === "/profile" || window.location.pathname === "/create-mealplan") {
+    if (this.props.addingMeals) {
+      // console.log(this.props.recipe)
+      // debugger
+      // console.log("sup")
+      this.props.setViewUserRecipeId(this.props.recipe['recipe_id'], this.props.recipe.id)
+    } else if (window.location.pathname === "/profile" || window.location.pathname === "/create-mealplan") {
       if (this.props.viewedMealplanId) {
         //this.props.setViewRecipeId(this.props.recipe.id)
         this.props.setViewMealIds(this.props.recipe.id, this.props.recipe['meal_id'])
@@ -30,7 +35,8 @@ class RecipePreview extends Component {
 
 const mapStateToProps = state => {
   return {
-    viewedMealplanId: state.viewedMealplanId
+    viewedMealplanId: state.viewedMealplanId,
+    addingMeals: state.addingMeals
   }
 }
 
