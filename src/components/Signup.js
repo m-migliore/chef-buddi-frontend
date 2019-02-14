@@ -52,7 +52,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="col-12">
+      <div className="col-12 animated 1s fadeIn">
         <h2 className="rainbow-border">Signup</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="row">

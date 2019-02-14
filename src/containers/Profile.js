@@ -34,7 +34,7 @@ class Profile extends Component {
     switch(this.props.profileView) {
       case "ingredients":
         return <>
-                <div className="container">
+                <div className="container animated 1s fadeIn">
                   <div className="row">
                     <div className="col-12">
                       <h3 className="rainbow-sub">Your Ingredients</h3>
@@ -49,7 +49,7 @@ class Profile extends Component {
                </>
       case "recipes":
         return <>
-                <div className="container">
+                <div className="container animated 1s fadeIn">
                   <div className="row">
                     <div className="col-12">
                       <h3 className="rainbow-sub">Your Recipes</h3>
@@ -68,7 +68,7 @@ class Profile extends Component {
       case "mealplans":
         //return <MealplanContainer />
         return <>
-                  <div className="container">
+                  <div className="container animated 1s fadeIn">
                     <div className="row">
                       <div className="col-12">
                         <h3 className="rainbow-sub">Your Mealplans</h3>
@@ -80,7 +80,7 @@ class Profile extends Component {
                </>
       default:
         return <>
-                <div className="container">
+                <div className="container animated 1s fadeIn">
                   <div className="row">
                     <div className="col-12">
                       <h3 className="rainbow-sub">Ingredients</h3>
@@ -116,7 +116,7 @@ class Profile extends Component {
     }
 
     return (
-      <div className="profile">
+      <div className="profile animated 1s fadeIn">
         {this.loginRedirect()}
 
         <div className="container">
