@@ -57,6 +57,7 @@ class MealplanView extends Component {
                  <div className="row">
                    <div className="col">
                      <h3 className="rainbow-sub">Shopping List</h3>
+                     {this.props.viewedMealplan ? <h4>Total: {mealplan.shoppingList.length}</h4> : null}
                    </div>
                  </div>
                </div>
@@ -68,7 +69,10 @@ class MealplanView extends Component {
   renderMealAdder = () => {
     const currentMealRecipeIds = this.props.viewedMealplan.recipes.map(recipe => recipe.id)
     const availableRecipes = this.props.userRecipes.filter(recipe => !currentMealRecipeIds.includes(recipe['recipe_id']))
-    return <RecipeContainer recipes={availableRecipes} />
+    return <>
+            <h4>Available Recipes</h4>
+             <RecipeContainer recipes={availableRecipes} />
+           </>
   }
 
   render() {

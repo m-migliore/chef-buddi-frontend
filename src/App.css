@@ -356,10 +356,10 @@ transition: all .25s ease-in-out;
   text-align: center;
   font-size: 1.5rem;
   -webkit-transition: all .25s ease-in-out;
--moz-transition: all .25s ease-in-out;
--ms-transition: all .25s ease-in-out;
--o-transition: all .25s ease-in-out;
-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
 }
 
 .ingredient.selected {
@@ -377,6 +377,38 @@ transform: scale(1.1);
 }
 
 /********** RECIPE PREVIEW **********/
+.recipe-preview {
+  min-height: 350px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+  text-align: left;
+  border-radius: .25rem;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
+  position: relative;
+  -webkit-filter: grayscale(50%);
+  filter: grayscale(50%);
+  -webkit-transition: all .75s ease-in-out;
+  -moz-transition: all .75s ease-in-out;
+  -ms-transition: all .75s ease-in-out;
+  -o-transition: all .75s ease-in-out;
+  transition: all .75s ease-in-out;
+}
+
+.recipe-preview h4 {
+  background-color: #222;
+  color: #fafafa;
+  padding: 15px 15px 10px;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+.recipe-preview:hover {
+  cursor: pointer;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
 
 
 /********** RECIPE VIEW **********/
@@ -491,6 +523,14 @@ transform: scale(1.1);
   margin-right: 15px;
 }
 
+.mealplan-container h4 {
+  margin-top: 50px;
+}
+
+.mealplan-container .recipe-preview h4 {
+  margin-top: 0;
+}
+
 /********** MEALPLAN PREVIEW *********/
 .mealplan-preview {
   background-color: #fff;
@@ -505,4 +545,10 @@ transform: scale(1.1);
 .mealplan-meals, .mealplan-shopping-list {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+/********** CREATEMEALPLAN **********/
+.create-mealplan input {
+  width: 65%;
+  margin: 0 auto;
 }

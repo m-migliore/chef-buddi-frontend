@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import Moment from 'react-moment';
 
 class MealplanPreview extends Component {
   handleClick = () => {
@@ -13,7 +14,7 @@ class MealplanPreview extends Component {
       <div className="col-md-4">
         <div className="mealplan-preview">
           <h3>{mealplan.title}</h3>
-          <p>Created: {mealplan['created_at']}</p>
+          <p>Created: <Moment format="LL">{mealplan['created_at']}</Moment></p>
           <p>Meals: {mealplan.mealCount}</p>
           <button className="btn btn-primary" onClick={this.handleClick}>View</button>
         </div>

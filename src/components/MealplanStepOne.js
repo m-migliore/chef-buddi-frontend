@@ -37,7 +37,7 @@ class MealplanStepOne extends Component {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h3>Add a Title</h3>
+            <h3 className="rainbow-sub">Add a Title</h3>
           </div>
           <div className="col-12">
             <form onSubmit={this.handleSubmit}>

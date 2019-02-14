@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RecipeContainer from '../containers/RecipeContainer'
-import { Redirect } from 'react-router-dom'
 
 class MealplanStepTwo extends Component {
 
@@ -33,8 +32,6 @@ class MealplanStepTwo extends Component {
 
     return (
       <>
-        {/* {this.props.successfulMealplanCreate ? <Redirect to="/profile"/> : null} */}
-
         <div className="container">
           <div className="row">
             <div className="col">
@@ -55,7 +52,6 @@ class MealplanStepTwo extends Component {
             </div>
           </div>
         </div>
-        {/* <RecipeContainer recipes={this.props.userRecipes} /> */}
           <RecipeContainer recipes={this.props.userRecipes.filter(recipe => !this.props.stagedMealplanRecipes.includes(recipe['recipe_id']))} />
       </>
     );

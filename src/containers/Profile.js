@@ -37,7 +37,7 @@ class Profile extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-12">
-                      <h3 className="rainbow-sub">Ingredients</h3>
+                      <h3 className="rainbow-sub">Your Ingredients</h3>
                     </div>
                     <div className="col-12">
                       <Link to="/manage-ingredients" className="btn btn-primary">Manage Ingredients</Link>
@@ -52,7 +52,7 @@ class Profile extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-12">
-                      <h3 className="rainbow-sub">Recipes</h3>
+                      <h3 className="rainbow-sub">Your Recipes</h3>
                     </div>
                     <div className="col-md-6 text-right">
                       <Link to="/find-recipes" className="btn btn-primary">Find Recipes</Link>
@@ -71,7 +71,7 @@ class Profile extends Component {
                   <div className="container">
                     <div className="row">
                       <div className="col-12">
-                        <h3 className="rainbow-sub">Mealplans</h3>
+                        <h3 className="rainbow-sub">Your Mealplans</h3>
                       </div>
                     </div>
                   </div>
