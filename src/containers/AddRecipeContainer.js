@@ -89,7 +89,7 @@ class AddRecipeContainer extends Component {
 
   render() {
     return (
-      <div className="add-recipe-form">
+      <div className="add-recipe-form  animated 1s fadeIn">
         <div className="container">
           {this.loginRedirect()}
 
@@ -224,7 +224,7 @@ class AddRecipeContainer extends Component {
 
                 </div>
                 <div className="col-12">
-                  <button className="btn btn-primary" type="submit">Submit</button>
+                  <button className="btn btn-blue" type="submit">Submit</button>
                 </div>
               </form>
             </div>

@@ -34,7 +34,7 @@ class MealplanStepOne extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container animated 1s fadeIn">
         <div className="row">
           <div className="col-12">
             <h3 className="rainbow-sub">Add a Title</h3>

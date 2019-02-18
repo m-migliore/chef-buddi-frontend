@@ -41,7 +41,7 @@ class MealplanView extends Component {
     const mealplan = this.props.viewedMealplan
 
     return <>
-             <div className="mealplan-meals">
+             <div className="mealplan-meals animated 1s fadeIn">
                <div className="container">
                  <div className="row">
                    <div className="col">

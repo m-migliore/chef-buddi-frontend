@@ -32,7 +32,7 @@ class MealplanStepTwo extends Component {
 
     return (
       <>
-        <div className="container">
+        <div className="container animated 1s fadeIn">
           <div className="row">
             <div className="col">
               <h3>Selected Recipes</h3>
@@ -42,7 +42,7 @@ class MealplanStepTwo extends Component {
             <h4>No Recipes Added</h4> :
             <>
               <RecipeContainer recipes={this.props.userRecipes.filter(recipe => this.props.stagedMealplanRecipes.includes(recipe['recipe_id']))} />
-              <button className="btn btn-primary" onClick={this.handleClick}>Create Mealplan</button>
+              <button className="btn btn-primary create-mp" onClick={this.handleClick}>Create Mealplan</button>
             </>
           }
 

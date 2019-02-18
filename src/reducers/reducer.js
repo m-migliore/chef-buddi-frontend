@@ -110,7 +110,9 @@ export default function reducer(state = defaultState, action) {
         viewedRecipe: null,
         userIngredSearch: false,
         recipeSearchCompleted: false,
-        successfulRecipeSave: false
+        successfulRecipeSave: false,
+        addingMeals: false,
+        successfulMealAdd: false
       }
     case "SET_RECIPE_SAVE_STATUS":
       return {...state, successfulRecipeSave: true}

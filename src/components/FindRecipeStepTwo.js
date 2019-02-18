@@ -5,7 +5,9 @@ import IngredientContainer from '../containers/IngredientContainer'
 
 class FindStepTwo extends Component {
   handleClick = () => {
-    this.props.completeStepTwo(this.props.selectedIngredients)
+    if (this.props.selectedIngredients.length > 0) {
+      this.props.completeStepTwo(this.props.selectedIngredients)
+    }
   }
 
   backButtonClick = () => {
@@ -16,11 +18,11 @@ class FindStepTwo extends Component {
     // const QueryIngredientContainer = ingredListSelector(IngredientContainer, this.props.ingredients)
 
     return (
-      <div className="step-two">
+      <div className="step-two animated 1s fadeIn">
         <div className="container">
           <div className="row">
             <div className="col">
-              <button className="btn btn-primary" onClick={this.backButtonClick}>Back</button>
+              <button className="btn btn-primary back" onClick={this.backButtonClick}>Back</button>
             </div>
           </div>
           <div className="row">

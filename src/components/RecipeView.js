@@ -148,7 +148,7 @@ class RecipeView extends Component {
 
 
     return (
-      <div className="recipe-view">
+      <div className="recipe-view  animated 1s fadeIn">
         <div className="container">
           <div className="recipe-view-inner">
             {this.renderAboveView()}

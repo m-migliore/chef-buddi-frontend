@@ -53,7 +53,7 @@ class FindStepThree extends Component {
 
   render() {
     return (
-      <div className="step-three">
+      <div className="step-three animated 1s fadeIn">
         <div className="row">
           <div className="col">
             <h2>Search Results</h2>

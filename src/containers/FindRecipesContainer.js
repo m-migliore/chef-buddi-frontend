@@ -32,7 +32,7 @@ class FindRecipesContainer extends Component {
       }
     }
     return (
-      <div className="find-recipe-container">
+      <div className="find-recipe-container  animated 1s fadeIn">
         {this.loginRedirect()}
 
         {renderStep()}

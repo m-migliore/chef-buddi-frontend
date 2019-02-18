@@ -200,6 +200,14 @@ transition: all .25s ease-in-out;
   color: #e48912;
 }
 
+input.form-control, textarea.form-control, input.form-control:focus, textarea.form-control:focus {
+  border: 3px solid #222;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
+}
+
+
+
 /********** FILTER FORM **********/
 
 .filter-form {
@@ -346,6 +354,11 @@ transition: all .25s ease-in-out;
   margin: 0 auto;
 }
 
+/********** ADD RECIPE FORM **********/
+.add-recipe-form .btn.btn-blue {
+  width: 33%;
+  margin-top: 50px;
+}
 
 /********** INGREDIENT **********/
 .ingredient {
@@ -376,6 +389,13 @@ transition: all .25s ease-in-out;
 transform: scale(1.1);
 }
 
+.step-one .btn-row {
+  margin-top: 50px;
+}
+
+.step-two .back {
+  margin-bottom: 25px;
+}
 /********** RECIPE PREVIEW **********/
 .recipe-preview {
   min-height: 350px;
@@ -387,8 +407,8 @@ transform: scale(1.1);
   -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .3);
   position: relative;
-  -webkit-filter: grayscale(50%);
-  filter: grayscale(50%);
+  -webkit-filter: grayscale(25%);
+  filter: grayscale(25%);
   -webkit-transition: all .75s ease-in-out;
   -moz-transition: all .75s ease-in-out;
   -ms-transition: all .75s ease-in-out;
@@ -551,4 +571,9 @@ transform: scale(1.1);
 .create-mealplan input {
   width: 65%;
   margin: 0 auto;
+}
+
+.create-mp {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }

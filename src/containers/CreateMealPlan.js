@@ -23,7 +23,7 @@ class CreateMealPlan extends Component {
     }
     return (
 
-      <div className="create-mealplan">
+      <div className="create-mealplan  animated 1s fadeIn">
         {this.props.currentUserId ? null : <Redirect to="/" />}
         {this.props.successfulMealplanCreate ? <Redirect to="/profile"/> : null}
 
